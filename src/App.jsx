@@ -8,7 +8,7 @@ import Page1 from "./pages/Page1";
 function App() {
   return (
     <BrowserRouter>
-      <nav
+      {/* <nav
         style={{
           display: "flex",
           gap: "1rem",
@@ -19,7 +19,7 @@ function App() {
         <Link to="/">Home</Link>
         <Link to="/page">Page</Link>
         <Link to="/page1">Page1</Link>
-      </nav>
+      </nav> */}
 
       <Routes>
         <Route path="/" element={<Home />} />
