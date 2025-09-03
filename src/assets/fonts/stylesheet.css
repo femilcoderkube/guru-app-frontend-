@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Amulya';
+    src: url('Amulya-Regular.eot');
+    src: url('Amulya-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Amulya-Regular.woff2') format('woff2'),
+        url('Amulya-Regular.woff') format('woff'),
+        url('Amulya-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Amulya';
+    src: url('Amulya-Bold.eot');
+    src: url('Amulya-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Amulya-Bold.woff2') format('woff2'),
+        url('Amulya-Bold.woff') format('woff'),
+        url('Amulya-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Amulya';
+    src: url('Amulya-Medium.eot');
+    src: url('Amulya-Medium.eot?#iefix') format('embedded-opentype'),
+        url('Amulya-Medium.woff2') format('woff2'),
+        url('Amulya-Medium.woff') format('woff'),
+        url('Amulya-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+

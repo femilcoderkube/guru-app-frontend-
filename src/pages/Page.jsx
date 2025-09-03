@@ -1,7 +1,491 @@
-import React from "react";
-
+import React, { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules"; // ✅ add Pagination
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination"; // ✅ import pagination css
+import logo from "../assets/Images/guru_logo.png";
+import dark_logo from "../assets/Images/dark_logo.png";
+import TW from "../assets/Images/twitter.png";
+import LN from "../assets/Images/Ln.png";
+import FB from "../assets/Images/fb.png";
+import app_store from "../assets/Images/app-store.png";
+import play_store from "../assets/Images/play-store.png";
+import footer_shape from "../assets/Images/footer-shape.png";
+import imogi_rev from "../assets/Images/imogi-rev.png";
+import faq_arrow from "../assets/Images/faq-arrow.png";
+import banner_video from "../assets/Images/banner-video.mp4";
 const Page = () => {
-  return <div>Page</div>;
+  const [navOpen, setNavOpen] = React.useState(false);
+  return (
+    <>
+     {/* dark-header start */}
+     <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem] md:hidden block">
+        <div className="flex items-center justify-between w-full max-w-[76.5rem] mx-auto">
+          <div className="site-logo flex-shrink-0 ">
+            <img src={dark_logo} alt="Guru Logo" className="h-8 md:h-10" />
+          </div>         
+          {/* Mobile Nav Toggle */}
+          <button
+            className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none"
+            aria-label="Open menu"
+            onClick={() => setNavOpen((v) => !v)}
+          >
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+              <rect y="5" width="24" height="2" rx="1" fill="#32191E" />
+              <rect y="11" width="24" height="2" rx="1" fill="#32191E" />
+              <rect y="17" width="24" height="2" rx="1" fill="#32191E" />
+            </svg>
+          </button>
+        </div>
+        {/* Mobile Nav Drawer */}
+        {navOpen && (
+          <div className="md:hidden fixed inset-0 z-50 bg-black bg-opacity-40">
+            <div className="absolute top-0 right-0 w-4/5 max-w-xs bg-white h-full shadow-lg flex flex-col">
+              <button
+                className="self-end m-4 p-2"
+                aria-label="Close menu"
+                onClick={() => setNavOpen(false)}
+              >
+                <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+                  <line x1="6" y1="6" x2="18" y2="18" stroke="#32191E" strokeWidth="2" />
+                  <line x1="18" y1="6" x2="6" y2="18" stroke="#32191E" strokeWidth="2" />
+                </svg>
+              </button>
+              <ul className="flex flex-col gap-2 px-6 mt-8">
+                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">About</li>
+                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">Our Rating</li>
+                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">Contact Us</li>
+              </ul>
+              <div className="mt-6 px-6">
+                <div className="py-2 bg-[#F6F8FA] rounded-2xl px-4 border border-[#DFE1E7] border-opacity-[0.34] w-fit">
+                  <span className="cursor-pointer text-base font-normal text-[#0D0D12] leading-none">
+                    EN
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </header>
+      {/* dark-header End */}
+      {/* Hero Section Start */}
+      <div className="relative mx-2 sm:mx-4 md:mx-10 my-4 sm:my-8 md:my-[2.5rem] rounded-[1.25rem] sm:rounded-[1.5rem] md:mt-[2.5rem] sm:mt-[5.875rem] mt-[5.875rem] md:rounded-[1.875rem] bg-transparent">
+        {/* Background Video */}
+        <div className="aspect-[16/9] w-full rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[1.875rem] overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full !h-full object-cover z-0"
+          >
+            <source
+              src={banner_video}
+              type="video/mp4"
+            />
+          </video>
+        </div>
+
+        {/* Overlay content */}
+        <div className="absolute top-4 sm:top-6 md:top-[1.875rem] z-10 w-full px-3 sm:px-6 md:px-[3.95rem] flex flex-col">
+          <div className="flex items-center justify-between w-full">
+            <div className="site-logo flex-shrink-0 md:block hidden">
+              <img
+                src={logo}
+                alt="Guru Logo"
+                className="h-8 sm:h-10 md:h-12 w-auto"
+              />
+            </div>
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-4 h-[3.375rem]">
+              {(() => {
+                const navItems = [
+                  { label: "About" },
+                  { label: "Our Rating" },
+                  { label: "Contact Us" },
+                ];
+                const [activeIdx, setActiveIdx] = React.useState(0);
+
+                return (
+                  <ul className="header-nav flex items-center gap-4 lg:gap-[1.875rem] bg-[#FFEEE11A] rounded-2xl px-4 lg:px-[1.938rem] border border-[#FFEEE1] border-opacity-[0.34] h-full">
+                    {navItems.map((item, idx) => (
+                      <li
+                        key={item.label}
+                        className={
+                          "relative text-base leading-none h-full flex justify-center items-center cursor-pointer px-2 " +
+                          (activeIdx === idx ? "active-tab font-bold" : "font-normal") +
+                          " text-[#FFEAC2]"
+                        }
+                        onClick={() => setActiveIdx(idx)}
+                      >
+                        {item.label}
+                      </li>
+                    ))}
+                  </ul>
+                );
+              })()}
+              <div className="py-2 md:py-4 bg-[#FFEEE11A] rounded-2xl px-4 lg:px-[1.938rem] border border-[#FFEEE1] border-opacity-[0.34] h-full flex items-center">
+                <span className="cursor-pointer text-base font-normal text-[#FFEAC2] leading-none">
+                  EN
+                </span>
+              </div>
+            </div>
+            {/* Mobile Nav (show only on mobile) */}
+            <div className="flex md:hidden items-center">
+              {/* Optionally, you can add a mobile menu button here if needed */}
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Text */}
+        {(() => {
+          const words = [
+            "No ads",
+            "Real ratings",
+            "Trusted sources",
+            "Verified users",
+          ];
+          const [index, setIndex] = React.useState(0);
+
+          React.useEffect(() => {
+            const interval = setInterval(() => {
+              setIndex((prev) => (prev + 1) % words.length);
+            }, 3000);
+            return () => clearInterval(interval);
+          }, []);
+
+          return (
+            <div
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 px-3 sm:px-6 md:px-[3.95rem] flex flex-col items-start w-full max-w-[48rem]"
+              style={{
+                // Remove right-0 and mx-auto, align to left, keep vertical centering
+              }}
+            >
+              <h1 className="text-2xl sm:text-3xl md:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight md:leading-[3.875rem] text-left">
+                Our Ratings Guide
+              </h1>
+              <h5 className="text-base sm:text-lg md:text-2xl font-normal text-[#FFEAC2] mt-2 md:mt-[1.5rem] text-left">
+                We don’t do stars. We do experiences.
+              </h5>
+            </div>
+          );
+        })()}
+
+        {/* Social Icons */}
+        <div className="absolute bottom-2 sm:bottom-4 md:bottom-[2.5rem] z-10 w-full flex justify-center">
+          <ul className="flex items-center justify-center gap-4 md:gap-6">
+            <li className="cursor-pointer">
+              <img src={TW} alt="Twitter" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />
+            </li>
+            <li className="cursor-pointer">
+              <img src={LN} alt="LinkedIn" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />
+            </li>
+            <li className="cursor-pointer">
+              <img src={FB} alt="Facebook" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />
+            </li>
+          </ul>
+        </div>
+
+        {/* Overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/40 z-0 pointer-events-none rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[1.875rem]"></div>
+      </div>
+      {/* Hero Section End */}
+
+      {/* Tabbing Section Start */}
+      <div className="relative">
+        <div className="bg-[#FFF5E1] pt-8 md:pt-[3.125rem] pb-6 md:pb-9 px-3 sm:px-4 md:px-6">
+          <div className="max-w-[73.188rem] mx-auto">
+            <div className="flex flex-col gap-3 items-center mb-13 md:mb-[4.375rem]">
+              <div className="flex items-center justify-center bg-[#32191E] rounded-[2.5rem] h-[2.25rem] border border-[#32191E]">
+                {(() => {
+                  const [activeTab, setActiveTab] = React.useState(0);
+                  const tabs = [
+                    { label: "For Dishes" },
+                    { label: "For Restaurants" },
+                  ];
+                  return (
+                    <>
+                      {tabs.map((tab, idx) => (
+                        <button
+                          key={tab.label}
+                          onClick={() => setActiveTab(idx)}
+                          className={
+                            "px-8 sm:text-sm text-xs font-medium transition-colors duration-200 h-[2.25rem] cursor-pointer" +
+                            (activeTab === idx
+                              ? " bg-[#FF700A] text-[#4A282F] h-[2.25rem]"
+                              : " bg-transparent text-[#966422] h-[2.25rem]") +
+                            (idx === 0
+                              ? " rounded-[2.5rem]"
+                              : " rounded-[2.5rem]")
+                          }
+                          style={{
+                            border:
+                              activeTab === idx
+                                ? "-1px solid #FFA86D"
+                                : "-1px solid transparent",
+                            boxShadow:
+                              activeTab === idx ? "0 0 0 1px #FFA86D" : "none",
+                            backgroundColor:
+                              activeTab === idx ? "#FF700A" : "transparent", // Explicitly set active bg color
+                          }}
+                        >
+                          {tab.label}
+                        </button>
+                      ))}
+                    </>
+                  );
+                })()}
+              </div>
+              <p className="text-[#0D0D12] text-base sm:text-lg md:text-xl text-center max-w-full sm:max-w-[36rem] md:max-w-[46.25rem] px-2">
+                Our team always dines anonymously — no special treatment, no
+                heads-up. Just like any other guest.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-12 sm:gap-x-5">
+              <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                <img
+                  className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                  src={imogi_rev}
+                  alt=""
+                />
+                <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                  Exceptional
+                </h4>
+                <p className="text-[#4A282F] text-sm sm:text-base">
+                  A rare and elevated bite. Memorable flavor, perfect execution,
+                  and attention to detail — a dish worth revisiting and
+                  recommending
+                </p>
+              </div>
+              <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                <img
+                  className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                  src={imogi_rev}
+                  alt=""
+                />
+                <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                  Delicious
+                </h4>
+                <p className="text-[#4A282F] text-sm sm:text-base">
+                  Delivers strong quality and a standout element — whether in
+                  flavor, texture, or creativity. A solid pick that satisfies
+                  and impresses
+                </p>
+              </div>
+              <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                <img
+                  className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                  src={imogi_rev}
+                  alt=""
+                />
+                <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                  Good
+                </h4>
+                <p className="text-[#4A282F] text-sm sm:text-base">
+                  A decent and enjoyable dish. Nothing to complain about, but
+                  nothing too special either. May suit casual cravings or simple
+                  comfort.
+                </p>
+              </div>
+              <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                <img
+                  className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                  src={imogi_rev}
+                  alt=""
+                />
+                <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                  Okay
+                </h4>
+                <p className="text-[#4A282F] text-sm sm:text-base">
+                  Fell short in one or more areas — taste, texture, or balance.
+                  Not a recommended dish based on current feedback
+                </p>
+              </div>
+              <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                <img
+                  className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                  src={imogi_rev}
+                  alt=""
+                />
+                <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                  Guru’s Choice
+                </h4>
+                <p className="text-[#4A282F] text-sm sm:text-base">
+                  Handpicked by GURU. These dishs earn high scores for taste,
+                  consistency, and crowd approval — a top dish to try
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Tabbing Section End */}
+
+      {/* FAQ Section Start */}
+      {(() => {
+        const faqData = [
+          {
+            question: "How are meals rated on GURU?",
+            answer:
+              "Each meal is scored by real users, and you’ll see a quick “vibe” label. Each score, recommendation, or label is from someone who actually tried the dish—so you know what to expect before you order or visit.",
+          },
+          {
+            question: "Can anyone create a meal?",
+            answer:
+              "Only restaurants can add new menu items, but users can easily rate through GURU. Be sure to update your app for the newest dish discoveries!",
+          },
+          {
+            question: "Why do some meals show “Okay”?",
+            answer:
+              "That’s honest, real user feedback. Not every dish is a hit. If it’s not personal preference, it’s a reflection of recent reviews.",
+          },
+          {
+            question: "What does “Guru’s Choice” mean on a meal?",
+            answer:
+              "It’s the highest mark you can get—a dish that’s consistently rated the best for taste, consistency, and crowd love. If you see this, it’s a must-try!",
+          },
+        ];
+
+        // By default, the first panel is open
+        const [openIdx, setOpenIdx] = React.useState(0);
+        const contentRefs = React.useRef([]);
+
+        React.useEffect(() => {
+          // When openIdx changes, set maxHeight for smooth transition
+          faqData.forEach((_, idx) => {
+            const el = contentRefs.current[idx];
+            if (el) {
+              if (openIdx === idx) {
+                el.style.maxHeight = el.scrollHeight + "px";
+              } else {
+                el.style.maxHeight = "0px";
+              }
+            }
+          });
+        }, [openIdx, faqData.length]);
+
+        return (
+          <div className="faq-sec-wp relative mb-8 sm:mb-10 md:mb-12 px-2 sm:px-4 py-6 sm:py-[2.52rem] bg-[#F8FAFB]">
+            <div className="max-w-[73.188rem] mx-auto">
+              <div className="faq-sec">
+                <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E] mb-4 sm:mb-6">
+                  FAQ
+                </h2>
+                <div className="space-y-4 sm:space-y-6">
+                  {faqData.map((item, idx) => (
+                    <div
+                      key={item.question}
+                      className="bg-[#FFFFFF] rounded-xl px-3 sm:px-5 py-2 sm:py-3 shadow-[0px_4px_74px_0px_#0000001A]"
+                    >
+                      <button
+                        className="flex items-center justify-between gap-2 sm:gap-3 w-full text-base sm:text-lg md:text-xl text-left focus:outline-none mb-1 sm:mb-2"
+                        onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
+                        aria-expanded={openIdx === idx}
+                        aria-controls={`faq-panel-${idx}`}
+                      >
+                        <div>
+                          <div className="font-semibold text-[#32191E]">
+                            {item.question}
+                          </div>
+                        </div>
+                        <span className="bg-[#FFEAC2] font-bold select-none flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full flex-shrink-0">
+                          <img
+                            src={faq_arrow}
+                            alt=""
+                            style={{
+                              transition: "transform 0.3s",
+                              transform:
+                                openIdx === idx
+                                  ? "rotate(0deg)"
+                                  : "rotate(180deg)",
+                              display: "inline-block",
+                            }}
+                          />
+                        </span>
+                      </button>
+                      <div
+                        id={`faq-panel-${idx}`}
+                        ref={(el) => (contentRefs.current[idx] = el)}
+                        className="text-[#4A282F] text-sm sm:text-base overflow-hidden transition-all duration-300"
+                        style={{
+                          maxHeight:
+                            openIdx === idx
+                              ? (contentRefs.current[idx]?.scrollHeight || 0) +
+                                "px"
+                              : "0px",
+                          opacity: openIdx === idx ? 1 : 0.7,
+                        }}
+                        aria-hidden={openIdx !== idx}
+                      >
+                        <div>{item.answer}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+      {/* FAQ Section End */}
+
+      {/* footer start */}
+      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+        <img
+          className="footer-shape absolute -right-4 md:-right-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto"
+          src={footer_shape}
+          alt=""
+        />
+        <div className="mx-auto max-w-[80rem]">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
+            <div className="max-w-full md:max-w-[38.938rem]">
+              <h2 className="text-xl md:text-2xl font-bold text-[#32191E] mb-2">
+                Make it count.
+              </h2>
+              <p className="text-base md:text-xl text-[#4A282F]">
+                One real review can help someone skip a bland bite — or find the
+                best. So do it well!
+              </p>
+            </div>
+            <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 mr-[5rem]">
+              <a href="#" className="inline-block">
+                <img src={app_store} alt="" className="h-10 w-auto" />
+              </a>
+              <a href="#" className="inline-block">
+                <img src={play_store} alt="" className="h-10 w-auto" />
+              </a>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row items-center justify-between mt-6 pt-6 border-t border-[#D1D1D1] gap-4">
+            <div className="text-[#32191E] text-sm md:text-base text-center md:text-left">
+              ⓒ All Rights Reserved for Guru 2025
+            </div>
+            <div className="flex items-center gap-3 md:gap-4 text-[#32191E] mt-2 md:mt-0">
+              <a href="#" className="text-[#32191E] text-sm md:text-base">
+                Privacy Policy
+              </a>
+              <a href="#" className="text-[#32191E] text-sm md:text-base">
+                Terms of Use
+              </a>
+            </div>
+            <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
+              <li className="cursor-pointer">
+                <img src={TW} alt="" className="h-6 w-6" />
+              </li>
+              <li className="cursor-pointer">
+                <img src={LN} alt="" className="h-6 w-6" />
+              </li>
+              <li className="cursor-pointer">
+                <img src={FB} alt="" className="h-6 w-6" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      {/* footer End */}
+    </>
+  );
 };
 
 export default Page;
