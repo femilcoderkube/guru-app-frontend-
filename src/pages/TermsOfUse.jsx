@@ -8,13 +8,18 @@ import FB from "../assets/Images/fb.png";
 import app_store from "../assets/Images/app-store.png";
 import play_store from "../assets/Images/play-store.png";
 import footer_shape from "../assets/Images/footer-shape.png";
-const Page1 = () => {
-    // Responsive nav state for mobile menu
-    const [navOpen, setNavOpen] = React.useState(false);
+import { NavLink, useNavigate } from "react-router-dom";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
+const TermsOfUse = () => {
+  // Responsive nav state for mobile menu
+  const [navOpen, setNavOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <>
-     {/* dark-header start */}
-     <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
+      {/* dark-header start */}
+      <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
         <div className="flex items-center justify-between w-full max-w-[76.5rem] mx-auto">
           <div className="site-logo flex-shrink-0">
             <img src={dark_logo} alt="Guru Logo" className="h-8 md:h-10" />
@@ -23,9 +28,9 @@ const Page1 = () => {
           <nav className="hidden md:flex items-center gap-4 h-[3.375rem]">
             {(() => {
               const navItems = [
-                { label: "About" },
-                { label: "Our Rating" },
-                { label: "Contact Us" },
+                { label: `${t("about")}`, to: "/" },
+                { label: `${t("our_rating")}`, to: "/rating" },
+                { label: `${t("contactus")}`, to: "/contactus" },
               ];
               const [activeIdx, setActiveIdx] = React.useState(0);
 
@@ -35,11 +40,14 @@ const Page1 = () => {
                     <li
                       key={item.label}
                       className={
-                        "relative text-base leading-none h-full flex justify-center items-center cursor-pointer px-2 " +
-                        (activeIdx === idx ? "active-tab font-bold" : "font-normal") +
+                        "relative text-sm sm:text-base leading-none h-full flex justify-center items-center cursor-pointer " +
+                        (activeIdx === idx ? "active-tab" : "font-normal") +
                         " text-[#0D0D12]"
                       }
-                      onClick={() => setActiveIdx(idx)}
+                      onClick={() => {
+                        navigate(item.to);
+                        setActiveIdx(idx);
+                      }}
                     >
                       {item.label}
                     </li>
@@ -49,7 +57,7 @@ const Page1 = () => {
             })()}
             <div className="py-2 md:py-4 bg-[#F6F8FA] rounded-2xl px-4 lg:px-[1.938rem] border border-[#DFE1E7] border-opacity-[0.34] h-full flex items-center">
               <span className="cursor-pointer text-base font-normal text-[#0D0D12] leading-none">
-                EN
+                <LanguageSwitcher />
               </span>
             </div>
           </nav>
@@ -76,12 +84,26 @@ const Page1 = () => {
                 onClick={() => setNavOpen(false)}
               >
                 <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-                  <line x1="6" y1="6" x2="18" y2="18" stroke="#32191E" strokeWidth="2" />
-                  <line x1="18" y1="6" x2="6" y2="18" stroke="#32191E" strokeWidth="2" />
+                  <line
+                    x1="6"
+                    y1="6"
+                    x2="18"
+                    y2="18"
+                    stroke="#32191E"
+                    strokeWidth="2"
+                  />
+                  <line
+                    x1="18"
+                    y1="6"
+                    x2="6"
+                    y2="18"
+                    stroke="#32191E"
+                    strokeWidth="2"
+                  />
                 </svg>
               </button>
               <ul className="flex flex-col gap-2 px-6 mt-8">
-                {["About", "Our Rating", "Contact Us"].map((item) => (
+                {[t("about"), t("our_rating"), t("contactus")].map((item) => (
                   <li
                     key={item}
                     className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer"
@@ -93,7 +115,7 @@ const Page1 = () => {
               <div className="mt-6 px-6">
                 <div className="py-2 bg-[#F6F8FA] rounded-2xl px-4 border border-[#DFE1E7] border-opacity-[0.34] w-fit">
                   <span className="cursor-pointer text-base font-normal text-[#0D0D12] leading-none">
-                    EN
+                    <LanguageSwitcher />
                   </span>
                 </div>
               </div>
@@ -106,10 +128,15 @@ const Page1 = () => {
       {/* inner-banner start */}
       <div className="w-full flex justify-center bg-[#FFEAC2] mt-[5.875rem] md:mt-[6.375rem] py-3 md:py-[1.375rem] px-2">
         <div className="flex items-center gap-2 sm:gap-4 w-full max-w-[76.5rem] mx-auto">
-          <button className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base">
-            Back
+          <button
+            className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base"
+            onClick={() => navigate("/")}
+          >
+{t("back")}
           </button>
-          <span className="text-[#32191E] font-bold text-lg md:text-xl">Terms of Use</span>
+          <span className="text-[#32191E] font-bold text-lg md:text-xl">
+            {t("terms_of_use")}
+          </span>
         </div>
       </div>
       {/* inner-banner End */}
@@ -119,10 +146,10 @@ const Page1 = () => {
         <div className="max-w-[76.5rem] mx-auto px-2 sm:px-4 xl:px-0">
           <div className="terms-title mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E]">
-              Terms of Use
+              {t("terms_of_use")}
             </h2>
             <p className="text-base sm:text-lg font-medium text-[#32191E]">
-              Last Updated Jan 2025
+              {t("last_updated_jan_2025")}
             </p>
           </div>
           <div className="w-full flex flex-col md:flex-row gap-6 md:gap-4">
@@ -131,10 +158,14 @@ const Page1 = () => {
               <div className="bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000001A] py-4 px-3 sm:py-6 sm:px-5">
                 <div className="flex items-center gap-2 mb-3 sm:gap-2.5 sm:mb-4">
                   <span className="flex items-center justify-center rounded-[0.5rem] h-[2rem] w-[2rem] sm:h-[2.125rem] sm:w-[2.125rem] bg-[#FFD688]">
-                    <img src={terms_list} alt="" className="max-h-full max-w-full" />
+                    <img
+                      src={terms_list}
+                      alt=""
+                      className="max-h-full max-w-full"
+                    />
                   </span>
                   <h6 className="text-[#4A282F] font-bold text-sm sm:text-[1rem] leading-none">
-                    TABLE OF CONTENTS
+                    {t("table_of_contents")}
                   </h6>
                 </div>
                 <ol className="flex flex-col gap-2 sm:gap-3 list-decimal text-xs sm:text-sm font-medium list-inside">
@@ -306,7 +337,7 @@ const Page1 = () => {
         </div>
       </div>
       {/* Tearms End */}
-        {/* footer start */}
+      {/* footer start */}
       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
           className="footer-shape absolute -right-4 md:-right-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto"
@@ -317,11 +348,10 @@ const Page1 = () => {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">
               <h2 className="text-xl md:text-2xl font-bold text-[#32191E] mb-2">
-                Make it count.
+                {t("make_it_count")}
               </h2>
               <p className="text-base md:text-xl text-[#4A282F]">
-                One real review can help someone skip a bland bite — or find the
-                best. So do it well!
+                {t("make_it_count_desc")}
               </p>
             </div>
             <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 mr-[5rem]">
@@ -335,14 +365,20 @@ const Page1 = () => {
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between mt-6 pt-6 border-t border-[#D1D1D1] gap-4">
             <div className="text-[#32191E] text-sm md:text-base text-center md:text-left">
-              ⓒ All Rights Reserved for Guru 2025
+              {t("all_rights_reserved")}
             </div>
             <div className="flex items-center gap-3 md:gap-4 text-[#32191E] mt-2 md:mt-0">
-              <a href="/Page1" className="text-[#32191E] text-sm md:text-base">
-                Privacy Policy
+              <a
+                href="/privacy-policy"
+                className="text-[#32191E] text-sm md:text-base"
+              >
+                {t("privacy_policy")}
               </a>
-              <a href="/Page1" className="text-[#32191E] text-sm md:text-base">
-                Terms of Use
+              <a
+                href="/terms-of-use"
+                className="text-[#32191E] text-sm md:text-base"
+              >
+                {t("terms_of_use")}
               </a>
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
@@ -364,4 +400,4 @@ const Page1 = () => {
   );
 };
 
-export default Page1;
+export default TermsOfUse;

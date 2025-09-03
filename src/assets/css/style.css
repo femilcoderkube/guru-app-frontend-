@@ -253,6 +253,12 @@ body {
   }
 }
 
+@media (max-width: 1024px) {
+  .header-nav li:not(:last-child):after {
+  right: -0.5rem;
+}
+}
+
 @media (max-width: 991px) {
   :root {
     --font-size-xxl: clamp(1.5rem, 3vw + 1rem, 2rem);

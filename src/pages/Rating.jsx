@@ -15,16 +15,21 @@ import footer_shape from "../assets/Images/footer-shape.png";
 import imogi_rev from "../assets/Images/imogi-rev.png";
 import faq_arrow from "../assets/Images/faq-arrow.png";
 import banner_video from "../assets/Images/banner-video.mp4";
-const Page = () => {
+import { NavLink, useNavigate } from "react-router-dom";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
+const Rating = () => {
   const [navOpen, setNavOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <>
-     {/* dark-header start */}
-     <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem] md:hidden block">
+      {/* dark-header start */}
+      <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem] md:hidden block">
         <div className="flex items-center justify-between w-full max-w-[76.5rem] mx-auto">
           <div className="site-logo flex-shrink-0 ">
             <img src={dark_logo} alt="Guru Logo" className="h-8 md:h-10" />
-          </div>         
+          </div>
           {/* Mobile Nav Toggle */}
           <button
             className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none"
@@ -48,19 +53,39 @@ const Page = () => {
                 onClick={() => setNavOpen(false)}
               >
                 <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-                  <line x1="6" y1="6" x2="18" y2="18" stroke="#32191E" strokeWidth="2" />
-                  <line x1="18" y1="6" x2="6" y2="18" stroke="#32191E" strokeWidth="2" />
+                  <line
+                    x1="6"
+                    y1="6"
+                    x2="18"
+                    y2="18"
+                    stroke="#32191E"
+                    strokeWidth="2"
+                  />
+                  <line
+                    x1="18"
+                    y1="6"
+                    x2="6"
+                    y2="18"
+                    stroke="#32191E"
+                    strokeWidth="2"
+                  />
                 </svg>
               </button>
               <ul className="flex flex-col gap-2 px-6 mt-8">
-                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">About</li>
-                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">Our Rating</li>
-                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">Contact Us</li>
+                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
+                  {t("about")}
+                </li>
+                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
+                  {t("our_rating")}
+                </li>
+                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
+                  {t("contactus")}
+                </li>
               </ul>
               <div className="mt-6 px-6">
                 <div className="py-2 bg-[#F6F8FA] rounded-2xl px-4 border border-[#DFE1E7] border-opacity-[0.34] w-fit">
                   <span className="cursor-pointer text-base font-normal text-[#0D0D12] leading-none">
-                    EN
+                    <LanguageSwitcher />
                   </span>
                 </div>
               </div>
@@ -80,10 +105,7 @@ const Page = () => {
             playsInline
             className="w-full !h-full object-cover z-0"
           >
-            <source
-              src={banner_video}
-              type="video/mp4"
-            />
+            <source src={banner_video} type="video/mp4" />
           </video>
         </div>
 
@@ -101,9 +123,9 @@ const Page = () => {
             <div className="hidden md:flex items-center gap-4 h-[3.375rem]">
               {(() => {
                 const navItems = [
-                  { label: "About" },
-                  { label: "Our Rating" },
-                  { label: "Contact Us" },
+                  { label: `${t("about")}`, to: "/" },
+                  { label: `${t("our_rating")}`, to: "/rating" },
+                  { label: `${t("contactus")}`, to: "/contactus" },
                 ];
                 const [activeIdx, setActiveIdx] = React.useState(0);
 
@@ -113,11 +135,14 @@ const Page = () => {
                       <li
                         key={item.label}
                         className={
-                          "relative text-base leading-none h-full flex justify-center items-center cursor-pointer px-2 " +
-                          (activeIdx === idx ? "active-tab font-bold" : "font-normal") +
+                          "relative text-sm sm:text-base leading-none h-full flex justify-center items-center cursor-pointer " +
+                          (activeIdx === idx ? "active-tab" : "font-normal") +
                           " text-[#FFEAC2]"
                         }
-                        onClick={() => setActiveIdx(idx)}
+                        onClick={() => {
+                          navigate(item.to);
+                          setActiveIdx(idx);
+                        }}
                       >
                         {item.label}
                       </li>
@@ -127,7 +152,7 @@ const Page = () => {
               })()}
               <div className="py-2 md:py-4 bg-[#FFEEE11A] rounded-2xl px-4 lg:px-[1.938rem] border border-[#FFEEE1] border-opacity-[0.34] h-full flex items-center">
                 <span className="cursor-pointer text-base font-normal text-[#FFEAC2] leading-none">
-                  EN
+                  <LanguageSwitcher />
                 </span>
               </div>
             </div>
@@ -158,15 +183,17 @@ const Page = () => {
           return (
             <div
               className="absolute left-0 top-1/2 -translate-y-1/2 z-10 px-3 sm:px-6 md:px-[3.95rem] flex flex-col items-start w-full max-w-[48rem]"
-              style={{
-                // Remove right-0 and mx-auto, align to left, keep vertical centering
-              }}
+              style={
+                {
+                  // Remove right-0 and mx-auto, align to left, keep vertical centering
+                }
+              }
             >
               <h1 className="text-2xl sm:text-3xl md:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight md:leading-[3.875rem] text-left">
-                Our Ratings Guide
+                {t("our_ratings_guide")}
               </h1>
               <h5 className="text-base sm:text-lg md:text-2xl font-normal text-[#FFEAC2] mt-2 md:mt-[1.5rem] text-left">
-                We don’t do stars. We do experiences.
+                {t("we_dont_do_stars")}
               </h5>
             </div>
           );
@@ -176,13 +203,25 @@ const Page = () => {
         <div className="absolute bottom-2 sm:bottom-4 md:bottom-[2.5rem] z-10 w-full flex justify-center">
           <ul className="flex items-center justify-center gap-4 md:gap-6">
             <li className="cursor-pointer">
-              <img src={TW} alt="Twitter" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />
+              <img
+                src={TW}
+                alt="Twitter"
+                className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+              />
             </li>
             <li className="cursor-pointer">
-              <img src={LN} alt="LinkedIn" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />
+              <img
+                src={LN}
+                alt="LinkedIn"
+                className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+              />
             </li>
             <li className="cursor-pointer">
-              <img src={FB} alt="Facebook" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />
+              <img
+                src={FB}
+                alt="Facebook"
+                className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+              />
             </li>
           </ul>
         </div>
@@ -201,8 +240,8 @@ const Page = () => {
                 {(() => {
                   const [activeTab, setActiveTab] = React.useState(0);
                   const tabs = [
-                    { label: "For Dishes" },
-                    { label: "For Restaurants" },
+                    { label: `${t("for_dishes")}` },
+                    { label: `${t("for_restaurants")}` },
                   ];
                   return (
                     <>
@@ -238,8 +277,7 @@ const Page = () => {
                 })()}
               </div>
               <p className="text-[#0D0D12] text-base sm:text-lg md:text-xl text-center max-w-full sm:max-w-[36rem] md:max-w-[46.25rem] px-2">
-                Our team always dines anonymously — no special treatment, no
-                heads-up. Just like any other guest.
+                {t("our_team_dines_anonymously")}
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-12 sm:gap-x-5">
@@ -250,12 +288,10 @@ const Page = () => {
                   alt=""
                 />
                 <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
-                  Exceptional
+                  {t("exceptional")}
                 </h4>
                 <p className="text-[#4A282F] text-sm sm:text-base">
-                  A rare and elevated bite. Memorable flavor, perfect execution,
-                  and attention to detail — a dish worth revisiting and
-                  recommending
+                  {t("exceptional_desc")}
                 </p>
               </div>
               <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
@@ -265,12 +301,10 @@ const Page = () => {
                   alt=""
                 />
                 <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
-                  Delicious
+                  {t("delicious")}
                 </h4>
                 <p className="text-[#4A282F] text-sm sm:text-base">
-                  Delivers strong quality and a standout element — whether in
-                  flavor, texture, or creativity. A solid pick that satisfies
-                  and impresses
+                  {t("delicious_desc")}
                 </p>
               </div>
               <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
@@ -280,12 +314,10 @@ const Page = () => {
                   alt=""
                 />
                 <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
-                  Good
+                  {t("good")}
                 </h4>
                 <p className="text-[#4A282F] text-sm sm:text-base">
-                  A decent and enjoyable dish. Nothing to complain about, but
-                  nothing too special either. May suit casual cravings or simple
-                  comfort.
+                  {t("good_desc")}
                 </p>
               </div>
               <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
@@ -295,11 +327,10 @@ const Page = () => {
                   alt=""
                 />
                 <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
-                  Okay
+                  {t("okay")}
                 </h4>
                 <p className="text-[#4A282F] text-sm sm:text-base">
-                  Fell short in one or more areas — taste, texture, or balance.
-                  Not a recommended dish based on current feedback
+                  {t("okay_desc")}
                 </p>
               </div>
               <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
@@ -309,11 +340,10 @@ const Page = () => {
                   alt=""
                 />
                 <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
-                  Guru’s Choice
+                  {t("gurus_choice")}
                 </h4>
                 <p className="text-[#4A282F] text-sm sm:text-base">
-                  Handpicked by GURU. These dishs earn high scores for taste,
-                  consistency, and crowd approval — a top dish to try
+                  {t("gurus_choice_desc")}
                 </p>
               </div>
             </div>
@@ -326,24 +356,20 @@ const Page = () => {
       {(() => {
         const faqData = [
           {
-            question: "How are meals rated on GURU?",
-            answer:
-              "Each meal is scored by real users, and you’ll see a quick “vibe” label. Each score, recommendation, or label is from someone who actually tried the dish—so you know what to expect before you order or visit.",
+            question: t("faq_question_1"),
+            answer: t("faq_answer_1"),
           },
           {
-            question: "Can anyone create a meal?",
-            answer:
-              "Only restaurants can add new menu items, but users can easily rate through GURU. Be sure to update your app for the newest dish discoveries!",
+            question: t("faq_question_2"),
+            answer: t("faq_answer_2"),
           },
           {
-            question: "Why do some meals show “Okay”?",
-            answer:
-              "That’s honest, real user feedback. Not every dish is a hit. If it’s not personal preference, it’s a reflection of recent reviews.",
+            question: t("faq_question_3"),
+            answer: t("faq_answer_3"),
           },
           {
-            question: "What does “Guru’s Choice” mean on a meal?",
-            answer:
-              "It’s the highest mark you can get—a dish that’s consistently rated the best for taste, consistency, and crowd love. If you see this, it’s a must-try!",
+            question: t("faq_question_4"),
+            answer: t("faq_answer_4"),
           },
         ];
 
@@ -370,7 +396,7 @@ const Page = () => {
             <div className="max-w-[73.188rem] mx-auto">
               <div className="faq-sec">
                 <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E] mb-4 sm:mb-6">
-                  FAQ
+                  {t("faq")}
                 </h2>
                 <div className="space-y-4 sm:space-y-6">
                   {faqData.map((item, idx) => (
@@ -441,11 +467,10 @@ const Page = () => {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">
               <h2 className="text-xl md:text-2xl font-bold text-[#32191E] mb-2">
-                Make it count.
+                {t("make_it_count")}
               </h2>
               <p className="text-base md:text-xl text-[#4A282F]">
-                One real review can help someone skip a bland bite — or find the
-                best. So do it well!
+                {t("make_it_count_desc")}
               </p>
             </div>
             <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 mr-[5rem]">
@@ -459,14 +484,20 @@ const Page = () => {
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between mt-6 pt-6 border-t border-[#D1D1D1] gap-4">
             <div className="text-[#32191E] text-sm md:text-base text-center md:text-left">
-              ⓒ All Rights Reserved for Guru 2025
+              {t("all_rights_reserved")}
             </div>
             <div className="flex items-center gap-3 md:gap-4 text-[#32191E] mt-2 md:mt-0">
-              <a href="#" className="text-[#32191E] text-sm md:text-base">
-                Privacy Policy
+              <a
+                href="/privacy-policy"
+                className="text-[#32191E] text-sm md:text-base"
+              >
+                {t("privacy_policy")}
               </a>
-              <a href="#" className="text-[#32191E] text-sm md:text-base">
-                Terms of Use
+              <a
+                href="/terms-of-use"
+                className="text-[#32191E] text-sm md:text-base"
+              >
+                {t("terms_of_use")}
               </a>
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
@@ -488,4 +519,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Rating;

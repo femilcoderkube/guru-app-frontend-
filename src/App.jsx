@@ -1,14 +1,19 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Page from "./pages/Page";
-import Page1 from "./pages/Page1";
-import Page2 from "./pages/page2";
+import Rating from "./pages/Rating";
+import TermsOfUse from "./pages/TermsOfUse";
+import ContactUs from "./pages/ContactUs";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./locales/i18n";
+import LanguageSwitcher from "./pages/LanguageSwitcher";
 
 function App() {
   return (
-    <BrowserRouter>
-      {/* <nav
+    <I18nextProvider i18n={i18n}>
+      <BrowserRouter>
+        {/* <nav
         style={{
           display: "flex",
           gap: "1rem",
@@ -22,13 +27,15 @@ function App() {
         <Link to="/Page2">Page2</Link>
       </nav> */}
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Page" element={<Page />} />
-        <Route path="/Page1" element={<Page1 />} />
-        <Route path="/Page2" element={<Page2 />} />
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/rating" element={<Rating />} />
+          <Route path="/terms-of-use" element={<TermsOfUse />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        </Routes>
+      </BrowserRouter>
+    </I18nextProvider>
   );
 }
 
