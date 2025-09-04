@@ -439,7 +439,7 @@ const Home = () => {
                           </p>
                         </div>
                       </div>
-                      <div className="ltr:ml-[2.625rem] rtl:mr-[2.625rem] bg-[#4A282F] rounded-3xl h-full">
+                      <div className="ltr:mr-[2.625rem] rtl:ml-[2.625rem] bg-[#4A282F] rounded-3xl h-full">
                         <img
                           src={cake}
                           alt="Dish 1"
