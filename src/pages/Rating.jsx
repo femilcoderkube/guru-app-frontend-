@@ -276,7 +276,7 @@ const Rating = () => {
                   );
                 })()}
               </div>
-              <p className="text-[#0D0D12] text-base sm:text-lg md:text-xl text-center max-w-full sm:max-w-[36rem] md:max-w-[46.25rem] px-2">
+              <p className="text-[#0D0D12] text-base sm:text-lg md:text-xl text-center max-w-full sm:max-w-[36rem] md:max-w-[47rem]">
                 {t("our_team_dines_anonymously")}
               </p>
             </div>
@@ -466,7 +466,7 @@ const Rating = () => {
         <div className="mx-auto max-w-[80rem]">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">
-              <h2 className="text-xl md:text-2xl font-bold text-[#32191E] mb-2">
+              <h2 className="text-xl md:text-[2.5rem] font-bold text-[#32191E] mb-2">
                 {t("make_it_count")}
               </h2>
               <p className="text-base md:text-xl text-[#4A282F]">

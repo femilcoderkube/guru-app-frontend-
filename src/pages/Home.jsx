@@ -564,7 +564,7 @@ const Home = () => {
             <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E] mb-2 sm:mb-3">
               <span>{t("why_guru")}</span>
             </h2>
-            <h5 className="text-base sm:text-lg md:text-xl mb-4 sm:mb-6.5">
+            <h5 className="text-base sm:text-lg md:text-xl mb-4 sm:mb-6.5 font-medium">
               {t("we_dont_do_stars")}
             </h5>
             <ul className="space-y-4 sm:space-y-6">
@@ -637,7 +637,7 @@ const Home = () => {
         <div className="mx-auto max-w-[80rem]">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">
-              <h2 className="text-xl md:text-2xl font-bold text-[#32191E] mb-2">
+              <h2 className="text-xl md:text-[2.5rem] font-bold text-[#32191E] mb-2">
                 {t("make_it_count")}
               </h2>
               <p className="text-base md:text-xl text-[#4A282F]">
