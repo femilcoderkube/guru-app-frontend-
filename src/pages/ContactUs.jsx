@@ -9,7 +9,7 @@ import app_store from "../assets/Images/app-store.png";
 import play_store from "../assets/Images/play-store.png";
 import footer_shape from "../assets/Images/footer-shape.png";
 import select_icon from "../assets/Images/select-icon.png";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 import Header from "./Header";
@@ -293,18 +293,18 @@ const ContactUs = () => {
               {t("all_rights_reserved")}
             </div>
             <div className="flex items-center gap-3 md:gap-4 text-[#32191E] mt-2 md:mt-0">
-              <a
-                href="/privacy-policy"
+              <Link
+                to="/privacy-policy"
                 className="text-[#32191E] text-sm md:text-base"
               >
                 {t("privacy_policy")}
-              </a>
-              <a
-                href="/terms-of-use"
+              </Link>
+              <Link
+                to="/terms-of-use"
                 className="text-[#32191E] text-sm md:text-base"
               >
                 {t("terms_of_use")}
-              </a>
+              </Link>
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
               <li className="cursor-pointer">
