@@ -491,7 +491,7 @@ const Home = () => {
           >
             <button
               ref={prevRef}
-              className="w-10 h-10 sm:w-12 sm:h-12 md:w-15 md:h-15 flex items-center justify-center rounded-full prev-btn cursor-pointer"
+              className="w-10 h-10 sm:w-12 sm:h-12 md:w-15 md:h-15 flex items-center justify-center rounded-full  cursor-pointer"
             >
               <img src={custom_btn_arrow_left} alt="" />
             </button>
