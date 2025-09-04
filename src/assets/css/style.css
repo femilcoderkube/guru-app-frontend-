@@ -261,6 +261,7 @@ html[dir="rtl"] .al-majlish-card {
 }
 
 /* Footer End */
+/* privacy page start */
 .terms-sec ul li{
   position: relative;
   padding-left: 1rem;
@@ -277,6 +278,7 @@ html[dir="rtl"] .al-majlish-card {
   left: 0;
   background: #4A282F;
 }
+/* privacy page End */
 
 /* Responsive Start */
 @media (max-width: 1600px) {
