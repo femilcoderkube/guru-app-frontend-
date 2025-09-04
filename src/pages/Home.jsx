@@ -29,7 +29,6 @@ import app_store from "../assets/Images/app-store.png";
 import play_store from "../assets/Images/play-store.png";
 import guru_list from "../assets/Images/guru-list.png";
 import footer_shape from "../assets/Images/footer-shape.png";
-import banner_video from "../assets/Images/banner-video.mp4";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -147,7 +146,7 @@ const Home = () => {
             className="w-full !h-full object-cover z-0"
           >
             {/* Dummy video from sample-videos.com */}
-            <source src={banner_video} type="video/mp4" />
+            <source src={"/banner-Video.mp4"} type="video/mp4" />
           </video>
         </div>
         {/* Overlay content */}
