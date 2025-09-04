@@ -393,7 +393,7 @@ const Home = () => {
           </div>
           <div className="al-majlish-slider relative mt-10 sm:mt-14 md:mt-16 pb-[4rem] sm:pb-[5rem] md:pb-[6rem]">
             <Swiper
-            dir={i18n.language === "ar" ? "ltr" : "rtl"}
+              dir={i18n.language === "ar" ? "ltr" : "rtl"}
               spaceBetween={8}
               slidesPerView={1.05}
               centeredSlides={false}
@@ -418,9 +418,7 @@ const Home = () => {
               {[1, 2, 3, 4, 5].map((_, idx) => (
                 <SwiperSlide key={idx} className="h-full flex">
                   {/* Slide */}
-                  <div
-                    className="al-majlish-card flex flex-col justify-between relative h-full"                    
-                  >
+                  <div className="al-majlish-card flex flex-col justify-between relative h-full">
                     <div className="al-majlish-wp h-full">
                       <div className="flex items-center gap-2 mb-2.5">
                         <img src={majlish_profile} alt="" />
@@ -487,7 +485,10 @@ const Home = () => {
           </h2>
 
           {/* ✅ Custom navigation buttons */}
-          <div className="custom-swiper-btn flex justify-center gap-3 mt-2 md:mt-0" dir="ltr">
+          <div
+            className="custom-swiper-btn flex justify-center gap-3 mt-2 md:mt-0"
+            dir="ltr"
+          >
             <button
               ref={prevRef}
               className="w-10 h-10 sm:w-12 sm:h-12 md:w-15 md:h-15 flex items-center justify-center rounded-full prev-btn cursor-pointer"
@@ -504,7 +505,7 @@ const Home = () => {
         </div>
 
         <Swiper
-        dir={i18n.language === "ar" ? "rtl" : "ltr"}
+          dir={i18n.language === "ar" ? "rtl" : "ltr"}
           spaceBetween={12}
           slidesPerView={1}
           modules={[Navigation]}

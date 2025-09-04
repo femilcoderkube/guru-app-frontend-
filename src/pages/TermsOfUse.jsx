@@ -11,6 +11,7 @@ import footer_shape from "../assets/Images/footer-shape.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import Header from "./Header";
 const TermsOfUse = () => {
   // Responsive nav state for mobile menu
   const [navOpen, setNavOpen] = React.useState(false);
@@ -18,14 +19,15 @@ const TermsOfUse = () => {
   const { t } = useTranslation();
   return (
     <>
+      <Header />
       {/* dark-header start */}
-      <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
+      {/* <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
         <div className="flex items-center justify-between w-full max-w-[76.5rem] mx-auto">
           <div className="site-logo flex-shrink-0">
             <img src={dark_logo} alt="Guru Logo" className="h-8 md:h-10" />
-          </div>
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-4 h-[3.375rem]">
+          </div> */}
+      {/* Desktop Nav */}
+      {/* <nav className="hidden md:flex items-center gap-4 h-[3.375rem]">
             {(() => {
               const navItems = [
                 { label: `${t("about")}`, to: "/" },
@@ -60,9 +62,9 @@ const TermsOfUse = () => {
                 <LanguageSwitcher />
               </span>
             </div>
-          </nav>
-          {/* Mobile Nav Toggle */}
-          <button
+          </nav> */}
+      {/* Mobile Nav Toggle */}
+      {/* <button
             className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none"
             aria-label="Open menu"
             onClick={() => setNavOpen((v) => !v)}
@@ -73,9 +75,9 @@ const TermsOfUse = () => {
               <rect y="17" width="24" height="2" rx="1" fill="#32191E" />
             </svg>
           </button>
-        </div>
-        {/* Mobile Nav Drawer */}
-        {navOpen && (
+        </div> */}
+      {/* Mobile Nav Drawer */}
+      {/* {navOpen && (
           <div className="md:hidden fixed inset-0 z-50 bg-black bg-opacity-40">
             <div className="absolute top-0 right-0 w-4/5 max-w-xs bg-white h-full shadow-lg flex flex-col">
               <button
@@ -122,7 +124,7 @@ const TermsOfUse = () => {
             </div>
           </div>
         )}
-      </header>
+      </header> */}
       {/* dark-header End */}
 
       {/* inner-banner start */}
@@ -132,7 +134,7 @@ const TermsOfUse = () => {
             className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base"
             onClick={() => navigate("/")}
           >
-{t("back")}
+            {t("back")}
           </button>
           <span className="text-[#32191E] font-bold text-base">
             {t("terms_of_use")}
@@ -170,39 +172,43 @@ const TermsOfUse = () => {
                 </div>
                 <ol className="flex flex-col gap-2 sm:gap-3 list-decimal text-xs sm:text-sm font-medium list-inside">
                   <li className="font-bold text-[#32191E] cursor-pointer">
-                    OUR SERVICES
+                    {t("our_services")}
                   </li>
                   <li className="text-[#4A282F] cursor-pointer">
-                    INTELLECTUAL PROPERTY
+                    {t("intellectual_property")}
                   </li>
                   <li className="text-[#4A282F] cursor-pointer">
-                    USER REPRESENTATIONS
+                    {t("user_representations")}
                   </li>
                   <li className="text-[#4A282F] cursor-pointer">
-                    USER REGISTRATION
-                  </li>
-                  <li className="text-[#4A282F] cursor-pointer">PRODUCTS</li>
-                  <li className="text-[#4A282F] cursor-pointer">
-                    PURCHASES AND PAYMENT
+                    {t("user_registration")}
                   </li>
                   <li className="text-[#4A282F] cursor-pointer">
-                    REFUNDS POLICY
-                  </li>
-                  <li className="text-[#4A282F] cursor-pointer">SOFTWARE</li>
-                  <li className="text-[#4A282F] cursor-pointer">
-                    PROHIBITED ACTIVITIES
+                    {t("products")}
                   </li>
                   <li className="text-[#4A282F] cursor-pointer">
-                    USER GENERATED CONTRIBUTIONS
+                    {t("purchases_and_payment")}
                   </li>
                   <li className="text-[#4A282F] cursor-pointer">
-                    CONTRIBUTION LICENCE
+                    {t("refunds_policy")}
                   </li>
                   <li className="text-[#4A282F] cursor-pointer">
-                    GUIDELINES FOR REVIEWS
+                    {t("software")}
                   </li>
                   <li className="text-[#4A282F] cursor-pointer">
-                    MOBILE APPLICATION LICENCE
+                    {t("prohibited_activities")}
+                  </li>
+                  <li className="text-[#4A282F] cursor-pointer">
+                    {t("user_generated_contributions")}
+                  </li>
+                  <li className="text-[#4A282F] cursor-pointer">
+                    {t("contribution_licence")}
+                  </li>
+                  <li className="text-[#4A282F] cursor-pointer">
+                    {t("guidelines_for_reviews")}
+                  </li>
+                  <li className="text-[#4A282F] cursor-pointer">
+                    {t("mobile_application_licence")}
                   </li>
                 </ol>
               </div>
@@ -211,125 +217,37 @@ const TermsOfUse = () => {
             <div className="flex-1 w-full">
               <div className="relative bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000000A] py-4 px-3 sm:py-6 sm:px-5">
                 <h2 className="text-sm sm:text-base font-bold text-[#4A282F] mb-3 sm:mb-4">
-                  AGREEMENT TO OUR LEGAL TERMS
+                  {t("agreement_to_legal_terms")}
                 </h2>
                 <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed mb-2 sm:mb-3">
+                  <p>{t("label")}</p>
+                  <p>{t("label1")}</p>
+                  <p>{t("label2")}</p>
+                  <p>{t("label3")}</p>
+                  <p>{t("label4")}</p>
+                  <p>{t("label5")}</p>
                   <p>
-                    We are Luminary Mindset PTY LTD, doing business as
-                    PEEQ® ('Company', 'we', 'us', or 'our'), a company
-                    registered in Australia at Level 8, 171 Clarence Street,
-                    Sydney , New South Wales 2000.
-                  </p>
-                  <p>
-                    We operate the website https://www.peeq.com.au (the 'Site'),
-                    the mobile application PEEQ® (the 'App'), as well as any
-                    other related products and services that refer or link to
-                    these legal terms (the 'Legal Terms') (collectively,
-                    the 'Services').
-                  </p>
-                  <p>
-                    You can contact us by email at support@peeq.com.au, or by
-                    mail to Level 8, 171 Clarence Street, Sydney , New South
-                    Wales 2000, Australia.
-                  </p>
-                  <p>
-                    These Legal Terms constitute a legally binding agreement
-                    made between you, whether personally or on behalf of an
-                    entity ('you'), and Luminary Mindset PTY LTD, concerning
-                    your access to and use of the Services. You agree that by
-                    accessing the Services, you have read, understood, and
-                    agreed to be bound by all of these Legal Terms. IF YOU DO
-                    NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE
-                    EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST
-                    DISCONTINUE USE IMMEDIATELY.
-                  </p>
-                  <p>
-                    We will provide you with prior notice of any scheduled
-                    changes to the Services you are using. The modified Legal
-                    Terms will become effective upon posting or notifying you
-                    by notifications@peeq.com.au, as stated in the email
-                    message. By continuing to use the Services after the
-                    effective date of any changes, you agree to be bound by the
-                    modified terms.
-                  </p>
-                  <p>
-                    The Services are intended for users who are at least 18
-                    years old. Persons under the age of 18 are not permitted to
-                    use or register for the Services.
-                  </p>
-                  <p>
-                    <strong>
-                      We recommend that you print a copy of these Legal Terms
-                      for your records.
-                    </strong>
+                    <strong>{t("label6")}</strong>
                   </p>
                 </div>
 
                 <h2 className="text-sm sm:text-base font-bold text-[#4A282F]">
-                  Your use of our Services
+                  {t("your_use_of_services")}
                 </h2>
                 <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
-                  <p>
-                    Subject to your compliance with these Legal Terms, including
-                    the 'PROHIBITED ACTIVITIES' section below, we grant you a
-                    non-exclusive, non-transferable, revocable licence to:
-                  </p>
+                  <p>{t("label7")}</p>
                   <ul className="list-disc list-inside ml-3">
-                    <li>access the Services; and</li>
-                    <li>
-                      download or print a copy of any portion of the Content to
-                      which you have properly gained access.
-                    </li>
+                    <li>{t("label8")}</li>
+                    <li>{t("label9")}</li>
                   </ul>
-                  <p>
-                    solely for your personal, non-commercial use or internal
-                    business purpose.
-                  </p>
-                  <p>
-                    Except as set out in this section or elsewhere in our Legal
-                    Terms, no part of the Services and no Content or Marks may
-                    be copied, reproduced, aggregated, republished, uploaded,
-                    posted, publicly displayed, encoded, translated,
-                    transmitted, distributed, sold, licensed, or otherwise
-                    exploited for any commercial purpose whatsoever, without our
-                    express prior written permission.
-                  </p>
-                  <p>
-                    If you wish to make any use of the Services, Content, or
-                    Marks other than as set out in this section or elsewhere in
-                    our Legal Terms, please address your request
-                    to: support@peeq.com.au. If we ever grant you the permission
-                    to post, reproduce, or publicly display any part of our
-                    Services or Content, you must identify us as the owners or
-                    licensors of the Services, Content, or Marks and ensure that
-                    any copyright or proprietary notice appears or is visible on
-                    posting, reproducing, or displaying our Content.
-                  </p>
-                  <p>
-                    We reserve all rights not expressly granted to you in and to
-                    the Services, Content, and Marks.
-                  </p>
-                  <p>
-                    Any breach of these Intellectual Property Rights will
-                    constitute a material breach of our Legal Terms and your
-                    right to use our Services will terminate immediately.
-                  </p>
-                  <p>Your submissions and contributions</p>
-                  <p>
-                    Please review this section and the 'PROHIBITED
-                    ACTIVITIES' section carefully prior to using our Services to
-                    understand the (a) rights you give us and (b) obligations
-                    you have when you post or upload any content through the
-                    Services.
-                  </p>
-                  <p>
-                    Submissions: Bthe right to remove or edit any Contributions
-                    at any time without notice if in our reasonable opinion we
-                    consider such Contributions harmful or in breach of these
-                    Legal Terms. If we remove or edit any such Contributions, we
-                    may also suspend or disable your account and report you to
-                    the authorities.
-                  </p>
+                  <p>{t("label10")}</p>
+                  <p>{t("label11")}</p>
+                  <p>{t("label12")}</p>
+                  <p>{t("label13")}</p>
+                  <p>{t("label14")}</p>
+                  <p>{t("label15")}</p>
+                  <p>{t("label16")}</p>
+                  <p>{t("label17")}</p>
                 </div>
               </div>
             </div>

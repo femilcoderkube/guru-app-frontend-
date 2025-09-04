@@ -15,13 +15,21 @@ import footer_shape from "../assets/Images/footer-shape.png";
 import imogi_rev from "../assets/Images/imogi-rev.png";
 import faq_arrow from "../assets/Images/faq-arrow.png";
 import banner_video from "../assets/Images/banner-video.mp4";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useLocation, NavLink, useNavigate, Link } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 const Rating = () => {
   const [navOpen, setNavOpen] = React.useState(false);
+  const [activeTab, setActiveTab] = React.useState(0);
+  const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const navItems = [
+    { label: t("about"), to: "/" },
+    { label: t("our_rating"), to: "/rating" },
+    { label: t("contactus"), to: "/contactus" },
+  ];
   return (
     <>
       {/* dark-header start */}
@@ -73,13 +81,13 @@ const Rating = () => {
               </button>
               <ul className="flex flex-col gap-2 px-6 mt-8">
                 <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  {t("about")}
+                  <Link to="/">{t("about")}</Link>
                 </li>
                 <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  {t("our_rating")}
+                  <Link to="/rating">{t("our_rating")}</Link>
                 </li>
                 <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  {t("contactus")}
+                  <Link to="/contactus">{t("contactus")}</Link>
                 </li>
               </ul>
               <div className="mt-6 px-6">
@@ -121,40 +129,32 @@ const Rating = () => {
             </div>
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-4 h-[3.375rem]">
-              {(() => {
-                const navItems = [
-                  { label: `${t("about")}`, to: "/" },
-                  { label: `${t("our_rating")}`, to: "/rating" },
-                  { label: `${t("contactus")}`, to: "/contactus" },
-                ];
-                const [activeIdx, setActiveIdx] = React.useState(0);
-
-                return (
-                  <ul className="header-nav flex items-center gap-4 lg:gap-[1.875rem] bg-[#FFEEE11A] rounded-2xl px-4 lg:px-[1.938rem] border border-[#FFEEE1] border-opacity-[0.34] h-full">
-                    {navItems.map((item, idx) => (
-                      <li
-                        key={item.label}
-                        className={
-                          "relative text-sm sm:text-base leading-none h-full flex justify-center items-center cursor-pointer " +
-                          (activeIdx === idx ? "active-tab" : "font-normal") +
-                          " text-[#FFEAC2]"
-                        }
-                        onClick={() => {
-                          navigate(item.to);
-                          setActiveIdx(idx);
-                        }}
-                      >
-                        {item.label}
-                      </li>
-                    ))}
-                  </ul>
-                );
-              })()}
-              <div className="py-2 md:py-4 bg-[#FFEEE11A] rounded-2xl px-4 lg:px-[1.938rem] border border-[#FFEEE1] border-opacity-[0.34] h-full flex items-center">
-                <span className="cursor-pointer text-base font-normal text-[#FFEAC2] leading-none">
+              <ul className="header-nav flex items-center gap-4 lg:gap-[1.875rem] bg-[#FFEEE11A] rounded-2xl px-4 lg:px-[1.938rem] border border-[#FFEEE1] border-opacity-[0.34] h-full">
+                {navItems.map((item) => {
+                  const isActive = location.pathname === item.to;
+                  return (
+                    <li
+                      key={item.label}
+                      className={
+                        "relative text-sm sm:text-base leading-none h-full flex justify-center items-center cursor-pointer " +
+                        (isActive ? "active-tab" : "font-normal") +
+                        " text-[#FFEAC2]"
+                      }
+                      onClick={() => {
+                        navigate(item.to);
+                      }}
+                    >
+                      {item.label}
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="bg-[#FFEEE11A] cursor-pointer rounded-2xl px-3 sm:px-4 md:px-[1.938rem] py-2 sm:py-4 border border-[#FFEEE1] border-opacity-[0.34] h-full flex items-center">
+                <span className=" text-sm sm:text-base font-normal text-[#FFEAC2] leading-none">
                   <LanguageSwitcher />
                 </span>
               </div>
+              {/* <LanguageSwitcher /> */}
             </div>
             {/* Mobile Nav (show only on mobile) */}
             <div className="flex md:hidden items-center">
@@ -238,7 +238,6 @@ const Rating = () => {
             <div className="flex flex-col gap-3 items-center mb-13 md:mb-[4.375rem]">
               <div className="flex items-center justify-center bg-[#32191E] rounded-[2.5rem] h-[2.25rem] border border-[#32191E]">
                 {(() => {
-                  const [activeTab, setActiveTab] = React.useState(0);
                   const tabs = [
                     { label: `${t("for_dishes")}` },
                     { label: `${t("for_restaurants")}` },
@@ -280,73 +279,144 @@ const Rating = () => {
                 {t("our_team_dines_anonymously")}
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-12 sm:gap-x-5">
-              <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
-                <img
-                  className="absolute -top-7 sm:-top-[2.188rem] ltr:left-3 ltr:sm:left-5 rtl:right-3 rtl:sm:right-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                  src={imogi_rev}
-                  alt=""
-                />
-                <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
-                  {t("exceptional")}
-                </h4>
-                <p className="text-[#4A282F] text-sm sm:text-base">
-                  {t("exceptional_desc")}
-                </p>
+
+            {activeTab === 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-12 sm:gap-x-5">
+                <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                  <img
+                    className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                    src={imogi_rev}
+                    alt=""
+                  />
+                  <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                    {t("exceptional")}
+                  </h4>
+                  <p className="text-[#4A282F] text-sm sm:text-base">
+                    {t("exceptional_desc")}
+                  </p>
+                </div>
+                <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                  <img
+                    className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                    src={imogi_rev}
+                    alt=""
+                  />
+                  <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                    {t("delicious")}
+                  </h4>
+                  <p className="text-[#4A282F] text-sm sm:text-base">
+                    {t("delicious_desc")}
+                  </p>
+                </div>
+                <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                  <img
+                    className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                    src={imogi_rev}
+                    alt=""
+                  />
+                  <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                    {t("good")}
+                  </h4>
+                  <p className="text-[#4A282F] text-sm sm:text-base">
+                    {t("good_desc")}
+                  </p>
+                </div>
+                <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                  <img
+                    className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                    src={imogi_rev}
+                    alt=""
+                  />
+                  <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                    {t("okay")}
+                  </h4>
+                  <p className="text-[#4A282F] text-sm sm:text-base">
+                    {t("okay_desc")}
+                  </p>
+                </div>
+                <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                  <img
+                    className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                    src={imogi_rev}
+                    alt=""
+                  />
+                  <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                    {t("gurus_choice")}
+                  </h4>
+                  <p className="text-[#4A282F] text-sm sm:text-base">
+                    {t("gurus_choice_desc")}
+                  </p>
+                </div>
               </div>
-              <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
-                <img
-                  className="absolute -top-7 sm:-top-[2.188rem] ltr:left-3 ltr:sm:left-5 rtl:right-3 rtl:sm:right-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                  src={imogi_rev}
-                  alt=""
-                />
-                <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
-                  {t("delicious")}
-                </h4>
-                <p className="text-[#4A282F] text-sm sm:text-base">
-                  {t("delicious_desc")}
-                </p>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-12 sm:gap-x-5">
+                <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                  <img
+                    className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                    src={imogi_rev}
+                    alt=""
+                  />
+                  <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                    {t("exceptional_experience")}
+                  </h4>
+                  <p className="text-[#4A282F] text-sm sm:text-base">
+                    {t("exceptional_experience_desc")}
+                  </p>
+                </div>
+                <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                  <img
+                    className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                    src={imogi_rev}
+                    alt=""
+                  />
+                  <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                    {t("must_visit")}
+                  </h4>
+                  <p className="text-[#4A282F] text-sm sm:text-base">
+                    {t("must_visit_desc")}
+                  </p>
+                </div>
+                <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                  <img
+                    className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                    src={imogi_rev}
+                    alt=""
+                  />
+                  <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                    {t("good_choice")}
+                  </h4>
+                  <p className="text-[#4A282F] text-sm sm:text-base">
+                    {t("good_choice__desc")}
+                  </p>
+                </div>
+                <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                  <img
+                    className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                    src={imogi_rev}
+                    alt=""
+                  />
+                  <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                    {t("okay")}
+                  </h4>
+                  <p className="text-[#4A282F] text-sm sm:text-base">
+                    {t("okay_descc")}
+                  </p>
+                </div>
+                <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
+                  <img
+                    className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                    src={imogi_rev}
+                    alt=""
+                  />
+                  <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
+                    {t("gurus_choice")}
+                  </h4>
+                  <p className="text-[#4A282F] text-sm sm:text-base">
+                    {t("gurus_choice_descc")}
+                  </p>
+                </div>
               </div>
-              <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
-                <img
-                  className="absolute -top-7 sm:-top-[2.188rem] ltr:left-3 ltr:sm:left-5 rtl:right-3 rtl:sm:right-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                  src={imogi_rev}
-                  alt=""
-                />
-                <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
-                  {t("good")}
-                </h4>
-                <p className="text-[#4A282F] text-sm sm:text-base">
-                  {t("good_desc")}
-                </p>
-              </div>
-              <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
-                <img
-                  className="absolute -top-7 sm:-top-[2.188rem] ltr:left-3 ltr:sm:left-5 rtl:right-3 rtl:sm:right-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                  src={imogi_rev}
-                  alt=""
-                />
-                <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
-                  {t("okay")}
-                </h4>
-                <p className="text-[#4A282F] text-sm sm:text-base">
-                  {t("okay_desc")}
-                </p>
-              </div>
-              <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
-                <img
-                  className="absolute -top-7 sm:-top-[2.188rem] ltr:left-3 ltr:sm:left-5 rtl:right-3 rtl:sm:right-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                  src={imogi_rev}
-                  alt=""
-                />
-                <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
-                  {t("gurus_choice")}
-                </h4>
-                <p className="text-[#4A282F] text-sm sm:text-base">
-                  {t("gurus_choice_desc")}
-                </p>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -456,8 +526,8 @@ const Rating = () => {
       })()}
       {/* FAQ Section End */}
 
-     {/* footer start */}
-     <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+      {/* footer start */}
+      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
           className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}

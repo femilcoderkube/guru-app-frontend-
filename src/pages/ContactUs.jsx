@@ -12,6 +12,7 @@ import select_icon from "../assets/Images/select-icon.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
+import Header from "./Header";
 
 const ContactUs = () => {
   // Responsive nav state for mobile menu
@@ -20,13 +21,13 @@ const ContactUs = () => {
   const navigate = useNavigate();
   return (
     <>
-      {/* dark-header start */}
-      <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
+      <Header />
+      {/* <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
         <div className="flex items-center justify-between w-full max-w-[76.5rem] mx-auto">
           <div className="site-logo flex-shrink-0">
             <img src={dark_logo} alt="Guru Logo" className="h-8 md:h-10" />
           </div>
-          {/* Desktop Nav */}
+
           <nav className="hidden md:flex items-center gap-4 h-[3.375rem]">
             {(() => {
               const navItems = [
@@ -52,7 +53,7 @@ const ContactUs = () => {
                       }}
                     >
                       {item.label}
-                    </li>                    
+                    </li>
                   ))}
                 </ul>
               );
@@ -63,7 +64,7 @@ const ContactUs = () => {
               </span>
             </div>
           </nav>
-          {/* Mobile Nav Toggle */}
+
           <button
             className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none"
             aria-label="Open menu"
@@ -76,7 +77,7 @@ const ContactUs = () => {
             </svg>
           </button>
         </div>
-        {/* Mobile Nav Drawer */}
+
         {navOpen && (
           <div className="md:hidden fixed inset-0 z-50 bg-black bg-opacity-40">
             <div className="absolute top-0 right-0 w-4/5 max-w-xs bg-white h-full shadow-lg flex flex-col">
@@ -124,7 +125,7 @@ const ContactUs = () => {
             </div>
           </div>
         )}
-      </header>
+      </header> */}
       {/* dark-header End */}
 
       {/* inner-banner start */}

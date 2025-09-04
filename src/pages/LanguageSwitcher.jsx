@@ -13,4 +13,15 @@ export default function LanguageSwitcher() {
       <span>{i18n.language.toUpperCase()}</span>
     </div>
   );
+
+  // return (
+  //   <div
+  //     className="bg-[#FFEEE11A] cursor-pointer rounded-2xl px-3 sm:px-4 md:px-[1.938rem] py-2 sm:py-4 border border-[#FFEEE1] border-opacity-[0.34] h-full flex items-center"
+  //     onClick={toggleLanguage}
+  //   >
+  //     <span className=" text-sm sm:text-base font-normal text-[#FFEAC2] leading-none">
+  //       <span>{i18n.language.toUpperCase()}</span>
+  //     </span>
+  //   </div>
+  // );
 }

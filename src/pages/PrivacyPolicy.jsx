@@ -11,6 +11,7 @@ import footer_shape from "../assets/Images/footer-shape.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import Header from "./Header";
 const PrivacyPolicy = () => {
   // Responsive nav state for mobile menu
   const [navOpen, setNavOpen] = React.useState(false);
@@ -18,14 +19,15 @@ const PrivacyPolicy = () => {
   const { t } = useTranslation();
   return (
     <>
+      <Header />
       {/* dark-header start */}
-      <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
+      {/* <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
         <div className="flex items-center justify-between w-full max-w-[76.5rem] mx-auto">
           <div className="site-logo flex-shrink-0">
             <img src={dark_logo} alt="Guru Logo" className="h-8 md:h-10" />
-          </div>
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-4 h-[3.375rem]">
+          </div> */}
+      {/* Desktop Nav */}
+      {/* <nav className="hidden md:flex items-center gap-4 h-[3.375rem]">
             {(() => {
               const navItems = [
                 { label: `${t("about")}`, to: "/" },
@@ -60,9 +62,9 @@ const PrivacyPolicy = () => {
                 <LanguageSwitcher />
               </span>
             </div>
-          </nav>
-          {/* Mobile Nav Toggle */}
-          <button
+          </nav> */}
+      {/* Mobile Nav Toggle */}
+      {/* <button
             className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none"
             aria-label="Open menu"
             onClick={() => setNavOpen((v) => !v)}
@@ -73,9 +75,9 @@ const PrivacyPolicy = () => {
               <rect y="17" width="24" height="2" rx="1" fill="#32191E" />
             </svg>
           </button>
-        </div>
-        {/* Mobile Nav Drawer */}
-        {navOpen && (
+        </div> */}
+      {/* Mobile Nav Drawer */}
+      {/* {navOpen && (
           <div className="md:hidden fixed inset-0 z-50 bg-black bg-opacity-40">
             <div className="absolute top-0 right-0 w-4/5 max-w-xs bg-white h-full shadow-lg flex flex-col">
               <button
@@ -122,7 +124,7 @@ const PrivacyPolicy = () => {
             </div>
           </div>
         )}
-      </header>
+      </header> */}
       {/* dark-header End */}
 
       {/* inner-banner start */}
@@ -214,121 +216,68 @@ const PrivacyPolicy = () => {
             {/* Main Content */}
             <div className="flex-1 w-full">
               <div className="relative bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000000A] py-4 px-3 sm:py-6 sm:px-5">
-                <h2 className="text-sm sm:text-base font-bold text-[#4A282F] mb-3 sm:mb-4">
-                  {t("agreement_to_legal_terms")}
-                </h2>
-                <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed mb-2 sm:mb-3">
-                  <p>{t("label")}</p>
-                  <p>
-                    We operate the website https://www.peeq.com.au (the 'Site'),
-                    the mobile application PEEQ® (the 'App'), as well as any
-                    other related products and services that refer or link to
-                    these legal terms (the 'Legal Terms') (collectively,
-                    the 'Services').
-                  </p>
-                  <p>
-                    You can contact us by email at support@peeq.com.au, or by
-                    mail to Level 8, 171 Clarence Street, Sydney , New South
-                    Wales 2000, Australia.
-                  </p>
-                  <p>
-                    These Legal Terms constitute a legally binding agreement
-                    made between you, whether personally or on behalf of an
-                    entity ('you'), and Luminary Mindset PTY LTD, concerning
-                    your access to and use of the Services. You agree that by
-                    accessing the Services, you have read, understood, and
-                    agreed to be bound by all of these Legal Terms. IF YOU DO
-                    NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE
-                    EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST
-                    DISCONTINUE USE IMMEDIATELY.
-                  </p>
-                  <p>
-                    We will provide you with prior notice of any scheduled
-                    changes to the Services you are using. The modified Legal
-                    Terms will become effective upon posting or notifying you
-                    by notifications@peeq.com.au, as stated in the email
-                    message. By continuing to use the Services after the
-                    effective date of any changes, you agree to be bound by the
-                    modified terms.
-                  </p>
-                  <p>
-                    The Services are intended for users who are at least 18
-                    years old. Persons under the age of 18 are not permitted to
-                    use or register for the Services.
-                  </p>
-                  <p>
-                    <strong>
-                      We recommend that you print a copy of these Legal Terms
-                      for your records.
-                    </strong>
-                  </p>
-                </div>
+                <p className="sm:mb-6 mb-4">{t("label18")}</p>
 
-                <h2 className="text-sm sm:text-base font-bold text-[#4A282F]">
-                  {t("your_use_of_services")}
-                </h2>
-                <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
-                  <p>
-                    Subject to your compliance with these Legal Terms, including
-                    the 'PROHIBITED ACTIVITIES' section below, we grant you a
-                    non-exclusive, non-transferable, revocable licence to:
-                  </p>
-                  <ul className="list-disc list-inside ml-3">
-                    <li>access the Services; and</li>
-                    <li>
-                      download or print a copy of any portion of the Content to
-                      which you have properly gained access.
-                    </li>
-                  </ul>
-                  <p>
-                    solely for your personal, non-commercial use or internal
-                    business purpose.
-                  </p>
-                  <p>
-                    Except as set out in this section or elsewhere in our Legal
-                    Terms, no part of the Services and no Content or Marks may
-                    be copied, reproduced, aggregated, republished, uploaded,
-                    posted, publicly displayed, encoded, translated,
-                    transmitted, distributed, sold, licensed, or otherwise
-                    exploited for any commercial purpose whatsoever, without our
-                    express prior written permission.
-                  </p>
-                  <p>
-                    If you wish to make any use of the Services, Content, or
-                    Marks other than as set out in this section or elsewhere in
-                    our Legal Terms, please address your request
-                    to: support@peeq.com.au. If we ever grant you the permission
-                    to post, reproduce, or publicly display any part of our
-                    Services or Content, you must identify us as the owners or
-                    licensors of the Services, Content, or Marks and ensure that
-                    any copyright or proprietary notice appears or is visible on
-                    posting, reproducing, or displaying our Content.
-                  </p>
-                  <p>
-                    We reserve all rights not expressly granted to you in and to
-                    the Services, Content, and Marks.
-                  </p>
-                  <p>
-                    Any breach of these Intellectual Property Rights will
-                    constitute a material breach of our Legal Terms and your
-                    right to use our Services will terminate immediately.
-                  </p>
-                  <p>Your submissions and contributions</p>
-                  <p>
-                    Please review this section and the 'PROHIBITED
-                    ACTIVITIES' section carefully prior to using our Services to
-                    understand the (a) rights you give us and (b) obligations
-                    you have when you post or upload any content through the
-                    Services.
-                  </p>
-                  <p>
-                    Submissions: Bthe right to remove or edit any Contributions
-                    at any time without notice if in our reasonable opinion we
-                    consider such Contributions harmful or in breach of these
-                    Legal Terms. If we remove or edit any such Contributions, we
-                    may also suspend or disable your account and report you to
-                    the authorities.
-                  </p>
+                <div className="xl:space-y-9 sm:space-y-6 space-y-4">
+                  <div>
+                    <h2 className="text-sm sm:text-base font-bold text-[#4A282F]">
+                      {t("information")}
+                    </h2>
+                    <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
+                      <ul className="list-disc list-inside ml-3">
+                        <li>{t("information_label")}</li>
+                        <li>{t("information_label1")}</li>
+                        <li>{t("information_label2")}</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2 className="text-sm sm:text-base font-bold text-[#4A282F]">
+                      {t("use_information")}
+                    </h2>
+                    <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
+                      <ul className="list-disc list-inside ml-3">
+                        <li>{t("use_information_label")}</li>
+                        <li>{t("use_information_label3")}</li>
+                        <li>{t("use_information_label1")}</li>
+                        <li>{t("use_information_label2")}</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2 className="text-sm sm:text-base font-bold text-[#4A282F]">
+                      {t("data_sharing")}
+                    </h2>
+                    <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
+                      <ul className="list-disc list-inside ml-3">
+                        <li>{t("data_sharing_label")}</li>
+                        <li>{t("data_sharing_label1")}</li>
+                        <li>{t("data_sharing_label2")}</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2 className="text-sm sm:text-base font-bold text-[#4A282F]">
+                      {t("your_rights")}
+                    </h2>
+                    <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
+                      <ul className="list-disc list-inside ml-3">
+                        <li>{t("your_rights_label")}</li>
+                        <li>{t("your_rights_label1")}</li>
+                        <li>{t("your_rights_label2")}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="text-sm sm:text-base font-bold text-[#4A282F]">
+                      {t("Security")}
+                    </h2>
+                    <p>{t("security_label")}</p>
+                  </div>
+                  <p>{t("last")}</p>
                 </div>
               </div>
             </div>
@@ -336,8 +285,8 @@ const PrivacyPolicy = () => {
         </div>
       </div>
       {/* Tearms End */}
-     {/* footer start */}
-     <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+      {/* footer start */}
+      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
           className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
