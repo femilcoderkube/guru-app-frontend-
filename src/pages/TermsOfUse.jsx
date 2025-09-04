@@ -215,7 +215,7 @@ const TermsOfUse = () => {
             </div>
             {/* Main Content */}
             <div className="flex-1 w-full">
-              <div className="relative bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000000A] py-4 px-3 sm:py-6 sm:px-5">
+              <div className="relative bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000000A] pt-6 lg:pb-13 sm:pb-9 pb-6 px-3 sm:px-5">
                 <h2 className="text-sm sm:text-base font-bold text-[#4A282F] mb-3 sm:mb-4">
                   {t("agreement_to_legal_terms")}
                 </h2>
