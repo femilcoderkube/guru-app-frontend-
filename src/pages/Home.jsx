@@ -29,8 +29,7 @@ import app_store from "../assets/Images/app-store.png";
 import play_store from "../assets/Images/play-store.png";
 import guru_list from "../assets/Images/guru-list.png";
 import footer_shape from "../assets/Images/footer-shape.png";
-import banner_video from "../assets/Images/banner-video.mp4";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 const Home = () => {
@@ -113,13 +112,13 @@ const Home = () => {
               </button>
               <ul className="flex flex-col gap-2 px-6 mt-8">
                 <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  {t("about")}
+                  <Link to="/">{t("about")}</Link>
                 </li>
                 <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  {t("our_rating")}
+                  <Link to="/rating">{t("our_rating")}</Link>
                 </li>
                 <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  {t("contactus")}
+                  <Link to="/contactus">{t("contactus")}</Link>
                 </li>
               </ul>
               <div className="mt-6 px-6">
@@ -147,7 +146,7 @@ const Home = () => {
             className="w-full !h-full object-cover z-0"
           >
             {/* Dummy video from sample-videos.com */}
-            <source src={banner_video} type="video/mp4" />
+            <source src={"/banner-Video.mp4"} type="video/mp4" />
           </video>
         </div>
         {/* Overlay content */}
@@ -491,7 +490,7 @@ const Home = () => {
           >
             <button
               ref={prevRef}
-              className="w-10 h-10 sm:w-12 sm:h-12 md:w-15 md:h-15 flex items-center justify-center rounded-full prev-btn cursor-pointer"
+              className="w-10 h-10 sm:w-12 sm:h-12 md:w-15 md:h-15 flex items-center justify-center rounded-full  cursor-pointer"
             >
               <img src={custom_btn_arrow_left} alt="" />
             </button>
