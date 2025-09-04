@@ -52,18 +52,7 @@ const ContactUs = () => {
                       }}
                     >
                       {item.label}
-                    </li>
-                    // <li key={item.label}>
-                    //   <NavLink
-                    //     to={item.to}
-                    //     className={({ isActive }) =>
-                    //       "relative text-sm sm:text-base leading-none h-full flex justify-center items-center cursor-pointer text-[#FFEAC2] " +
-                    //       (isActive ? "active-tab" : "font-normal")
-                    //     }
-                    //   >
-                    //     {item.label}
-                    //   </NavLink>
-                    // </li>
+                    </li>                    
                   ))}
                 </ul>
               );
@@ -226,7 +215,7 @@ const ContactUs = () => {
                     <option value="uk">{t("uk")}</option>
                   </select>
                   {/* Custom arrow */}
-                  <span className="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 text-[#32191E]">
+                  <span className="pointer-events-none absolute ltr:right-3 rtl:left-3 top-1/2 transform -translate-y-1/2 text-[#32191E]">
                     <img src={select_icon} alt="" className="w-4 h-4" />
                   </span>
                 </div>
@@ -275,7 +264,7 @@ const ContactUs = () => {
       {/* footer start */}
       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
-          className="footer-shape absolute -right-4 md:-right-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto"
+          className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
           alt=""
         />
@@ -289,7 +278,7 @@ const ContactUs = () => {
                 {t("make_it_count_desc")}
               </p>
             </div>
-            <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 mr-[5rem]">
+            <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 ltr:mr-[5rem] rtl:ml-[5rem]">
               <a href="#" className="inline-block">
                 <img src={app_store} alt="" className="h-10 w-auto" />
               </a>

@@ -336,10 +336,10 @@ const PrivacyPolicy = () => {
         </div>
       </div>
       {/* Tearms End */}
-      {/* footer start */}
-      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+     {/* footer start */}
+     <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
-          className="footer-shape absolute -right-4 md:-right-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto"
+          className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
           alt=""
         />
@@ -353,7 +353,7 @@ const PrivacyPolicy = () => {
                 {t("make_it_count_desc")}
               </p>
             </div>
-            <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 mr-[5rem]">
+            <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 ltr:mr-[5rem] rtl:ml-[5rem]">
               <a href="#" className="inline-block">
                 <img src={app_store} alt="" className="h-10 w-auto" />
               </a>

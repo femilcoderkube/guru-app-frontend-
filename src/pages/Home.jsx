@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules"; // ✅ add Pagination
 import "swiper/css";
@@ -40,6 +40,28 @@ const Home = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const navigate = useNavigate();
+  const mainSwiperRef = useRef(null);
+  const { i18n } = useTranslation();
+  const [langKey, setLangKey] = useState(i18n.language);
+
+  useEffect(() => {
+    setLangKey(i18n.language);
+  }, [i18n.language]);
+
+  useEffect(() => {
+    if (
+      mainSwiperRef.current &&
+      mainSwiperRef.current.swiper &&
+      prevRef.current &&
+      nextRef.current
+    ) {
+      const swiper = mainSwiperRef.current.swiper;
+      swiper.params.navigation.prevEl = prevRef.current;
+      swiper.params.navigation.nextEl = nextRef.current;
+      swiper.navigation.init();
+      swiper.navigation.update();
+    }
+  }, [prevRef, nextRef, mainSwiperRef, langKey]);
   return (
     <>
       {/* dark-header start */}
@@ -191,12 +213,12 @@ const Home = () => {
 
           return (
             <div className="absolute left-0 right-0 top-[20%] md:top-[30%] xl:top-[15.313rem] z-10 px-2 sm:px-6 md:px-[3.95rem] banner-content flex flex-col items-start">
-              <h1 className="text-2xl sm:text-3xl md:text-[2.2rem] lg:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight sm:leading-[2.5rem] md:leading-[2.8rem] lg:leading-[3.875rem] text-left">
+              <h1 className="text-2xl sm:text-3xl md:text-[2.2rem] lg:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight sm:leading-[2.5rem] md:leading-[2.8rem] lg:leading-[3.875rem] ltr:text-left rtl:text-right">
                 {t("tired_of_fake_reviews")} <br className="hidden sm:block" />{" "}
                 {t("so_are_we")}{" "}
                 <span className="change-text">{words[index]}</span>
               </h1>
-              <h5 className="text-base md:text-xl lg:text-2xl font-normal text-[#FFEAC2] mt-3 sm:mt-4 text-left">
+              <h5 className="text-base md:text-xl lg:text-2xl font-normal text-[#FFEAC2] mt-3 sm:mt-4 ltr:text-left rtl:text-right">
                 {t("guru")}
               </h5>
               <button className="mt-4 lg:mt-8 px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
@@ -225,11 +247,11 @@ const Home = () => {
       {/* Hero Section End */}
 
       {/* Food App Start */}
-      <div className="food-app-sec relative mx-2 sm:mx-4 md:mx-10 mt-10 md:mt-16 lg:mt-[6.938rem] mb-10 md:mb-16 lg:mb-[8.5rem]">
+      <div className="food-app-sec relative mx-2 sm:mx-4 md:mx-10 mt-10 md:mt-[6.938rem] mb-10 md:mb-16 lg:mb-[8.5rem]">
         <div className="food-app-wp flex flex-col md:flex-row items-center gap-8 md:gap-[3.188rem] max-w-[85rem] mx-auto w-full">
           {/* Left: Text */}
-          <div className="food-app-left relative w-full md:max-w-[25rem] pl-4 sm:pl-6 md:pl-8 mb-8 md:mb-0">
-            <div className="absolute left-0 top-0 w-10 sm:w-14 md:w-auto">
+          <div className="food-app-left relative w-full md:max-w-[25rem] ltr:pl-4 rtl:pr-4 ltr:sm:pl-6 rtl:sm:pr-6 ltr:md:pl-8 rtl:md:pr-8 mb-8 md:mb-0">
+            <div className="absolute ltr:left-0 rtl:right-0 top-0 w-10 sm:w-14 md:w-auto">
               <img src={food_shape} alt="" className="w-full h-auto" />
             </div>
             <h2 className="text-2xl md:text-3xl lg:text-[2.813rem] font-bold leading-tight md:leading-[3.75rem] text-[#32191E] mb-2">
@@ -244,14 +266,14 @@ const Home = () => {
           </div>
           {/* Right: Card grid */}
           <div className="food-app-right relative flex flex-col md:flex-row gap-4 w-full h-full">
-            <div className="food-shape absolute right-0 -top-12 sm:-top-16 md:top-[-6.4rem] w-24 sm:w-32 md:w-auto z-0 pointer-events-none">
+            <div className="food-shape absolute ltr:right-0 rtl:left-0 -top-12 sm:-top-16 md:top-[-6.4rem] w-24 sm:w-32 md:w-auto z-0 pointer-events-none">
               <img src={food_top_shape} alt="" className="w-full h-auto" />
             </div>
             {/* Card 1: App screenshot */}
             <div className="flex-1 min-w-0">
               <div className="relative flex bg-[#FFEAC2] rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[1.875rem] max-w-full 2xl:max-w-[26rem] md:max-w-[23.563rem] w-full h-48 sm:h-64 md:h-[17.188rem] items-end overflow-hidden">
                 <img
-                  className="ml-2 sm:ml-5 w-2/3 sm:w-auto max-h-full object-contain"
+                  className="ltr:ml-2 rtl:mr-2 ltr:sm:ml-5 rtl:sm:mr-5 w-2/3 sm:w-auto max-h-full object-contain"
                   src={food_app}
                   alt=""
                 />
@@ -271,7 +293,7 @@ const Home = () => {
             {/* Card 2: Food photo */}
             <div className="md:mb-[2.188rem] food-pic relative bg-[#FFEAC2] rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[1.875rem] md:max-w-[15rem] w-full lg:max-w-[20rem] xl:max-w-[29.813rem] min-h-[12rem] sm:min-h-[15rem] lg:min-h-[17rem]  xl:min-h-[26.813rem] flex">
               <img
-                className="ml-auto relative z-10 xl:left-4 top-0 w-2/3 sm:w-3/4 md:w-auto max-h-full object-contain"
+                className="ml-auto relative z-10 ltr:xl:left-4 rtl:xl:right-4 top-0 w-2/3 sm:w-3/4 md:w-auto max-h-full object-contain"
                 src={food_delivery}
                 alt=""
               />
@@ -296,11 +318,11 @@ const Home = () => {
           </p>
         </div>
         {/* Right: Image */}
-        <div className="mission-img relative w-full md:w-auto flex justify-center md:justify-end mt-8 md:mt-0 md:absolute md:bottom-[5rem] md:right-0 md:translate-y-1/4">
+        <div className="mission-img relative w-full md:w-auto flex justify-center md:justify-end md:absolute md:bottom-[5rem] md:right-0 md:translate-y-1/4 rtl:md:justify-start rtl:md:left-0 rtl:md:right-auto">
           <img
             src={our_mission}
             alt="Riyadh Skyline"
-            className="w-3/4 sm:w-2/3 md:w-[22rem] lg:w-[28rem] xl:w-[38rem] 2xl:w-[42rem] max-w-full h-auto object-contain"
+            className="w-3/4 sm:w-2/3 md:w-[22rem] lg:w-[28rem] xl:w-[38rem] 2xl:w-[42rem] max-w-full h-auto object-contain rtl:[transform:rotateY(180deg)]"
           />
         </div>
       </div>
@@ -357,7 +379,7 @@ const Home = () => {
         <div className="al-majlish-sec rounded-[1.875rem] bg-[#32191E] shadow-lg relative overflow-hidden">
           <div className="mx-4 sm:mx-8 md:mx-10 pt-[2rem] sm:pt-[2.5rem] md:pt-[3.188rem]">
             <img
-              className=" absolute right-0 top-[1rem] sm:top-[2rem] lg:!block !hidden"
+              className="absolute ltr:right-0 rtl:left-0 top-[1rem] sm:top-[2rem] lg:!block !hidden [transform:rotateY(180deg)]"
               src={al_majlish_shape}
               alt=""
             />
@@ -371,11 +393,11 @@ const Home = () => {
           </div>
           <div className="al-majlish-slider relative mt-10 sm:mt-14 md:mt-16 pb-[4rem] sm:pb-[5rem] md:pb-[6rem]">
             <Swiper
+            dir={i18n.language === "ar" ? "ltr" : "rtl"}
               spaceBetween={8}
               slidesPerView={1.05}
               centeredSlides={false}
               autoHeight={false} // ✅ prevents jump
-              dir="rtl"
               pagination={{
                 clickable: true,
                 renderBullet: (index, className) => {
@@ -397,8 +419,7 @@ const Home = () => {
                 <SwiperSlide key={idx} className="h-full flex">
                   {/* Slide */}
                   <div
-                    className="flex flex-col justify-between relative h-full"
-                    dir="ltr"
+                    className="al-majlish-card flex flex-col justify-between relative h-full"                    
                   >
                     <div className="al-majlish-wp h-full">
                       <div className="flex items-center gap-2 mb-2.5">
@@ -418,7 +439,7 @@ const Home = () => {
                           </p>
                         </div>
                       </div>
-                      <div className="ml-[2.625rem] bg-[#4A282F] rounded-3xl h-full">
+                      <div className="ltr:ml-[2.625rem] rtl:mr-[2.625rem] bg-[#4A282F] rounded-3xl h-full">
                         <img
                           src={cake}
                           alt="Dish 1"
@@ -466,7 +487,7 @@ const Home = () => {
           </h2>
 
           {/* ✅ Custom navigation buttons */}
-          <div className="custom-swiper-btn flex justify-center gap-3 mt-2 md:mt-0">
+          <div className="custom-swiper-btn flex justify-center gap-3 mt-2 md:mt-0" dir="ltr">
             <button
               ref={prevRef}
               className="w-10 h-10 sm:w-12 sm:h-12 md:w-15 md:h-15 flex items-center justify-center rounded-full prev-btn cursor-pointer"
@@ -483,6 +504,7 @@ const Home = () => {
         </div>
 
         <Swiper
+        dir={i18n.language === "ar" ? "rtl" : "ltr"}
           spaceBetween={12}
           slidesPerView={1}
           modules={[Navigation]}
@@ -509,7 +531,7 @@ const Home = () => {
                 className="relative real-option-card-wp h-full w-full bg-cover bg-center px-3 sm:px-4 md:px-6 pt-4 sm:pt-[0.875rem] pb-4 sm:pb-5 rounded-[1.25rem] z-2 min-h-[14rem] flex flex-col justify-between"
                 style={{ backgroundImage: `url(${option_1})` }}
               >
-                <div className="real-option-card flex flex-col items-center ml-auto p-2 sm:p-4 max-w-[5rem] sm:max-w-[6.063rem] mb-6 sm:mb-[4rem]">
+                <div className="real-option-card flex flex-col items-center ltr:ml-auto rtl:mr-auto p-2 sm:p-4 max-w-[5rem] sm:max-w-[6.063rem] mb-6 sm:mb-[4rem]">
                   <img
                     className="w-8 h-8 sm:w-[3.25rem] sm:h-[3.25rem] p-[0.125rem] bg-[#FFFFFF17] rounded-full backdrop-blur-[1.488rem]"
                     src={imogi_rev}
@@ -593,7 +615,7 @@ const Home = () => {
             </ul>
           </div>
           {/* Right: App Images */}
-          <div className="flex-1 flex justify-center md:justify-end items-center relative z-10 mt-8 md:mt-0 w-full">
+          <div className="flex-1 flex justify-center md:justify-end items-center relative z-10 w-full">
             <div className="relative flex items-end w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
               <img
                 src={why_guru}
@@ -608,7 +630,7 @@ const Home = () => {
       {/* footer start */}
       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
-          className="footer-shape absolute -right-4 md:-right-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto"
+          className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
           alt=""
         />
@@ -622,7 +644,7 @@ const Home = () => {
                 {t("make_it_count_desc")}
               </p>
             </div>
-            <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 mr-[5rem]">
+            <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 ltr:mr-[5rem] rtl:ml-[5rem]">
               <a href="#" className="inline-block">
                 <img src={app_store} alt="" className="h-10 w-auto" />
               </a>

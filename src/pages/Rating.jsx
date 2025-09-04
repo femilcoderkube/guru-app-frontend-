@@ -182,17 +182,17 @@ const Rating = () => {
 
           return (
             <div
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 px-3 sm:px-6 md:px-[3.95rem] flex flex-col items-start w-full max-w-[48rem]"
+              className="absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 z-10 px-3 sm:px-6 md:px-[3.95rem] flex flex-col items-start w-full max-w-[48rem]"
               style={
                 {
                   // Remove right-0 and mx-auto, align to left, keep vertical centering
                 }
               }
             >
-              <h1 className="text-2xl sm:text-3xl md:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight md:leading-[3.875rem] text-left">
+              <h1 className="text-2xl sm:text-3xl md:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight md:leading-[3.875rem] ltr:text-left rtl:text-right">
                 {t("our_ratings_guide")}
               </h1>
-              <h5 className="text-base sm:text-lg md:text-2xl font-normal text-[#FFEAC2] mt-2 md:mt-[1.5rem] text-left">
+              <h5 className="text-base sm:text-lg md:text-2xl font-normal text-[#FFEAC2] mt-2 md:mt-[1.5rem] ltr:text-left rtl:text-right">
                 {t("we_dont_do_stars")}
               </h5>
             </div>
@@ -283,7 +283,7 @@ const Rating = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-12 sm:gap-x-5">
               <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                 <img
-                  className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                  className="absolute -top-7 sm:-top-[2.188rem] ltr:left-3 ltr:sm:left-5 rtl:right-3 rtl:sm:right-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
                   src={imogi_rev}
                   alt=""
                 />
@@ -296,7 +296,7 @@ const Rating = () => {
               </div>
               <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                 <img
-                  className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                  className="absolute -top-7 sm:-top-[2.188rem] ltr:left-3 ltr:sm:left-5 rtl:right-3 rtl:sm:right-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
                   src={imogi_rev}
                   alt=""
                 />
@@ -309,7 +309,7 @@ const Rating = () => {
               </div>
               <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                 <img
-                  className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                  className="absolute -top-7 sm:-top-[2.188rem] ltr:left-3 ltr:sm:left-5 rtl:right-3 rtl:sm:right-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
                   src={imogi_rev}
                   alt=""
                 />
@@ -322,7 +322,7 @@ const Rating = () => {
               </div>
               <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                 <img
-                  className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                  className="absolute -top-7 sm:-top-[2.188rem] ltr:left-3 ltr:sm:left-5 rtl:right-3 rtl:sm:right-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
                   src={imogi_rev}
                   alt=""
                 />
@@ -335,7 +335,7 @@ const Rating = () => {
               </div>
               <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                 <img
-                  className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
+                  className="absolute -top-7 sm:-top-[2.188rem] ltr:left-3 ltr:sm:left-5 rtl:right-3 rtl:sm:right-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
                   src={imogi_rev}
                   alt=""
                 />
@@ -456,10 +456,10 @@ const Rating = () => {
       })()}
       {/* FAQ Section End */}
 
-      {/* footer start */}
-      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+     {/* footer start */}
+     <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
-          className="footer-shape absolute -right-4 md:-right-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto"
+          className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
           alt=""
         />
@@ -473,7 +473,7 @@ const Rating = () => {
                 {t("make_it_count_desc")}
               </p>
             </div>
-            <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 mr-[5rem]">
+            <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 ltr:mr-[5rem] rtl:ml-[5rem]">
               <a href="#" className="inline-block">
                 <img src={app_store} alt="" className="h-10 w-auto" />
               </a>
