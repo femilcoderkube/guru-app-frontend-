@@ -224,7 +224,7 @@ const PrivacyPolicy = () => {
                       {t("information")}
                     </h2>
                     <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
-                      <ul className="list-disc list-inside ml-3">
+                      <ul>
                         <li>{t("information_label")}</li>
                         <li>{t("information_label1")}</li>
                         <li>{t("information_label2")}</li>
@@ -237,7 +237,7 @@ const PrivacyPolicy = () => {
                       {t("use_information")}
                     </h2>
                     <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
-                      <ul className="list-disc list-inside ml-3">
+                      <ul>
                         <li>{t("use_information_label")}</li>
                         <li>{t("use_information_label3")}</li>
                         <li>{t("use_information_label1")}</li>
@@ -251,7 +251,7 @@ const PrivacyPolicy = () => {
                       {t("data_sharing")}
                     </h2>
                     <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
-                      <ul className="list-disc list-inside ml-3">
+                      <ul>
                         <li>{t("data_sharing_label")}</li>
                         <li>{t("data_sharing_label1")}</li>
                         <li>{t("data_sharing_label2")}</li>
@@ -264,7 +264,7 @@ const PrivacyPolicy = () => {
                       {t("your_rights")}
                     </h2>
                     <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
-                      <ul className="list-disc list-inside ml-3">
+                      <ul>
                         <li>{t("your_rights_label")}</li>
                         <li>{t("your_rights_label1")}</li>
                         <li>{t("your_rights_label2")}</li>

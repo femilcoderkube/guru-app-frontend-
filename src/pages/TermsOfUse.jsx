@@ -144,7 +144,7 @@ const TermsOfUse = () => {
       {/* inner-banner End */}
 
       {/* Tearms start */}
-      <div className="faq-sec-wp relative terms-sec bg-[#F8FAFB] py-6 sm:py-8 md:py-[2.563rem]">
+      <div className="faq-sec-wp terms-sec relative terms-sec bg-[#F8FAFB] py-6 sm:py-8 md:py-[2.563rem]">
         <div className="max-w-[76.5rem] mx-auto px-2 sm:px-4 xl:px-0">
           <div className="terms-title mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E]">
@@ -236,7 +236,7 @@ const TermsOfUse = () => {
                 </h2>
                 <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
                   <p>{t("label7")}</p>
-                  <ul className="list-disc list-inside ml-3">
+                  <ul>
                     <li>{t("label8")}</li>
                     <li>{t("label9")}</li>
                   </ul>

@@ -261,6 +261,22 @@ html[dir="rtl"] .al-majlish-card {
 }
 
 /* Footer End */
+.terms-sec ul li{
+  position: relative;
+  padding-left: 1rem;
+  margin-left: 1rem;
+}
+
+.terms-sec ul li::before{
+  position: absolute;
+  content: '';
+  border-radius: 50%;
+  width: 0.4rem;
+  height: 0.4rem;
+  top: 0.65rem;
+  left: 0;
+  background: #4A282F;
+}
 
 /* Responsive Start */
 @media (max-width: 1600px) {
