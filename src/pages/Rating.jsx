@@ -14,7 +14,7 @@ import play_store from "../assets/Images/play-store.png";
 import footer_shape from "../assets/Images/footer-shape.png";
 import imogi_rev from "../assets/Images/imogi-rev.png";
 import faq_arrow from "../assets/Images/faq-arrow.png";
-import banner_video from "../assets/Images/banner-video.mp4";
+
 import { useLocation, NavLink, useNavigate, Link } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
@@ -113,7 +113,7 @@ const Rating = () => {
             playsInline
             className="w-full !h-full object-cover z-0"
           >
-            <source src={banner_video} type="video/mp4" />
+            <source src={"/banner-Video.mp4"} type="video/mp4" />
           </video>
         </div>
 
