@@ -268,6 +268,13 @@ html[dir="rtl"] .al-majlish-card {
   margin-left: 1rem;
 }
 
+html[dir="rtl"] .terms-sec ul li{
+  padding-left: 0;
+  margin-left: 0;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
 .terms-sec ul li::before{
   position: absolute;
   content: '';
@@ -277,6 +284,11 @@ html[dir="rtl"] .al-majlish-card {
   top: 0.65rem;
   left: 0;
   background: #4A282F;
+}
+
+html[dir="rtl"] .terms-sec ul li::before{
+  left: auto;
+  right: 0;
 }
 /* privacy page End */
 
