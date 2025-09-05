@@ -206,25 +206,25 @@ const Rating = () => {
         {/* Social Icons */}
         <div className="absolute bottom-2 sm:bottom-4 md:bottom-[2.5rem] z-10 w-full flex justify-center">
           <ul className="flex items-center justify-center gap-4 md:gap-6">
-            <li className="cursor-pointer">
+            <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
               <img
                 src={TW}
                 alt="Twitter"
-                className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+                className="h-6 w-6 sm:h-7 sm:w-7"
               />
             </li>
-            <li className="cursor-pointer">
+            <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
               <img
                 src={LN}
                 alt="LinkedIn"
-                className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+                className="h-6 w-6 sm:h-7 sm:w-7"
               />
             </li>
-            <li className="cursor-pointer">
+            <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
               <img
                 src={FB}
                 alt="Facebook"
-                className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+                className="h-6 w-6 sm:h-7 sm:w-7"
               />
             </li>
           </ul>
@@ -530,8 +530,8 @@ const Rating = () => {
       })()}
       {/* FAQ Section End */}
 
-      {/* footer start */}
-      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+       {/* footer start */}
+       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
           className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
@@ -548,11 +548,25 @@ const Rating = () => {
               </p>
             </div>
             <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 ltr:mr-[5rem] rtl:ml-[5rem]">
-              <a href="#" className="inline-block">
-                <img src={app_store} alt="" className="h-10 w-auto" />
+              <a
+                href="#"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
+                <img
+                  src={app_store}
+                  alt=""
+                  className="h-10 w-auto"
+                />
               </a>
-              <a href="#" className="inline-block">
-                <img src={play_store} alt="" className="h-10 w-auto" />
+              <a
+                href="#"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
+                <img
+                  src={play_store}
+                  alt=""
+                  className="h-10 w-auto"
+                />
               </a>
             </div>
           </div>
@@ -563,26 +577,26 @@ const Rating = () => {
             <div className="flex items-center gap-3 md:gap-4 text-[#32191E] mt-2 md:mt-0">
               <Link
                 to="/privacy-policy"
-                className="text-[#32191E] text-sm md:text-base"
+                className="text-[#32191E] text-sm md:text-base transition-colors duration-200 hover:text-[#FF700A]"
               >
                 {t("privacy_policy")}
               </Link>
               <Link
                 to="/terms-of-use"
-                className="text-[#32191E] text-sm md:text-base"
+                className="text-[#32191E] text-sm md:text-base transition-colors duration-200 hover:text-[#FF700A]"
               >
                 {t("terms_of_use")}
               </Link>
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
-              <li className="cursor-pointer">
-                <img src={TW} alt="" className="h-6 w-6" />
+              <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
+                <img src={TW} alt="" className="h-6 w-6 sm:h-7 sm:w-7" />
               </li>
-              <li className="cursor-pointer">
-                <img src={LN} alt="" className="h-6 w-6" />
+              <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
+                <img src={LN} alt="" className="h-6 w-6 sm:h-7 sm:w-7" />
               </li>
-              <li className="cursor-pointer">
-                <img src={FB} alt="" className="h-6 w-6" />
+              <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
+                <img src={FB} alt="" className="h-6 w-6 sm:h-7 sm:w-7" />
               </li>
             </ul>
           </div>

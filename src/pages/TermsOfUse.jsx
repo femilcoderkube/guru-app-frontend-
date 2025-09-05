@@ -221,7 +221,23 @@ const TermsOfUse = () => {
                 </h2>
                 <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed mb-2 sm:mb-3">
                   <p>{t("label")}</p>
-                  <p>{t("label1")}</p>
+                  <p>
+                    We operate the website &nbsp;
+                   <a 
+                     href="https://www.peeq.com.au" 
+                     className="text-[#4A282F] underline hover:text-[#e88a1e] transition-colors duration-200"
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                   >
+                     https://www.peeq.com.au
+                   </a> (the
+                    'Site'),the mobile application PEEQ® (the 'App'), as well as
+                    any other related products and services that refer or link
+                    to these legal terms (the 'Legal Terms') (collectively, the
+                    'Services'). You can contact us by email at
+                    support@peeq.com.au, or by mail to Level 8, 171 Clarence
+                    Street, Sydney , New South Wales 2000, Australia.
+                  </p>
                   <p>{t("label2")}</p>
                   <p>{t("label3")}</p>
                   <p>{t("label4")}</p>
@@ -273,10 +289,16 @@ const TermsOfUse = () => {
               </p>
             </div>
             <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 ltr:mr-[5rem] rtl:ml-[5rem]">
-              <a href="#" className="inline-block">
+              <a
+                href="#"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
                 <img src={app_store} alt="" className="h-10 w-auto" />
               </a>
-              <a href="#" className="inline-block">
+              <a
+                href="#"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
                 <img src={play_store} alt="" className="h-10 w-auto" />
               </a>
             </div>
@@ -288,25 +310,25 @@ const TermsOfUse = () => {
             <div className="flex items-center gap-3 md:gap-4 text-[#32191E] mt-2 md:mt-0">
               <Link
                 to="/privacy-policy"
-                className="text-[#32191E] text-sm md:text-base"
+                className="text-[#32191E] text-sm md:text-base transition-colors duration-200 hover:text-[#FF700A]"
               >
                 {t("privacy_policy")}
               </Link>
               <Link
                 to="/terms-of-use"
-                className="text-[#32191E] text-sm md:text-base"
+                className="text-[#32191E] text-sm md:text-base transition-colors duration-200 hover:text-[#FF700A]"
               >
                 {t("terms_of_use")}
               </Link>
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
-              <li className="cursor-pointer">
+              <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
                 <img src={TW} alt="" className="h-6 w-6" />
               </li>
-              <li className="cursor-pointer">
+              <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
                 <img src={LN} alt="" className="h-6 w-6" />
               </li>
-              <li className="cursor-pointer">
+              <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
                 <img src={FB} alt="" className="h-6 w-6" />
               </li>
             </ul>

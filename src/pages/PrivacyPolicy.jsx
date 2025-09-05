@@ -285,8 +285,8 @@ const PrivacyPolicy = () => {
         </div>
       </div>
       {/* Tearms End */}
-      {/* footer start */}
-      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+       {/* footer start */}
+       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
           className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
@@ -303,11 +303,25 @@ const PrivacyPolicy = () => {
               </p>
             </div>
             <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 ltr:mr-[5rem] rtl:ml-[5rem]">
-              <a href="#" className="inline-block">
-                <img src={app_store} alt="" className="h-10 w-auto" />
+              <a
+                href="#"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
+                <img
+                  src={app_store}
+                  alt=""
+                  className="h-10 w-auto"
+                />
               </a>
-              <a href="#" className="inline-block">
-                <img src={play_store} alt="" className="h-10 w-auto" />
+              <a
+                href="#"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
+                <img
+                  src={play_store}
+                  alt=""
+                  className="h-10 w-auto"
+                />
               </a>
             </div>
           </div>
@@ -318,25 +332,25 @@ const PrivacyPolicy = () => {
             <div className="flex items-center gap-3 md:gap-4 text-[#32191E] mt-2 md:mt-0">
               <Link
                 to="/privacy-policy"
-                className="text-[#32191E] text-sm md:text-base"
+                className="text-[#32191E] text-sm md:text-base transition-colors duration-200 hover:text-[#FF700A]"
               >
                 {t("privacy_policy")}
               </Link>
               <Link
                 to="/terms-of-use"
-                className="text-[#32191E] text-sm md:text-base"
+                className="text-[#32191E] text-sm md:text-base transition-colors duration-200 hover:text-[#FF700A]"
               >
                 {t("terms_of_use")}
               </Link>
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
-              <li className="cursor-pointer">
+              <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
                 <img src={TW} alt="" className="h-6 w-6" />
               </li>
-              <li className="cursor-pointer">
+              <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
                 <img src={LN} alt="" className="h-6 w-6" />
               </li>
-              <li className="cursor-pointer">
+              <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
                 <img src={FB} alt="" className="h-6 w-6" />
               </li>
             </ul>
