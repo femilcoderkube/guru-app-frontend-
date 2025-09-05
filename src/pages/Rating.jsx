@@ -14,6 +14,10 @@ import play_store from "../assets/Images/play-store.png";
 import footer_shape from "../assets/Images/footer-shape.png";
 import imogi_rev from "../assets/Images/imogi-rev.png";
 import faq_arrow from "../assets/Images/faq-arrow.png";
+import choice from "../assets/Images/choice.png";
+import okay from "../assets/Images/okay.png";
+import good from "../assets/Images/good.png";
+import delicious from "../assets/Images/delicious.png";
 
 import { useLocation, NavLink, useNavigate, Link } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -298,7 +302,7 @@ const Rating = () => {
                 <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                   <img
                     className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                    src={imogi_rev}
+                    src={delicious}
                     alt=""
                   />
                   <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
@@ -311,7 +315,7 @@ const Rating = () => {
                 <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                   <img
                     className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                    src={imogi_rev}
+                    src={good}
                     alt=""
                   />
                   <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
@@ -324,7 +328,7 @@ const Rating = () => {
                 <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                   <img
                     className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                    src={imogi_rev}
+                    src={okay}
                     alt=""
                   />
                   <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
@@ -337,7 +341,7 @@ const Rating = () => {
                 <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                   <img
                     className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                    src={imogi_rev}
+                    src={choice}
                     alt=""
                   />
                   <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
@@ -366,7 +370,7 @@ const Rating = () => {
                 <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                   <img
                     className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                    src={imogi_rev}
+                    src={delicious}
                     alt=""
                   />
                   <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
@@ -379,7 +383,7 @@ const Rating = () => {
                 <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                   <img
                     className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                    src={imogi_rev}
+                    src={good}
                     alt=""
                   />
                   <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
@@ -392,7 +396,7 @@ const Rating = () => {
                 <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                   <img
                     className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                    src={imogi_rev}
+                    src={okay}
                     alt=""
                   />
                   <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
@@ -405,7 +409,7 @@ const Rating = () => {
                 <div className="relative bg-[#FFD688] rounded-xl px-3 sm:px-4 pb-4 sm:pb-5 pt-9 sm:pt-11 flex flex-col shadow-sm">
                   <img
                     className="absolute -top-7 sm:-top-[2.188rem] left-3 sm:left-5 w-14 sm:w-[4.375rem] h-14 sm:h-[4.375rem] bg-[#FFFFFF17] p-2 border border-[#FFD688] rounded-full backdrop-blur-[1.488rem]"
-                    src={imogi_rev}
+                    src={choice}
                     alt=""
                   />
                   <h4 className="font-bold text-lg sm:text-xl md:text-[1.5rem] text-[#32191E] mb-2 sm:mb-3">
