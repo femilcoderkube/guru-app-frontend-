@@ -137,7 +137,7 @@ const Home = () => {
       {/* Hero Section Start */}
       <div className="relative mx-2 sm:mx-4 md:mx-8 lg:mx-10  md:mt-[2.5rem] sm:mt-[5.875rem] mt-[5.875rem] rounded-[1.25rem] sm:rounded-[1.875rem] bg-transparent">
         {/* Background Video */}
-        <div className="aspect-[16/9] w-full rounded-[1.25rem] sm:rounded-[1.875rem] overflow-hidden min-h-[330px] md:min-h-[400px]">
+        <div className="aspect-[16/9] w-full rounded-[1.25rem] sm:rounded-[1.875rem] overflow-hidden min-h-[400px] md:min-h-[450px]">
           <video
             autoPlay
             loop
@@ -220,9 +220,14 @@ const Home = () => {
               <h5 className="text-base md:text-xl lg:text-2xl font-normal text-[#FFEAC2] mt-3 sm:mt-4 ltr:text-left rtl:text-right">
                 {t("guru")}
               </h5>
-              <button className="mt-4 lg:mt-8 px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+              <div className="flex items-center flex-wrap md:gap-5 gap-2 mt-4 lg:mt-8">
+              <button className="px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
                 {t("download")}
               </button>
+              <button className="hidden px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+              Register your Restaurant  
+              </button>
+              </div>
             </div>
           );
         })()}
