@@ -15,7 +15,7 @@ import footer_shape from "../assets/Images/footer-shape.png";
 import imogi_rev from "../assets/Images/imogi-rev.png";
 import faq_arrow from "../assets/Images/faq-arrow.png";
 import choice from "../assets/Images/choice.png";
-import okay from "../assets/Images/okay.png";
+import okay from "../assets/Images/okay_1.png";
 import good from "../assets/Images/good.png";
 import delicious from "../assets/Images/delicious.png";
 
