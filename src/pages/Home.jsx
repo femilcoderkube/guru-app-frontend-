@@ -378,7 +378,7 @@ const Home = () => {
         <div className="al-majlish-sec rounded-[1.875rem] bg-[#32191E] shadow-lg relative overflow-hidden">
           <div className="mx-4 sm:mx-8 md:mx-10 pt-[2rem] sm:pt-[2.5rem] md:pt-[3.188rem]">
             <img
-              className="absolute ltr:right-0 rtl:left-0 top-[1rem] sm:top-[2rem] lg:!block !hidden [transform:rotateY(180deg)]"
+              className="absolute ltr:right-0 rtl:left-0 top-[1rem] sm:top-[2rem] lg:!block !hidden rtl:[transform:rotateY(180deg)]"
               src={al_majlish_shape}
               alt=""
             />
