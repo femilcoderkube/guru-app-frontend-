@@ -22,6 +22,12 @@ import delicious from "../assets/Images/delicious.png";
 import { useLocation, NavLink, useNavigate, Link } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import {
+  leftToRight,
+  rightToLeft,
+  cardVariantsAni,
+} from "../Componets/animation.jsx";
+import { motion } from "motion/react";
 const Rating = () => {
   const [navOpen, setNavOpen] = React.useState(false);
   const [activeTab, setActiveTab] = React.useState(0);
@@ -204,7 +210,12 @@ const Rating = () => {
         })()}
 
         {/* Social Icons */}
-        <div className="absolute bottom-2 sm:bottom-4 md:bottom-[2.5rem] z-10 w-full flex justify-center">
+        <motion.div className="absolute bottom-2 sm:bottom-4 md:bottom-[2.5rem] z-10 w-full flex justify-center"
+        initial="hidden"
+        whileInView="visible"
+        variants={cardVariantsAni}
+        viewport={{ once: true, amount: 0 }}
+        >
           <ul className="flex items-center justify-center gap-4 md:gap-6">
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
               <img
@@ -228,7 +239,7 @@ const Rating = () => {
               />
             </li>
           </ul>
-        </div>
+        </motion.div>
 
         {/* Overlay for better text contrast */}
         <div className="absolute inset-0 bg-black/40 z-0 pointer-events-none rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[1.875rem]"></div>
@@ -238,7 +249,12 @@ const Rating = () => {
       {/* Tabbing Section Start */}
       <div className="relative">
         <div className="bg-[#FFF5E1] pt-8 md:pt-[3.125rem] pb-6 md:pb-9 px-3 sm:px-4 md:px-6">
-          <div className="max-w-[73.188rem] mx-auto">
+          <motion.div className="max-w-[73.188rem] mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          variants={cardVariantsAni}
+          viewport={{ once: true, amount: 0 }}
+          >
             <div className="flex flex-col gap-3 items-center mb-13 md:mb-[4.375rem]">
               <div className="flex items-center justify-center bg-[#32191E] rounded-[2.5rem] h-[2.25rem] border border-[#32191E]">
                 {(() => {
@@ -421,7 +437,7 @@ const Rating = () => {
                 </div>
               </div>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
       {/* Tabbing Section End */}
@@ -468,7 +484,12 @@ const Rating = () => {
         return (
           <div className="faq-sec-wp relative mb-8 sm:mb-10 md:mb-12 px-2 sm:px-4 py-6 sm:py-[2.52rem] bg-[#F8FAFB]">
             <div className="max-w-[73.188rem] mx-auto">
-              <div className="faq-sec">
+              <motion.div className="faq-sec"
+              initial="hidden"
+              whileInView="visible"
+              variants={cardVariantsAni}
+              viewport={{ once: true, amount: 0 }}
+              >
                 <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E] mb-4 sm:mb-6">
                   {t("faq")}
                 </h2>
@@ -523,7 +544,7 @@ const Rating = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         );
@@ -537,7 +558,12 @@ const Rating = () => {
           src={footer_shape}
           alt=""
         />
-        <div className="mx-auto max-w-[80rem]">
+        <motion.div className="mx-auto max-w-[80rem]"
+        initial="hidden"
+        whileInView="visible"
+        variants={cardVariantsAni}
+        viewport={{ once: true, amount: 0 }}
+        >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">
               <h2 className="text-xl md:text-[2.5rem] font-bold text-[#32191E] mb-2">
@@ -552,21 +578,13 @@ const Rating = () => {
                 href="#"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
-                <img
-                  src={app_store}
-                  alt=""
-                  className="h-10 w-auto"
-                />
+                <img src={app_store} alt="" className="h-10 w-auto" />
               </a>
               <a
                 href="#"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
-                <img
-                  src={play_store}
-                  alt=""
-                  className="h-10 w-auto"
-                />
+                <img src={play_store} alt="" className="h-10 w-auto" />
               </a>
             </div>
           </div>
@@ -590,17 +608,17 @@ const Rating = () => {
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={TW} alt="" className="h-6 w-6 sm:h-7 sm:w-7" />
+                <img src={TW} alt="" className="h-6 w-6" />
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={LN} alt="" className="h-6 w-6 sm:h-7 sm:w-7" />
+                <img src={LN} alt="" className="h-6 w-6" />
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={FB} alt="" className="h-6 w-6 sm:h-7 sm:w-7" />
+                <img src={FB} alt="" className="h-6 w-6" />
               </li>
             </ul>
           </div>
-        </div>
+        </motion.div>
       </footer>
       {/* footer End */}
     </>

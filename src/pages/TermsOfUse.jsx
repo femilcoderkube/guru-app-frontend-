@@ -12,6 +12,12 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import Header from "./Header";
+import {
+  leftToRight,
+  rightToLeft,
+  cardVariantsAni,
+} from "../Componets/animation.jsx";
+import { motion } from "motion/react";
 const TermsOfUse = () => {
   // Responsive nav state for mobile menu
   const [navOpen, setNavOpen] = React.useState(false);
@@ -271,14 +277,19 @@ const TermsOfUse = () => {
         </div>
       </div>
       {/* Tearms End */}
-      {/* footer start */}
-      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+       {/* footer start */}
+       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
           className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
           alt=""
         />
-        <div className="mx-auto max-w-[80rem]">
+        <motion.div className="mx-auto max-w-[80rem]"
+        initial="hidden"
+        whileInView="visible"
+        variants={cardVariantsAni}
+        viewport={{ once: true, amount: 0 }}
+        >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">
               <h2 className="text-xl md:text-[2.5rem] font-bold text-[#32191E] mb-2">
@@ -333,7 +344,7 @@ const TermsOfUse = () => {
               </li>
             </ul>
           </div>
-        </div>
+        </motion.div>
       </footer>
       {/* footer End */}
     </>

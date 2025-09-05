@@ -32,6 +32,12 @@ import footer_shape from "../assets/Images/footer-shape.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
+import {
+  leftToRight,
+  rightToLeft,
+  cardVariantsAni,
+} from "../Componets/animation.jsx";
+import { motion } from "motion/react";
 const Home = () => {
   const [navOpen, setNavOpen] = React.useState(false);
   const { t } = useTranslation();
@@ -151,7 +157,12 @@ const Home = () => {
         </div>
         {/* Overlay content */}
         <div className="absolute top-2 sm:top-4 md:top-[1.875rem] z-10 px-2 sm:px-6 md:px-[3.95rem] w-full md:block hidden">
-          <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3">
+          <motion.div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3"
+          initial="hidden"
+          whileInView="visible"
+          variants={cardVariantsAni}
+          viewport={{ once: true, amount: 0 }}
+          >
             <div className="site-logo flex-shrink-0 md:block hidden">
               <img src={logo} alt="Guru Logo" className="h-8 sm:h-10 md:h-12" />
             </div>
@@ -191,7 +202,7 @@ const Home = () => {
                 </span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
         {/* Responsive Banner Content */}
         {(() => {
@@ -211,7 +222,14 @@ const Home = () => {
           }, []);
 
           return (
-            <div className="absolute left-0 right-0 top-[20%] md:top-[30%] xl:top-[15.313rem] z-10 px-2 sm:px-6 md:px-[3.95rem] banner-content flex flex-col items-start">
+            <motion.div
+              className="absolute left-0 right-0 top-[20%] md:top-[30%] xl:top-[15.313rem] z-10 px-2 sm:px-6 md:px-[3.95rem] banner-content flex flex-col items-start"
+              variants={leftToRight}
+              custom={0}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.4 }}
+            >
               <h1 className="text-2xl sm:text-3xl md:text-[2.2rem] lg:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight sm:leading-[2.5rem] md:leading-[2.8rem] lg:leading-[3.875rem] ltr:text-left rtl:text-right">
                 {t("tired_of_fake_reviews")} <br className="hidden sm:block" />{" "}
                 {t("so_are_we")}{" "}
@@ -221,18 +239,24 @@ const Home = () => {
                 {t("guru")}
               </h5>
               <div className="flex items-center flex-wrap md:gap-5 gap-2 mt-4 lg:mt-8">
-              <button className="px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
-                {t("download")}
-              </button>
-              <button className="hidden px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
-              Register your Restaurant  
-              </button>
+                <button className="px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+                  {t("download")}
+                </button>
+                <button className="hidden px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+                  Register your Restaurant
+                </button>
               </div>
-            </div>
+            </motion.div>
           );
         })()}
 
-        <div className="absolute bottom-2 sm:bottom-4 md:bottom-[2.5rem] z-10 w-full flex justify-center">
+        <motion.div
+          className="absolute bottom-2 sm:bottom-4 md:bottom-[2.5rem] z-10 w-full flex justify-center"
+          initial="hidden"
+          whileInView="visible"
+          variants={cardVariantsAni}
+          viewport={{ once: true, amount: 0 }}
+        >
           <ul className="flex items-center justify-center gap-4 sm:gap-6">
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
               <img src={TW} alt="Twitter" className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -244,7 +268,7 @@ const Home = () => {
               <img src={FB} alt="Facebook" className="h-6 w-6 sm:h-7 sm:w-7" />
             </li>
           </ul>
-        </div>
+        </motion.div>
         {/* Optional: overlay for better text contrast */}
         <div className="absolute inset-0 bg-black/40 z-0 pointer-events-none rounded-[1.25rem] sm:rounded-[1.875rem]"></div>
       </div>
@@ -254,7 +278,14 @@ const Home = () => {
       <div className="food-app-sec relative mx-2 sm:mx-4 md:mx-10 mt-10 md:mt-[6.938rem] mb-10 md:mb-16 lg:mb-[8.5rem]">
         <div className="food-app-wp flex flex-col md:flex-row items-center gap-8 md:gap-[3.188rem] max-w-[85rem] mx-auto w-full">
           {/* Left: Text */}
-          <div className="food-app-left relative w-full md:max-w-[25rem] ltr:pl-4 rtl:pr-4 ltr:sm:pl-6 rtl:sm:pr-6 ltr:md:pl-8 rtl:md:pr-8 mb-8 md:mb-0">
+          <motion.div
+            className="food-app-left relative w-full md:max-w-[25rem] ltr:pl-4 rtl:pr-4 ltr:sm:pl-6 rtl:sm:pr-6 ltr:md:pl-8 rtl:md:pr-8 mb-8 md:mb-0"
+            variants={leftToRight}
+            custom={0}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+          >
             <div className="absolute ltr:left-0 rtl:right-0 top-0 w-10 sm:w-14 md:w-auto">
               <img src={food_shape} alt="" className="w-full h-auto" />
             </div>
@@ -267,9 +298,16 @@ const Home = () => {
               <li>{t("influencers")}</li>
               <li>{t("noise")}</li>
             </ul>
-          </div>
+          </motion.div>
           {/* Right: Card grid */}
-          <div className="food-app-right relative flex flex-col md:flex-row gap-4 w-full h-full">
+          <motion.div
+            className="food-app-right relative flex flex-col md:flex-row gap-4 w-full h-full"
+            variants={rightToLeft}
+            custom={1}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+          >
             <div className="food-shape absolute ltr:right-0 rtl:left-0 -top-12 sm:-top-16 md:top-[-6.4rem] w-24 sm:w-32 md:w-auto z-0 pointer-events-none">
               <img src={food_top_shape} alt="" className="w-full h-auto" />
             </div>
@@ -302,7 +340,7 @@ const Home = () => {
                 alt=""
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       {/* Food App End */}
@@ -310,7 +348,14 @@ const Home = () => {
       {/* Our Mission start */}
       <div className="our-mission-sec bg-[#FFEAC2] flex flex-col md:flex-row items-center relative w-full px-4 sm:px-8 md:px-12 xl:px-20 py-10 sm:py-14 md:py-20">
         {/* Left: Text */}
-        <div className="flex-1 max-w-2xl xl:max-w-[46.313rem] md:max-w-[40rem] w-full z-10">
+        <motion.div
+          className="flex-1 max-w-2xl xl:max-w-[46.313rem] md:max-w-[40rem] w-full z-10"
+          variants={leftToRight}
+          custom={0}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+        >
           <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-bold text-[#32191E] mb-2">
             {t("our_mission")}
           </h3>
@@ -320,20 +365,33 @@ const Home = () => {
           <p className="text-[#32191E] text-base sm:text-lg md:text-xl">
             {t("moment")}
           </p>
-        </div>
+        </motion.div>
         {/* Right: Image */}
-        <div className="mission-img relative w-full md:w-auto flex justify-center md:justify-end md:absolute md:bottom-[5rem] md:right-0 md:translate-y-1/4 rtl:md:justify-start rtl:md:left-0 rtl:md:right-auto">
+        <motion.div
+          className="mission-img relative w-full md:w-auto flex justify-center md:justify-end md:absolute md:bottom-[5rem] md:right-0 md:translate-y-1/4 rtl:md:justify-start rtl:md:left-0 rtl:md:right-auto"
+          variants={rightToLeft}
+          custom={1}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+        >
           <img
             src={our_mission}
             alt="Riyadh Skyline"
             className="w-3/4 sm:w-2/3 md:w-[22rem] lg:w-[28rem] xl:w-[38rem] 2xl:w-[42rem] max-w-full h-auto object-contain rtl:[transform:rotateY(180deg)]"
           />
-        </div>
+        </motion.div>
       </div>
       {/* Our Mission End */}
 
       {/* How it work start */}
-      <div className="how-it-works-section mt-8 sm:mt-12 mb-10 sm:mb-20 relative z-10 max-w-[84.375rem] mx-auto px-2 sm:px-6">
+      <motion.div
+        className="how-it-works-section mt-8 sm:mt-12 mb-10 sm:mb-20 relative z-10 max-w-[84.375rem] mx-auto px-2 sm:px-6"
+        initial="hidden"
+        whileInView="visible"
+        variants={cardVariantsAni}
+        viewport={{ once: true, amount: 0 }}
+      >
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5 mb-4 sm:mb-6">
           <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E]">
             {t("how_it_works")}
@@ -376,17 +434,23 @@ const Home = () => {
             <p className="text-[#4A282F] text-base sm:text-lg">{t("build")}</p>
           </div>
         </div>
-      </div>
+      </motion.div>
       {/* How it work end */}
       {/* Al Majlish Section Start */}
       <div className="relative mx-2 sm:mx-4 md:mx-8 lg:mx-10 mb-10 sm:mb-16 md:mb-20 lg:mb-[8.75rem]">
         <div className="al-majlish-sec rounded-[1.875rem] bg-[#32191E] shadow-lg relative overflow-hidden">
-          <div className="mx-4 sm:mx-8 md:mx-10 pt-[2rem] sm:pt-[2.5rem] md:pt-[3.188rem]">
-            <img
-              className="absolute ltr:right-0 rtl:left-0 top-[1rem] sm:top-[2rem] lg:!block !hidden rtl:[transform:rotateY(180deg)]"
-              src={al_majlish_shape}
-              alt=""
-            />
+          <img
+            className="absolute ltr:right-0 rtl:left-0 top-[1rem] sm:top-[2rem] lg:!block !hidden rtl:[transform:rotateY(180deg)]"
+            src={al_majlish_shape}
+            alt=""
+          />
+          <motion.div
+            className="mx-4 sm:mx-8 md:mx-10 pt-[2rem] sm:pt-[2.5rem] md:pt-[3.188rem]"
+            initial="hidden"
+            whileInView="visible"
+            variants={cardVariantsAni}
+            viewport={{ once: true, amount: 0 }}
+          >
             <h2 className="relative text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#FFEAC2] mb-6 sm:mb-8 md:mb-9">
               {t("al_majlis")}
             </h2>
@@ -394,8 +458,14 @@ const Home = () => {
               {t("guru_social")}{" "}
               <span className="text-[#9FE379]"> {t("open")}</span>
             </p>
-          </div>
-          <div className="al-majlish-slider relative mt-10 sm:mt-14 md:mt-16 pb-[4rem] sm:pb-[5rem] md:pb-[6rem]">
+          </motion.div>
+          <motion.div
+            className="al-majlish-slider relative mt-10 sm:mt-14 md:mt-16 pb-[4rem] sm:pb-[5rem] md:pb-[6rem]"
+            initial="hidden"
+            whileInView="visible"
+            variants={cardVariantsAni}
+            viewport={{ once: true, amount: 0 }}
+          >
             <Swiper
               dir={i18n.language === "ar" ? "ltr" : "rtl"}
               spaceBetween={8}
@@ -473,13 +543,19 @@ const Home = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-          </div>
+          </motion.div>
         </div>
       </div>
       {/* Al Majlish Section End */}
 
       {/* Real Option Section Start */}
-      <div className="mx-auto mb-16 max-w-[82.5rem] px-2 sm:px-4 md:px-8">
+      <motion.div
+        className="mx-auto mb-16 max-w-[82.5rem] px-2 sm:px-4 md:px-8"
+        initial="hidden"
+        whileInView="visible"
+        variants={cardVariantsAni}
+        viewport={{ once: true, amount: 0 }}
+      >
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:gap-0 md:justify-between md:items-center">
           <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E] leading-tight">
             {t("real_opinions")}{" "}
@@ -558,14 +634,21 @@ const Home = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </motion.div>
       {/* Real Option Section End */}
 
       {/* Why Guru Section Start */}
       <div className="relative why-guru-section bg-[#FFEAC2] px-4 sm:px-6 md:px-10 pt-8 sm:pt-10 mt-8 sm:mt-10 mb-10 sm:mb-16">
         {/* Left: Text Content */}
         <div className="mx-auto max-w-[82.5rem] flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
-          <div className="flex-1 z-10 w-full">
+          <motion.div
+            className="flex-1 z-10 w-full"
+            variants={leftToRight}
+            custom={0}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+          >
             <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E] mb-2 sm:mb-3">
               <span>{t("why_guru")}</span>
             </h2>
@@ -618,9 +701,16 @@ const Home = () => {
                 </div>
               </li>
             </ul>
-          </div>
+          </motion.div>
           {/* Right: App Images */}
-          <div className="flex-1 flex justify-center md:justify-end items-center relative z-10 w-full">
+          <motion.div
+            className="flex-1 flex justify-center md:justify-end items-center relative z-10 w-full"
+            variants={rightToLeft}
+            custom={1}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+          >
             <div className="relative flex items-end w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
               <img
                 src={why_guru}
@@ -628,7 +718,7 @@ const Home = () => {
                 className="w-full h-auto object-contain"
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       {/* Why Guru Section End */}
@@ -639,7 +729,12 @@ const Home = () => {
           src={footer_shape}
           alt=""
         />
-        <div className="mx-auto max-w-[80rem]">
+        <motion.div className="mx-auto max-w-[80rem]"
+        initial="hidden"
+        whileInView="visible"
+        variants={cardVariantsAni}
+        viewport={{ once: true, amount: 0 }}
+        >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">
               <h2 className="text-xl md:text-[2.5rem] font-bold text-[#32191E] mb-2">
@@ -654,21 +749,13 @@ const Home = () => {
                 href="#"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
-                <img
-                  src={app_store}
-                  alt=""
-                  className="h-10 w-auto"
-                />
+                <img src={app_store} alt="" className="h-10 w-auto" />
               </a>
               <a
                 href="#"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
-                <img
-                  src={play_store}
-                  alt=""
-                  className="h-10 w-auto"
-                />
+                <img src={play_store} alt="" className="h-10 w-auto" />
               </a>
             </div>
           </div>
@@ -702,7 +789,7 @@ const Home = () => {
               </li>
             </ul>
           </div>
-        </div>
+        </motion.div>
       </footer>
       {/* footer End */}
     </>

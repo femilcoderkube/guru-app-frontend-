@@ -13,7 +13,12 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 import Header from "./Header";
-
+import {
+  leftToRight,
+  rightToLeft,
+  cardVariantsAni,
+} from "../Componets/animation.jsx";
+import { motion } from "motion/react";
 const ContactUs = () => {
   // Responsive nav state for mobile menu
   const [navOpen, setNavOpen] = React.useState(false);
@@ -21,123 +26,26 @@ const ContactUs = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Header />
-      {/* <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
-        <div className="flex items-center justify-between w-full max-w-[76.5rem] mx-auto">
-          <div className="site-logo flex-shrink-0">
-            <img src={dark_logo} alt="Guru Logo" className="h-8 md:h-10" />
-          </div>
-
-          <nav className="hidden md:flex items-center gap-4 h-[3.375rem]">
-            {(() => {
-              const navItems = [
-                { label: t("about"), to: "/" },
-                { label: t("our_rating"), to: "/rating" },
-                { label: t("contactus"), to: "/contactus" },
-              ];
-              const [activeIdx, setActiveIdx] = React.useState(0);
-
-              return (
-                <ul className="dark-header header-nav flex items-center gap-4 lg:gap-[1.875rem] bg-[#F6F8FA] rounded-2xl px-4 lg:px-[1.938rem] border border-[#DFE1E7] border-opacity-[0.34] h-full">
-                  {navItems.map((item, idx) => (
-                    <li
-                      key={item.label}
-                      className={
-                        "relative text-sm sm:text-base leading-none h-full flex justify-center items-center cursor-pointer " +
-                        (activeIdx === idx ? "active-tab" : "font-normal") +
-                        " text-[#0D0D12]"
-                      }
-                      onClick={() => {
-                        navigate(item.to);
-                        setActiveIdx(idx);
-                      }}
-                    >
-                      {item.label}
-                    </li>
-                  ))}
-                </ul>
-              );
-            })()}
-            <div className="py-2 md:py-4 bg-[#F6F8FA] rounded-2xl px-4 lg:px-[1.938rem] border border-[#DFE1E7] border-opacity-[0.34] h-full flex items-center">
-              <span className="cursor-pointer text-base font-normal text-[#0D0D12] leading-none">
-                <LanguageSwitcher />
-              </span>
-            </div>
-          </nav>
-
-          <button
-            className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none"
-            aria-label="Open menu"
-            onClick={() => setNavOpen((v) => !v)}
-          >
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-              <rect y="5" width="24" height="2" rx="1" fill="#32191E" />
-              <rect y="11" width="24" height="2" rx="1" fill="#32191E" />
-              <rect y="17" width="24" height="2" rx="1" fill="#32191E" />
-            </svg>
-          </button>
-        </div>
-
-        {navOpen && (
-          <div className="md:hidden fixed inset-0 z-50 bg-black bg-opacity-40">
-            <div className="absolute top-0 right-0 w-4/5 max-w-xs bg-white h-full shadow-lg flex flex-col">
-              <button
-                className="self-end m-4 p-2"
-                aria-label="Close menu"
-                onClick={() => setNavOpen(false)}
-              >
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-                  <line
-                    x1="6"
-                    y1="6"
-                    x2="18"
-                    y2="18"
-                    stroke="#32191E"
-                    strokeWidth="2"
-                  />
-                  <line
-                    x1="18"
-                    y1="6"
-                    x2="6"
-                    y2="18"
-                    stroke="#32191E"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-              <ul className="flex flex-col gap-2 px-6 mt-8">
-                {[t("about"), t("our_rating"), t("contactus")].map((item) => (
-                  <li
-                    key={item}
-                    className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6 px-6">
-                <div className="py-2 bg-[#F6F8FA] rounded-2xl px-4 border border-[#DFE1E7] border-opacity-[0.34] w-fit">
-                  <span className="cursor-pointer text-base font-normal text-[#0D0D12] leading-none">
-                    <LanguageSwitcher />
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </header> */}
-      {/* dark-header End */}
+      <Header />     
 
       {/* inner-banner start */}
-      <div className="w-full flex justify-center bg-[#FFEAC2] mt-[5.875rem] md:mt-[6.375rem] py-3 md:py-[1.375rem] px-2">
-        <div className="flex items-center gap-2 sm:gap-4 w-full max-w-[76.5rem] mx-auto">
+      <div
+        className="w-full flex justify-center bg-[#FFEAC2] mt-[5.875rem] md:mt-[6.375rem] py-3 md:py-[1.375rem] px-2">
+        <div
+          className="flex items-center gap-2 sm:gap-4 w-full max-w-[76.5rem] mx-auto"
+          initial="hidden"
+          animate="visible"
+          variants={leftToRight}
+        >
           <button
-            className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base"
-            onClick={() => navigate("/")}
-          >
+            className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base">
             {t("back")}
           </button>
-          <span className="text-[#32191E] font-bold text-base">
+          <span
+            className="text-[#32191E] font-bold text-base"
+            variants={leftToRight}
+            custom={2}
+          >
             {t("contactus")}
           </span>
         </div>
@@ -145,7 +53,8 @@ const ContactUs = () => {
       {/* inner-banner End */}
 
       <div className="faq-sec-wp relative contact-wp flex justify-center items-center py-6 md:py-[2.563rem] bg-[#F8FAFB] px-2">
-        <div className="w-full max-w-[76.5rem] mx-auto bg-white rounded-2xl shadow-[0_4px_74px_0_#0000001A] px-2 sm:px-4 md:px-8 py-6 md:py-10">
+        <div
+          className="w-full max-w-[76.5rem] mx-auto bg-white rounded-2xl shadow-[0_4px_74px_0_#0000001A] px-2 sm:px-4 md:px-8 py-6 md:py-10">
           <div className="text-center mb-6 md:mb-9">
             <h2 className="text-2xl md:text-[2.5rem] font-bold text-[#32191E]">
               {t("get_in_touch")}
@@ -269,7 +178,12 @@ const ContactUs = () => {
           src={footer_shape}
           alt=""
         />
-        <div className="mx-auto max-w-[80rem]">
+        <motion.div className="mx-auto max-w-[80rem]"
+        initial="hidden"
+        whileInView="visible"
+        variants={cardVariantsAni}
+        viewport={{ once: true, amount: 0 }}
+        >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">
               <h2 className="text-xl md:text-[2.5rem] font-bold text-[#32191E] mb-2">
@@ -284,21 +198,13 @@ const ContactUs = () => {
                 href="#"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
-                <img
-                  src={app_store}
-                  alt=""
-                  className="h-10 w-auto"
-                />
+                <img src={app_store} alt="" className="h-10 w-auto" />
               </a>
               <a
                 href="#"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
-                <img
-                  src={play_store}
-                  alt=""
-                  className="h-10 w-auto"
-                />
+                <img src={play_store} alt="" className="h-10 w-auto" />
               </a>
             </div>
           </div>
@@ -332,7 +238,7 @@ const ContactUs = () => {
               </li>
             </ul>
           </div>
-        </div>
+        </motion.div>
       </footer>
       {/* footer End */}
     </>
