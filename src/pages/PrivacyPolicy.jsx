@@ -170,7 +170,7 @@ const PrivacyPolicy = () => {
                     {t("table_of_contents")}
                   </h6>
                 </div>
-                <ol className="flex flex-col gap-2 sm:gap-3 list-decimal text-xs sm:text-sm font-medium list-inside">
+                <ol className="flex flex-col gap-2 sm:gap-3 list-decimal text-sm font-medium list-inside">
                   <li className="font-bold text-[#32191E] cursor-pointer">
                     {t("our_services")}
                   </li>
