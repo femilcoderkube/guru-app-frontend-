@@ -56,7 +56,7 @@ const ContactUs = () => {
       };
       console.log("Payload:", payload);
       await postCall("/contact-us/createContact", payload, true);
-      // resetForm();
+      resetForm();
     } catch (error) {
       console.error("Error submitting contact form:", error);
     } finally {
@@ -86,7 +86,7 @@ const ContactUs = () => {
 
   return (
     <>
-    {/* dark-header start */}    
+      {/* dark-header start */}
       <Header />
       {/* dark-header End */}
 

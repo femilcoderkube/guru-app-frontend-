@@ -7,11 +7,13 @@ import ContactUs from "./pages/ContactUs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./locales/i18n";
+import { Toaster } from "react-hot-toast";
 import LanguageSwitcher from "./pages/LanguageSwitcher";
 
 function App() {
   return (
     <I18nextProvider i18n={i18n}>
+      <Toaster position="top-right" />
       <BrowserRouter>
         {/* <nav
         style={{
