@@ -112,6 +112,7 @@ const handleRequest2 = async (method, url, data, showToast = false) => {
     ) {
       config.data = data;
     }
+    console.log(config.url);
 
     const response = await api(config);
 
