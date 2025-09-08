@@ -1,10 +1,10 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export const BASE_URL = __API_BASE_URL__;
+export const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: `${BASE_URL}`,
 });
 
 export const setAuthToken = (token) => {
@@ -34,7 +34,7 @@ const handleRequest = async (method, url, data, showToast = false) => {
   try {
     const config = {
       method,
-      url: BASE_URL + url,
+      url: BASE_URL + `/api/v1${url}`,
       headers,
     };
 

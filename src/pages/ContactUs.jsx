@@ -56,7 +56,7 @@ const ContactUs = () => {
       };
       console.log("Payload:", payload);
       await postCall("/contact-us/createContact", payload, true);
-      resetForm();
+      // resetForm();
     } catch (error) {
       console.error("Error submitting contact form:", error);
     } finally {
@@ -99,9 +99,7 @@ const ContactUs = () => {
           <button className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base">
             {t("back")}
           </button>
-          <span
-            className="text-[#32191E] font-bold text-base"           
-          >
+          <span className="text-[#32191E] font-bold text-base">
             {t("contactus")}
           </span>
         </motion.div>
@@ -117,9 +115,7 @@ const ContactUs = () => {
             transition={{ duration: 0.3, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <h2
-              className="text-2xl md:text-[2.5rem] font-bold text-[#32191E]"           
-            >
+            <h2 className="text-2xl md:text-[2.5rem] font-bold text-[#32191E]">
               {t("get_in_touch")}
             </h2>
             <p>{t("get_in_touch_desc")}</p>
@@ -138,169 +134,171 @@ const ContactUs = () => {
             onSubmit={handleSubmit}
           >
             {({ values, handleChange }) => (
-              <motion.Form
+              <motion.div
                 className="space-y-6 md:space-y-8 max-w-full md:max-w-[46.438rem] mx-auto"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 md:gap-y-8">
-                  {/* First Name */}
-                  <div>
-                    <label
-                      className="block text-[#0D0D12] text-base mb-1"
-                      htmlFor="first_name"
-                    >
-                      {t("first_name")}
-                    </label>
-                    <Field
-                      name="first_name"
-                      type="text"
-                      className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                      placeholder={t("type_first_name")}
-                    />
-                    <ErrorMessage
-                      name="first_name"
-                      component="div"
-                      className="text-red-500 text-sm mt-1"
-                    />
-                  </div>
-                  {/* Last Name */}
-                  <div>
-                    <label
-                      className="block text-[#0D0D12] text-base mb-1"
-                      htmlFor="last_name"
-                    >
-                      {t("last_name")}
-                    </label>
-                    <Field
-                      name="last_name"
-                      type="text"
-                      className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                      placeholder={t("type_last_name")}
-                    />
-                    <ErrorMessage
-                      name="last_name"
-                      component="div"
-                      className="text-red-500 text-sm mt-1"
-                    />
-                  </div>
-                  {/* Company */}
-                  <div>
-                    <label
-                      className="block text-[#0D0D12] text-base mb-1"
-                      htmlFor="company"
-                    >
-                      {t("company")}
-                    </label>
-                    <Field
-                      name="company"
-                      type="text"
-                      className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                      placeholder={t("type_company_name")}
-                    />
-                    <ErrorMessage
-                      name="company"
-                      component="div"
-                      className="text-red-500 text-sm mt-1"
-                    />
-                  </div>
-                  {/* Country */}
-                  <div className="relative">
-                    <label
-                      className="block text-[#0D0D12] text-base mb-1"
-                      htmlFor="Country"
-                    >
-                      {t("country")}
-                    </label>
-                    <div className="relative">
-                      <Field
-                        as="select"
-                        name="country"
-                        // value={country}
-                        // onChange={(e) => setCountry(e.target.value)}
-                        className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl appearance-none pr-10 text-sm md:text-base"
-                        aria-describedby="country-error"
+                <Form>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 md:gap-y-8">
+                    {/* First Name */}
+                    <div>
+                      <label
+                        className="block text-[#0D0D12] text-base mb-1"
+                        htmlFor="first_name"
                       >
-                        <option value="" disabled>
-                          {t("select")}
-                        </option>
-                        {options.map((c) => (
-                          <option key={c.value} value={c.label}>
-                            {c.label}
-                          </option>
-                        ))}
-                      </Field>
+                        {t("first_name")}
+                      </label>
+                      <Field
+                        name="first_name"
+                        type="text"
+                        className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                        placeholder={t("type_first_name")}
+                      />
                       <ErrorMessage
-                        name="country"
+                        name="first_name"
                         component="div"
                         className="text-red-500 text-sm mt-1"
                       />
-                      <span className="pointer-events-none absolute ltr:right-3 rtl:left-3 top-1/2 transform -translate-y-1/2 text-[#32191E]">
-                        <img
-                          src={select_icon}
-                          alt="Dropdown arrow"
-                          className="w-4 h-4"
+                    </div>
+                    {/* Last Name */}
+                    <div>
+                      <label
+                        className="block text-[#0D0D12] text-base mb-1"
+                        htmlFor="last_name"
+                      >
+                        {t("last_name")}
+                      </label>
+                      <Field
+                        name="last_name"
+                        type="text"
+                        className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                        placeholder={t("type_last_name")}
+                      />
+                      <ErrorMessage
+                        name="last_name"
+                        component="div"
+                        className="text-red-500 text-sm mt-1"
+                      />
+                    </div>
+                    {/* Company */}
+                    <div>
+                      <label
+                        className="block text-[#0D0D12] text-base mb-1"
+                        htmlFor="company"
+                      >
+                        {t("company")}
+                      </label>
+                      <Field
+                        name="company"
+                        type="text"
+                        className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                        placeholder={t("type_company_name")}
+                      />
+                      <ErrorMessage
+                        name="company"
+                        component="div"
+                        className="text-red-500 text-sm mt-1"
+                      />
+                    </div>
+                    {/* Country */}
+                    <div className="relative">
+                      <label
+                        className="block text-[#0D0D12] text-base mb-1"
+                        htmlFor="Country"
+                      >
+                        {t("country")}
+                      </label>
+                      <div className="relative">
+                        <Field
+                          as="select"
+                          name="country"
+                          // value={country}
+                          // onChange={(e) => setCountry(e.target.value)}
+                          className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl appearance-none pr-10 text-sm md:text-base"
+                          aria-describedby="country-error"
+                        >
+                          <option value="" disabled>
+                            {t("select")}
+                          </option>
+                          {options.map((c) => (
+                            <option key={c.value} value={c.label}>
+                              {c.label}
+                            </option>
+                          ))}
+                        </Field>
+                        <ErrorMessage
+                          name="country"
+                          component="div"
+                          className="text-red-500 text-sm mt-1"
                         />
-                      </span>
+                        <span className="pointer-events-none absolute ltr:right-3 rtl:left-3 top-1/2 transform -translate-y-1/2 text-[#32191E]">
+                          <img
+                            src={select_icon}
+                            alt="Dropdown arrow"
+                            className="w-4 h-4"
+                          />
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                {/* Email */}
-                {/* Email */}
-                <div>
-                  <label
-                    className="block text-[#0D0D12] text-base mb-1"
-                    htmlFor="email"
-                  >
-                    {t("email")}
-                  </label>
-                  <Field
-                    name="email"
-                    type="email"
-                    className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                    placeholder={t("enter_email")}
-                  />
-                  <ErrorMessage
-                    name="email"
-                    component="div"
-                    className="text-red-500 text-sm mt-1"
-                  />
-                </div>
+                  {/* Email */}
+                  {/* Email */}
+                  <div>
+                    <label
+                      className="block text-[#0D0D12] text-base mb-1"
+                      htmlFor="email"
+                    >
+                      {t("email")}
+                    </label>
+                    <Field
+                      name="email"
+                      type="email"
+                      className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                      placeholder={t("enter_email")}
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
 
-                {/* Message */}
-                <div>
-                  <label
-                    className="block text-[#0D0D12] text-base mb-1"
-                    htmlFor="how-can-we-help"
-                  >
-                    {t("how_can_we_help")}
-                  </label>
-                  <Field
-                    as="textarea"
-                    name="message"
-                    rows={4}
-                    className="w-full bg-[#F6F8FA] border border-[#DFE1E7] px-3 py-3 md:py-4.5 text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl resize-none text-sm md:text-base"
-                    placeholder={t("type_here")}
-                  />
-                  <ErrorMessage
-                    name="message"
-                    component="div"
-                    className="text-red-500 text-sm mt-1"
-                  />
-                </div>
+                  {/* Message */}
+                  <div>
+                    <label
+                      className="block text-[#0D0D12] text-base mb-1"
+                      htmlFor="how-can-we-help"
+                    >
+                      {t("how_can_we_help")}
+                    </label>
+                    <Field
+                      as="textarea"
+                      name="message"
+                      rows={4}
+                      className="w-full bg-[#F6F8FA] border border-[#DFE1E7] px-3 py-3 md:py-4.5 text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl resize-none text-sm md:text-base"
+                      placeholder={t("type_here")}
+                    />
+                    <ErrorMessage
+                      name="message"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
 
-                {/* Submit */}
-                <div>
-                  <button
-                    type="submit"
-                    className="text-base bg-[#FF700A] hover:bg-[#e88a1e] text-white font-bold w-full md:w-[12.813rem] h-[3rem] rounded-2xl transition duration-200 cursor-pointer flex items-center justify-center"
-                  >
-                    {t("submit")}
-                  </button>
-                </div>
-              </motion.Form>
+                  {/* Submit */}
+                  <div>
+                    <button
+                      type="submit"
+                      className="text-base bg-[#FF700A] hover:bg-[#e88a1e] text-white font-bold w-full md:w-[12.813rem] h-[3rem] rounded-2xl transition duration-200 cursor-pointer flex items-center justify-center"
+                    >
+                      {t("submit")}
+                    </button>
+                  </div>
+                </Form>
+              </motion.div>
             )}
           </Formik>
         </div>
