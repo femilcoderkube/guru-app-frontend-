@@ -28,34 +28,38 @@ const Header = () => {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-4 h-[3.375rem]">
-          <ul className="dark-header header-nav flex items-center gap-4 lg:gap-[1.875rem] bg-[#F6F8FA] rounded-2xl px-4 lg:px-[1.938rem] border border-[#DFE1E7] border-opacity-[0.34] h-full">
-            {navItems.map((item) => (
-              <li
-                key={item.label}
-                className={
-                  "relative text-sm sm:text-base leading-none h-full flex justify-center items-center cursor-pointer " +
-                  (location.pathname === item.to
-                    ? "active-tab"
-                    : "font-normal") +
-                  " text-[#0D0D12]"
-                }
-                onClick={() => navigate(item.to)}
-              >
-                {item.label}
-              </li>
-            ))}
-          </ul>
+        <div className="desktop-header">
+          <nav className="flex items-center gap-4 h-[3.375rem]">
+          <button className="hidden px-6 sm:px-[1rem] lg:px-[1.153rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+                Register your Restaurant
+              </button>
+            <ul className="dark-header header-nav flex items-center gap-2 sm:gap-[1.875rem] bg-[#FFEEE11A] rounded-2xl px-2 sm:px-4 md:px-[1.938rem] border border-[#FFEEE1] border-opacity-[0.34] h-full">
+              {navItems.map((item) => (
+                <li
+                  key={item.label}
+                  className={
+                    "relative text-sm sm:text-base leading-none h-full flex justify-center items-center cursor-pointer " +
+                    (location.pathname === item.to
+                      ? "active-tab"
+                      : "font-normal") +
+                    " text-[#0D0D12]"
+                  }
+                  onClick={() => navigate(item.to)}
+                >
+                  {item.label}
+                </li>
+              ))}
+            </ul>
 
-          {/* Language Switcher */}
-          <div className="py-2 md:py-4 bg-[#F6F8FA] rounded-2xl px-4 lg:px-[1.938rem] border border-[#DFE1E7] border-opacity-[0.34] h-full flex items-center">
-            <LanguageSwitcher />
-          </div>
-        </nav>
-
+            {/* Language Switcher */}
+            <div className="py-2 md:py-4 bg-[#F6F8FA] rounded-2xl px-4 lg:px-[1.938rem] border border-[#DFE1E7] border-opacity-[0.34] h-full flex items-center">
+              <LanguageSwitcher />
+            </div>
+          </nav>
+        </div>
         {/* Mobile Nav Toggle */}
         <button
-          className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none"
+          className="mob-toggle-menu flex items-center justify-center p-2 rounded focus:outline-none"
           aria-label="Open menu"
           onClick={() => setNavOpen((v) => !v)}
         >
@@ -68,8 +72,9 @@ const Header = () => {
       </div>
 
       {/* Mobile Nav Drawer */}
+      <div className="mob-header">
       {navOpen && (
-        <div className="md:hidden fixed inset-0 z-50 bg-black bg-opacity-40">
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-40">
           <div className="absolute top-0 right-0 w-4/5 max-w-xs bg-white h-full shadow-lg flex flex-col">
             <button
               className="self-end m-4 p-2"
@@ -102,7 +107,7 @@ const Header = () => {
                   key={item.label}
                   className={`py-2 border-b border-gray-200 text-[#0D0D12] cursor-pointer ${
                     location.pathname === item.to
-                      ? "font-bold text-blue-600"
+                      ? "font-bold text-[#FF700A]"
                       : "font-semibold"
                   }`}
                   onClick={() => {
@@ -120,9 +125,15 @@ const Header = () => {
                 <LanguageSwitcher />
               </div>
             </div>
+            <div className="mt-6 px-6">
+                <button className="hidden px-6 sm:px-[1rem] lg:px-[1.153rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold md:text-base text-sm hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+                  Register your Restaurant
+                </button>
+              </div>
           </div>
         </div>
       )}
+      </div>
     </header>
   );
 };

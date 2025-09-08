@@ -70,14 +70,14 @@ const Home = () => {
   return (
     <>
       {/* dark-header start */}
-      <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem] md:hidden block">
+      <header className="mob-header fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
         <div className="flex items-center justify-between w-full max-w-[76.5rem] mx-auto">
           <div className="site-logo flex-shrink-0 ">
             <img src={dark_logo} alt="Guru Logo" className="h-8 md:h-10" />
           </div>
           {/* Mobile Nav Toggle */}
           <button
-            className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none"
+            className="flex items-center justify-center p-2 rounded focus:outline-none"
             aria-label="Open menu"
             onClick={() => setNavOpen((v) => !v)}
           >
@@ -90,7 +90,7 @@ const Home = () => {
         </div>
         {/* Mobile Nav Drawer */}
         {navOpen && (
-          <div className="md:hidden fixed inset-0 z-50 bg-black bg-opacity-40">
+          <div className="fixed inset-0 z-50 bg-black bg-opacity-40">
             <div className="absolute top-0 right-0 w-4/5 max-w-xs bg-white h-full shadow-lg flex flex-col">
               <button
                 className="self-end m-4 p-2"
@@ -116,23 +116,48 @@ const Home = () => {
                   />
                 </svg>
               </button>
-              <ul className="flex flex-col gap-2 px-6 mt-8">
-                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  <Link to="/">{t("about")}</Link>
-                </li>
-                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  <Link to="/rating">{t("our_rating")}</Link>
-                </li>
-                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  <Link to="/contactus">{t("contactus")}</Link>
-                </li>
-              </ul>
+              {(() => {
+                const navItems = [
+                  { label: t("about"), to: "/" },
+                  { label: t("our_rating"), to: "/rating" },
+                  { label: t("contactus"), to: "/contactus" },
+                ];
+                // Determine active tab by current location
+                const activeIdx = navItems.findIndex(
+                  (item) => location.pathname === item.to
+                );
+                return (
+                  <ul className="flex flex-col gap-2 px-6 mt-8">
+                    {navItems.map((item, idx) => (
+                      <li
+                        key={item.label}
+                        className={`py-2 border-b border-gray-200 cursor-pointer font-semibold ${
+                          activeIdx === idx
+                            ? "text-[#FF700A] font-bold"
+                            : "text-[#0D0D12]"
+                        }`}
+                        onClick={() => {
+                          navigate(item.to);
+                          setNavOpen(false);
+                        }}
+                      >
+                        {item.label}
+                      </li>
+                    ))}
+                  </ul>
+                );
+              })()}
               <div className="mt-6 px-6">
                 <div className="py-2 bg-[#F6F8FA] rounded-2xl px-4 border border-[#DFE1E7] border-opacity-[0.34] w-fit">
                   <span className="cursor-pointer text-base font-normal text-[#0D0D12] leading-none">
                     <LanguageSwitcher />
                   </span>
                 </div>
+              </div>
+              <div className="mt-6 px-6">
+                <button className="hidden px-6 sm:px-[1rem] lg:px-[1.153rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold md:text-base text-sm hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+                  Register your Restaurant
+                </button>
               </div>
             </div>
           </div>
@@ -143,7 +168,7 @@ const Home = () => {
       {/* Hero Section Start */}
       <div className="relative mx-2 sm:mx-4 md:mx-8 lg:mx-10  md:mt-[2.5rem] sm:mt-[5.875rem] mt-[5.875rem] rounded-[1.25rem] sm:rounded-[1.875rem] bg-transparent">
         {/* Background Video */}
-        <div className="aspect-[16/9] w-full rounded-[1.25rem] sm:rounded-[1.875rem] overflow-hidden min-h-[400px] md:min-h-[450px]">
+        <div className="aspect-[16/9] w-full rounded-[1.25rem] sm:rounded-[1.875rem] overflow-hidden min-h-[350px] md:min-h-[400px]">
           <video
             autoPlay
             loop
@@ -156,13 +181,16 @@ const Home = () => {
           </video>
         </div>
         {/* Overlay content */}
-        <div className="absolute top-2 sm:top-4 md:top-[1.875rem] z-10 px-2 sm:px-6 md:px-[3.95rem] w-full md:block hidden">
-          <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3"
-          >
+        <div className="desktop-header absolute top-2 sm:top-4 md:top-[1.875rem] z-10 px-2 sm:px-6 md:px-[3.95rem] w-full">
+          <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3">
             <div className="site-logo flex-shrink-0 md:block hidden">
               <img src={logo} alt="Guru Logo" className="h-8 sm:h-10 md:h-12" />
             </div>
             <div className="flex items-center gap-2 sm:gap-4 h-[2.5rem] sm:h-[3.375rem] mt-2 sm:mt-0">
+              <button className="hidden px-6 sm:px-[1rem] lg:px-[1.153rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+                Register your Restaurant
+              </button>
+
               {(() => {
                 const navItems = [
                   { label: `${t("about")}`, to: "/" },
@@ -237,9 +265,6 @@ const Home = () => {
               <div className="flex items-center flex-wrap md:gap-5 gap-2 mt-4 lg:mt-8">
                 <button className="px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
                   {t("download")}
-                </button>
-                <button className="hidden px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
-                  Register your Restaurant
                 </button>
               </div>
             </motion.div>
@@ -725,11 +750,12 @@ const Home = () => {
           src={footer_shape}
           alt=""
         />
-        <motion.div className="mx-auto max-w-[80rem]"
-        initial="hidden"
-        whileInView="visible"
-        variants={cardVariantsAni}
-        viewport={{ once: true, amount: 0 }}
+        <motion.div
+          className="mx-auto max-w-[80rem]"
+          initial="hidden"
+          whileInView="visible"
+          variants={cardVariantsAni}
+          viewport={{ once: true, amount: 0 }}
         >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">

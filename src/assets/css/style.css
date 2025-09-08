@@ -104,6 +104,14 @@ html[dir="rtl"] .header-nav li:not(:last-child):after {
   color: transparent;
   background-clip: text;
 }
+
+.mob-header,.mob-toggle-menu{
+  display:none;
+}
+
+.desktop-header{
+  display: block;
+}
 /* hero-section End */
 
 /* Mission-section Start */
@@ -373,6 +381,18 @@ html[dir="rtl"] .terms-sec ul li::before{
 
   .mission-img {
     bottom: 3.1rem;
+  }
+
+  .mob-header{
+    display: block;
+  }
+
+  .desktop-header{
+    display: none;
+  }
+
+  .mob-toggle-menu{
+    display: flex;
   }
 }
 

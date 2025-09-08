@@ -43,14 +43,14 @@ const Rating = () => {
   return (
     <>
       {/* dark-header start */}
-      <header className="fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem] md:hidden block">
+      <header className="mob-header fixed top-0 z-100 w-full bg-[#FFFFFF] py-6 px-4 md:px-10 lg:px-[6.25rem]">
         <div className="flex items-center justify-between w-full max-w-[76.5rem] mx-auto">
           <div className="site-logo flex-shrink-0 ">
             <img src={dark_logo} alt="Guru Logo" className="h-8 md:h-10" />
           </div>
           {/* Mobile Nav Toggle */}
           <button
-            className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none"
+            className="flex items-center justify-center p-2 rounded focus:outline-none"
             aria-label="Open menu"
             onClick={() => setNavOpen((v) => !v)}
           >
@@ -63,7 +63,7 @@ const Rating = () => {
         </div>
         {/* Mobile Nav Drawer */}
         {navOpen && (
-          <div className="md:hidden fixed inset-0 z-50 bg-black bg-opacity-40">
+          <div className="fixed inset-0 z-50 bg-black bg-opacity-40">
             <div className="absolute top-0 right-0 w-4/5 max-w-xs bg-white h-full shadow-lg flex flex-col">
               <button
                 className="self-end m-4 p-2"
@@ -90,15 +90,26 @@ const Rating = () => {
                 </svg>
               </button>
               <ul className="flex flex-col gap-2 px-6 mt-8">
-                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  <Link to="/">{t("about")}</Link>
-                </li>
-                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  <Link to="/rating">{t("our_rating")}</Link>
-                </li>
-                <li className="py-2 border-b border-gray-200 text-[#0D0D12] font-semibold cursor-pointer">
-                  <Link to="/contactus">{t("contactus")}</Link>
-                </li>
+                {[
+                  { label: t("about"), to: "/" },
+                  { label: t("our_rating"), to: "/rating" },
+                  { label: t("contactus"), to: "/contactus" },
+                ].map((item) => (
+                  <li
+                    key={item.to}
+                    className={`py-2 border-b border-gray-200 cursor-pointer ${
+                      location.pathname === item.to
+                        ? "font-bold text-[#FF700A]"
+                        : "font-semibold text-[#0D0D12]"
+                    }`}
+                    onClick={() => {
+                      navigate(item.to);
+                      setNavOpen(false);
+                    }}
+                  >
+                    {item.label}
+                  </li>
+                ))}
               </ul>
               <div className="mt-6 px-6">
                 <div className="py-2 bg-[#F6F8FA] rounded-2xl px-4 border border-[#DFE1E7] border-opacity-[0.34] w-fit">
@@ -106,6 +117,11 @@ const Rating = () => {
                     <LanguageSwitcher />
                   </span>
                 </div>
+              </div>
+              <div className="mt-6 px-6">
+                <button className="hidden px-6 sm:px-[1rem] lg:px-[1.153rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold md:text-base text-sm hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+                  Register your Restaurant
+                </button>
               </div>
             </div>
           </div>
@@ -128,48 +144,50 @@ const Rating = () => {
         </div>
 
         {/* Overlay content */}
-        <div className="absolute top-4 sm:top-6 md:top-[1.875rem] z-10 w-full px-3 sm:px-6 md:px-[3.95rem] flex flex-col"        
-        >
-          <div className="flex items-center justify-between w-full">
+        <div className="desktop-header absolute top-2 sm:top-4 md:top-[1.875rem] z-10 px-2 sm:px-6 md:px-[3.95rem] w-full">
+          <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3">
             <div className="site-logo flex-shrink-0 md:block hidden">
-              <img
-                src={logo}
-                alt="Guru Logo"
-                className="h-8 sm:h-10 md:h-12 w-auto"
-              />
+              <img src={logo} alt="Guru Logo" className="h-8 sm:h-10 md:h-12" />
             </div>
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-4 h-[3.375rem]">
-              <ul className="header-nav flex items-center gap-4 lg:gap-[1.875rem] bg-[#FFEEE11A] rounded-2xl px-4 lg:px-[1.938rem] border border-[#FFEEE1] border-opacity-[0.34] h-full">
-                {navItems.map((item) => {
-                  const isActive = location.pathname === item.to;
-                  return (
-                    <li
-                      key={item.label}
-                      className={
-                        "relative text-sm sm:text-base leading-none h-full flex justify-center items-center cursor-pointer " +
-                        (isActive ? "active-tab" : "font-normal") +
-                        " text-[#FFEAC2]"
-                      }
-                      onClick={() => {
-                        navigate(item.to);
-                      }}
-                    >
-                      {item.label}
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="bg-[#FFEEE11A] cursor-pointer rounded-2xl px-3 sm:px-4 md:px-[1.938rem] py-2 sm:py-4 border border-[#FFEEE1] border-opacity-[0.34] h-full flex items-center">
-                <span className=" text-sm sm:text-base font-normal text-[#FFEAC2] leading-none">
+            <div className="flex items-center gap-2 sm:gap-4 h-[2.5rem] sm:h-[3.375rem] mt-2 sm:mt-0">
+              <button className="hidden px-6 sm:px-[1rem] lg:px-[1.153rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+                Register your Restaurant
+              </button>
+
+              {(() => {
+                const navItems = [
+                  { label: `${t("about")}`, to: "/" },
+                  { label: `${t("our_rating")}`, to: "/rating" },
+                  { label: `${t("contactus")}`, to: "/contactus" },
+                ];
+                const [activeIdx, setActiveIdx] = React.useState(1);
+
+                return (
+                  <ul className="header-nav flex items-center gap-2 sm:gap-[1.875rem] bg-[#FFEEE11A] rounded-2xl px-2 sm:px-4 md:px-[1.938rem] border border-[#FFEEE1] border-opacity-[0.34] h-full">
+                    {navItems.map((item, idx) => (
+                      <li
+                        key={item.label}
+                        className={
+                          "relative text-sm sm:text-base leading-none h-full flex justify-center items-center cursor-pointer " +
+                          (activeIdx === idx ? "active-tab" : "font-normal") +
+                          " text-[#FFEAC2]"
+                        }
+                        onClick={() => {
+                          navigate(item.to);
+                          setActiveIdx(idx);
+                        }}
+                      >
+                        {item.label}
+                      </li>
+                    ))}
+                  </ul>
+                );
+              })()}
+              <div className="bg-[#FFEEE11A] rounded-2xl px-3 sm:px-4 md:px-[1.938rem] py-2 sm:py-4 border border-[#FFEEE1] border-opacity-[0.34] h-full flex items-center">
+                <span className="cursor-pointer text-sm sm:text-base font-normal text-[#FFEAC2] leading-none">
                   <LanguageSwitcher />
                 </span>
               </div>
-              {/* <LanguageSwitcher /> */}
-            </div>
-            {/* Mobile Nav (show only on mobile) */}
-            <div className="flex md:hidden items-center">
-              {/* Optionally, you can add a mobile menu button here if needed */}
             </div>
           </div>
         </div>
@@ -198,14 +216,10 @@ const Rating = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              <h1
-                className="text-2xl sm:text-3xl md:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight md:leading-[3.875rem] ltr:text-left rtl:text-right"                
-              >
+              <h1 className="text-2xl sm:text-3xl md:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight md:leading-[3.875rem] ltr:text-left rtl:text-right">
                 {t("our_ratings_guide")}
               </h1>
-              <h5
-                className="text-base sm:text-lg md:text-2xl font-normal text-[#FFEAC2] mt-2 md:mt-[1.5rem] ltr:text-left rtl:text-right"             
-              >
+              <h5 className="text-base sm:text-lg md:text-2xl font-normal text-[#FFEAC2] mt-2 md:mt-[1.5rem] ltr:text-left rtl:text-right">
                 {t("we_dont_do_stars")}
               </h5>
             </motion.div>
@@ -213,33 +227,22 @@ const Rating = () => {
         })()}
 
         {/* Social Icons */}
-        <motion.div className="absolute bottom-2 sm:bottom-4 md:bottom-[2.5rem] z-10 w-full flex justify-center"
-        initial="hidden"
-        whileInView="visible"
-        variants={cardVariantsAni}
-        viewport={{ once: true, amount: 0 }}
+        <motion.div
+          className="absolute bottom-2 sm:bottom-4 md:bottom-[2.5rem] z-10 w-full flex justify-center"
+          initial="hidden"
+          whileInView="visible"
+          variants={cardVariantsAni}
+          viewport={{ once: true, amount: 0 }}
         >
           <ul className="flex items-center justify-center gap-4 md:gap-6">
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-              <img
-                src={TW}
-                alt="Twitter"
-                className="h-6 w-6 sm:h-7 sm:w-7"
-              />
+              <img src={TW} alt="Twitter" className="h-6 w-6 sm:h-7 sm:w-7" />
             </li>
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-              <img
-                src={LN}
-                alt="LinkedIn"
-                className="h-6 w-6 sm:h-7 sm:w-7"
-              />
+              <img src={LN} alt="LinkedIn" className="h-6 w-6 sm:h-7 sm:w-7" />
             </li>
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-              <img
-                src={FB}
-                alt="Facebook"
-                className="h-6 w-6 sm:h-7 sm:w-7"
-              />
+              <img src={FB} alt="Facebook" className="h-6 w-6 sm:h-7 sm:w-7" />
             </li>
           </ul>
         </motion.div>
@@ -252,11 +255,12 @@ const Rating = () => {
       {/* Tabbing Section Start */}
       <div className="relative">
         <div className="bg-[#FFF5E1] pt-8 md:pt-[3.125rem] pb-6 md:pb-9 px-3 sm:px-4 md:px-6">
-          <motion.div className="max-w-[73.188rem] mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          variants={cardVariantsAni}
-          viewport={{ once: true, amount: 0 }}
+          <motion.div
+            className="max-w-[73.188rem] mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            variants={cardVariantsAni}
+            viewport={{ once: true, amount: 0 }}
           >
             <div className="flex flex-col gap-3 items-center mb-13 md:mb-[4.375rem]">
               <div className="flex items-center justify-center bg-[#32191E] rounded-[2.5rem] h-[2.25rem] border border-[#32191E]">
@@ -487,11 +491,12 @@ const Rating = () => {
         return (
           <div className="faq-sec-wp relative mb-8 sm:mb-10 md:mb-12 px-2 sm:px-4 py-6 sm:py-[2.52rem] bg-[#F8FAFB]">
             <div className="max-w-[73.188rem] mx-auto">
-              <motion.div className="faq-sec"
-              initial="hidden"
-              whileInView="visible"
-              variants={cardVariantsAni}
-              viewport={{ once: true, amount: 0 }}
+              <motion.div
+                className="faq-sec"
+                initial="hidden"
+                whileInView="visible"
+                variants={cardVariantsAni}
+                viewport={{ once: true, amount: 0 }}
               >
                 <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E] mb-4 sm:mb-6">
                   {t("faq")}
@@ -554,18 +559,19 @@ const Rating = () => {
       })()}
       {/* FAQ Section End */}
 
-       {/* footer start */}
-       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+      {/* footer start */}
+      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
           className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
           alt=""
         />
-        <motion.div className="mx-auto max-w-[80rem]"
-        initial="hidden"
-        whileInView="visible"
-        variants={cardVariantsAni}
-        viewport={{ once: true, amount: 0 }}
+        <motion.div
+          className="mx-auto max-w-[80rem]"
+          initial="hidden"
+          whileInView="visible"
+          variants={cardVariantsAni}
+          viewport={{ once: true, amount: 0 }}
         >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">

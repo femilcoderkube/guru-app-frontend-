@@ -86,7 +86,9 @@ const ContactUs = () => {
 
   return (
     <>
+    {/* dark-header start */}    
       <Header />
+      {/* dark-header End */}
 
       {/* inner-banner start */}
       <div className="w-full flex justify-center bg-[#FFEAC2] mt-[5.875rem] md:mt-[6.375rem] py-3 md:py-[1.375rem] px-2">
@@ -135,13 +137,12 @@ const ContactUs = () => {
           >
             {({ values, handleChange }) => (
               <motion.div
-                className="space-y-6 md:space-y-8 max-w-full md:max-w-[46.438rem] mx-auto"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <Form>
+                <Form className="space-y-6 md:space-y-8 max-w-full md:max-w-[46.438rem] mx-auto">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 md:gap-y-8">
                     {/* First Name */}
                     <div>
