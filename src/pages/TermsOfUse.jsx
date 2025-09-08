@@ -152,19 +152,31 @@ const TermsOfUse = () => {
       {/* Tearms start */}
       <div className="faq-sec-wp terms-sec relative terms-sec bg-[#F8FAFB] py-6 sm:py-8 md:py-[2.563rem]">
         <div className="max-w-[76.5rem] mx-auto px-2 sm:px-4 xl:px-0">
-          <div className="terms-title mb-6 sm:mb-8">
+          <motion.div
+            className="terms-title mb-6 sm:mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E]">
               {t("terms_of_use")}
             </h2>
             <p className="text-base sm:text-lg font-medium text-[#32191E]">
               {t("last_updated_jan_2025")}
             </p>
-          </div>
+          </motion.div>
           <div className="w-full flex flex-col md:flex-row gap-6 md:gap-4">
             {/* Sidebar */}
             <div className="w-full md:w-auto md:min-w-[16.688rem]">
-              <div className="bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000001A] py-4 px-3 sm:py-6 sm:px-5">
-                <div className="flex items-center gap-2 mb-3 sm:gap-2.5 sm:mb-4">
+              <motion.div className="bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000001A] py-4 px-3 sm:py-6 sm:px-5"
+               initial="hidden"
+               animate="visible"
+               variants={leftToRight}
+              >
+                <div
+                  className="flex items-center gap-2 mb-3 sm:gap-2.5 sm:mb-4"              
+                >
                   <span className="flex items-center justify-center rounded-[0.5rem] h-[2rem] w-[2rem] sm:h-[2.125rem] sm:w-[2.125rem] bg-[#FFD688]">
                     <img
                       src={terms_list}
@@ -176,7 +188,9 @@ const TermsOfUse = () => {
                     {t("table_of_contents")}
                   </h6>
                 </div>
-                <ol className="flex flex-col gap-2 sm:gap-3 list-decimal text-sm font-medium list-inside">
+                <ol
+                  className="flex flex-col gap-2 sm:gap-3 list-decimal text-sm font-medium list-inside"
+                >
                   <li className="font-bold text-[#32191E] cursor-pointer">
                     {t("our_services")}
                   </li>
@@ -217,11 +231,15 @@ const TermsOfUse = () => {
                     {t("mobile_application_licence")}
                   </li>
                 </ol>
-              </div>
+              </motion.div>
             </div>
             {/* Main Content */}
             <div className="flex-1 w-full">
-              <div className="relative bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000000A] pt-6 lg:pb-13 sm:pb-9 pb-6 px-3 sm:px-5">
+              <motion.div className="relative bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000000A] pt-6 lg:pb-13 sm:pb-9 pb-6 px-3 sm:px-5"
+               initial="hidden"
+               animate="visible"
+               variants={rightToLeft}
+              >
                 <h2 className="text-sm sm:text-base font-bold text-[#4A282F] mb-3 sm:mb-4">
                   {t("agreement_to_legal_terms")}
                 </h2>
@@ -229,19 +247,19 @@ const TermsOfUse = () => {
                   <p>{t("label")}</p>
                   <p>
                     We operate the website &nbsp;
-                   <a 
-                     href="https://www.peeq.com.au" 
-                     className="text-[#4A282F] underline hover:text-[#e88a1e] transition-colors duration-200"
-                     target="_blank" 
-                     rel="noopener noreferrer"
-                   >
-                     https://www.peeq.com.au
-                   </a> (the
-                    'Site'),the mobile application PEEQ® (the 'App'), as well as
-                    any other related products and services that refer or link
-                    to these legal terms (the 'Legal Terms') (collectively, the
-                    'Services'). You can contact us by email at
-                    support@peeq.com.au, or by mail to Level 8, 171 Clarence
+                    <a
+                      href="https://www.peeq.com.au"
+                      className="text-[#4A282F] underline hover:text-[#e88a1e] transition-colors duration-200"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      https://www.peeq.com.au
+                    </a>{" "}
+                    (the 'Site'),the mobile application PEEQ® (the 'App'), as
+                    well as any other related products and services that refer
+                    or link to these legal terms (the 'Legal Terms')
+                    (collectively, the 'Services'). You can contact us by email
+                    at support@peeq.com.au, or by mail to Level 8, 171 Clarence
                     Street, Sydney , New South Wales 2000, Australia.
                   </p>
                   <p>{t("label2")}</p>
@@ -271,24 +289,25 @@ const TermsOfUse = () => {
                   <p>{t("label16")}</p>
                   <p>{t("label17")}</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </div>
       {/* Tearms End */}
-       {/* footer start */}
-       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+      {/* footer start */}
+      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
           className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
           alt=""
         />
-        <motion.div className="mx-auto max-w-[80rem]"
-        initial="hidden"
-        whileInView="visible"
-        variants={cardVariantsAni}
-        viewport={{ once: true, amount: 0 }}
+        <motion.div
+          className="mx-auto max-w-[80rem]"
+          initial="hidden"
+          whileInView="visible"
+          variants={cardVariantsAni}
+          viewport={{ once: true, amount: 0 }}
         >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">

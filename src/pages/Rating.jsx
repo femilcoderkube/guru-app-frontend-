@@ -128,7 +128,8 @@ const Rating = () => {
         </div>
 
         {/* Overlay content */}
-        <div className="absolute top-4 sm:top-6 md:top-[1.875rem] z-10 w-full px-3 sm:px-6 md:px-[3.95rem] flex flex-col">
+        <div className="absolute top-4 sm:top-6 md:top-[1.875rem] z-10 w-full px-3 sm:px-6 md:px-[3.95rem] flex flex-col"        
+        >
           <div className="flex items-center justify-between w-full">
             <div className="site-logo flex-shrink-0 md:block hidden">
               <img
@@ -191,21 +192,23 @@ const Rating = () => {
           }, []);
 
           return (
-            <div
+            <motion.div
               className="absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 z-10 px-3 sm:px-6 md:px-[3.95rem] flex flex-col items-start w-full max-w-[48rem]"
-              style={
-                {
-                  // Remove right-0 and mx-auto, align to left, keep vertical centering
-                }
-              }
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              <h1 className="text-2xl sm:text-3xl md:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight md:leading-[3.875rem] ltr:text-left rtl:text-right">
+              <h1
+                className="text-2xl sm:text-3xl md:text-[3.125rem] text-[#FFEEE1] font-bold leading-tight md:leading-[3.875rem] ltr:text-left rtl:text-right"                
+              >
                 {t("our_ratings_guide")}
               </h1>
-              <h5 className="text-base sm:text-lg md:text-2xl font-normal text-[#FFEAC2] mt-2 md:mt-[1.5rem] ltr:text-left rtl:text-right">
+              <h5
+                className="text-base sm:text-lg md:text-2xl font-normal text-[#FFEAC2] mt-2 md:mt-[1.5rem] ltr:text-left rtl:text-right"             
+              >
                 {t("we_dont_do_stars")}
               </h5>
-            </div>
+            </motion.div>
           );
         })()}
 

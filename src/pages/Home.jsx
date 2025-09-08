@@ -157,11 +157,7 @@ const Home = () => {
         </div>
         {/* Overlay content */}
         <div className="absolute top-2 sm:top-4 md:top-[1.875rem] z-10 px-2 sm:px-6 md:px-[3.95rem] w-full md:block hidden">
-          <motion.div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3"
-          initial="hidden"
-          whileInView="visible"
-          variants={cardVariantsAni}
-          viewport={{ once: true, amount: 0 }}
+          <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3"
           >
             <div className="site-logo flex-shrink-0 md:block hidden">
               <img src={logo} alt="Guru Logo" className="h-8 sm:h-10 md:h-12" />
@@ -202,7 +198,7 @@ const Home = () => {
                 </span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
         {/* Responsive Banner Content */}
         {(() => {

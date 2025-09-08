@@ -1,6 +1,6 @@
 // LTR And RTL Start
 export const leftToRight = {
-    hidden: { opacity: 0, x: -100 },
+    hidden: { opacity: 0, x: -50 },
     visible: (i = 1) => ({
       opacity: 1,
       x: 0,
@@ -13,7 +13,7 @@ export const leftToRight = {
   };
   
   export const rightToLeft = {
-    hidden: { opacity: 0, x: 100 },
+    hidden: { opacity: 0, x: 50 },
     visible: (i = 1) => ({
       opacity: 1,
       x: 0,
@@ -33,7 +33,7 @@ export const leftToRight = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: index * 0.1,
+      delay: index * 0.3,
       duration: 0.3,
       ease: "easeOut",
     },

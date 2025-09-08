@@ -90,7 +90,7 @@ const ContactUs = () => {
 
       {/* inner-banner start */}
       <div className="w-full flex justify-center bg-[#FFEAC2] mt-[5.875rem] md:mt-[6.375rem] py-3 md:py-[1.375rem] px-2">
-        <div
+        <motion.div
           className="flex items-center gap-2 sm:gap-4 w-full max-w-[76.5rem] mx-auto"
           initial="hidden"
           animate="visible"
@@ -100,26 +100,30 @@ const ContactUs = () => {
             {t("back")}
           </button>
           <span
-            className="text-[#32191E] font-bold text-base"
-            variants={leftToRight}
-            custom={2}
+            className="text-[#32191E] font-bold text-base"           
           >
             {t("contactus")}
           </span>
-        </div>
+        </motion.div>
       </div>
       {/* inner-banner End */}
 
       <div className="faq-sec-wp relative contact-wp flex justify-center items-center py-6 md:py-[2.563rem] bg-[#F8FAFB] px-2">
         <div className="w-full max-w-[76.5rem] mx-auto bg-white rounded-2xl shadow-[0_4px_74px_0_#0000001A] px-2 sm:px-4 md:px-8 py-6 md:py-10">
-          <div className="text-center mb-6 md:mb-9">
-            <h2 className="text-2xl md:text-[2.5rem] font-bold text-[#32191E]">
+          <motion.div
+            className="text-center mb-6 md:mb-9"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <h2
+              className="text-2xl md:text-[2.5rem] font-bold text-[#32191E]"           
+            >
               {t("get_in_touch")}
             </h2>
-            <p className="text-base md:text-lg text-[#32191E]">
-              {t("get_in_touch_desc")}
-            </p>
-          </div>
+            <p>{t("get_in_touch_desc")}</p>
+          </motion.div>
           {/* ✅ Formik form */}
           <Formik
             initialValues={{
@@ -134,7 +138,13 @@ const ContactUs = () => {
             onSubmit={handleSubmit}
           >
             {({ values, handleChange }) => (
-              <Form className="space-y-6 md:space-y-8 max-w-full md:max-w-[46.438rem] mx-auto">
+              <motion.Form
+                className="space-y-6 md:space-y-8 max-w-full md:max-w-[46.438rem] mx-auto"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 md:gap-y-8">
                   {/* First Name */}
                   <div>
@@ -290,7 +300,7 @@ const ContactUs = () => {
                     {t("submit")}
                   </button>
                 </div>
-              </Form>
+              </motion.Form>
             )}
           </Formik>
         </div>

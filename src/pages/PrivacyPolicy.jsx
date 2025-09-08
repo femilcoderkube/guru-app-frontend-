@@ -135,7 +135,12 @@ const PrivacyPolicy = () => {
 
       {/* inner-banner start */}
       <div className="w-full flex justify-center bg-[#FFEAC2] mt-[5.875rem] md:mt-[6.375rem] py-3 md:py-[1.375rem] px-2">
-        <div className="flex items-center gap-2 sm:gap-4 w-full max-w-[76.5rem] mx-auto">
+        <motion.div
+          className="flex items-center gap-2 sm:gap-4 w-full max-w-[76.5rem] mx-auto"
+          initial="hidden"
+          animate="visible"
+          variants={leftToRight}
+        >
           <button
             className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base"
             onClick={() => navigate("/")}
@@ -145,26 +150,38 @@ const PrivacyPolicy = () => {
           <span className="text-[#32191E] font-bold text-base">
             {t("privacy_policy")}
           </span>
-        </div>
+        </motion.div>
       </div>
       {/* inner-banner End */}
 
       {/* Tearms start */}
       <div className="faq-sec-wp relative terms-sec bg-[#F8FAFB] py-6 sm:py-8 md:py-[2.563rem]">
         <div className="max-w-[76.5rem] mx-auto px-2 sm:px-4 xl:px-0">
-          <div className="terms-title mb-6 sm:mb-8">
+          <motion.div
+            className="terms-title mb-6 sm:mb-8"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-bold text-[#32191E]">
               {t("privacy_policy")}
             </h2>
             <p className="text-base sm:text-lg font-medium text-[#32191E]">
               {t("last_updated_jan_2025")}
             </p>
-          </div>
+          </motion.div>
           <div className="w-full flex flex-col md:flex-row gap-6 md:gap-4">
             {/* Sidebar */}
             <div className="w-full md:w-auto md:min-w-[16.688rem]">
-              <div className="bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000001A] py-4 px-3 sm:py-6 sm:px-5">
-                <div className="flex items-center gap-2 mb-3 sm:gap-2.5 sm:mb-4">
+              <motion.div className="bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000001A] py-4 px-3 sm:py-6 sm:px-5"
+               initial="hidden"
+               animate="visible"
+               variants={leftToRight}
+              >
+                <div
+                  className="flex items-center gap-2 mb-3 sm:gap-2.5 sm:mb-4"                 
+                >
                   <span className="flex items-center justify-center rounded-[0.5rem] h-[2rem] w-[2rem] sm:h-[2.125rem] sm:w-[2.125rem] bg-[#FFD688]">
                     <img
                       src={terms_list}
@@ -176,7 +193,9 @@ const PrivacyPolicy = () => {
                     {t("table_of_contents")}
                   </h6>
                 </div>
-                <ol className="flex flex-col gap-2 sm:gap-3 list-decimal text-sm font-medium list-inside">
+                <ol
+                  className="flex flex-col gap-2 sm:gap-3 list-decimal text-sm font-medium list-inside"                 
+                >
                   <li className="font-bold text-[#32191E] cursor-pointer">
                     {t("our_services")}
                   </li>
@@ -217,14 +236,27 @@ const PrivacyPolicy = () => {
                     {t("mobile_application_licence")}
                   </li>
                 </ol>
-              </div>
+              </motion.div>
             </div>
             {/* Main Content */}
             <div className="flex-1 w-full">
-              <div className="relative bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000000A] pt-6 lg:pb-13 sm:pb-9 pb-6 px-3 sm:px-5">
-                <p className="sm:mb-6 mb-4">{t("label18")}</p>
-
-                <div className="xl:space-y-9 sm:space-y-6 space-y-4">
+              <motion.div className="relative bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000000A] pt-6 lg:pb-13 sm:pb-9 pb-6 px-3 sm:px-5"
+               initial="hidden"
+               animate="visible"
+               variants={rightToLeft}
+              >
+                <p
+                  className="sm:mb-6 mb-4"             
+                >
+                  {t("label18")}
+                </p>
+                <div
+                  className="xl:space-y-9 sm:space-y-6 space-y-4"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
                   <div>
                     <h2 className="text-sm sm:text-base font-bold text-[#4A282F]">
                       {t("information")}
@@ -285,24 +317,25 @@ const PrivacyPolicy = () => {
                   </div>
                   <p>{t("last")}</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </div>
       {/* Tearms End */}
-        {/* footer start */}
+      {/* footer start */}
       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
         <img
           className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
           alt=""
         />
-        <motion.div className="mx-auto max-w-[80rem]"
-        initial="hidden"
-        whileInView="visible"
-        variants={cardVariantsAni}
-        viewport={{ once: true, amount: 0 }}
+        <motion.div
+          className="mx-auto max-w-[80rem]"
+          initial="hidden"
+          whileInView="visible"
+          variants={cardVariantsAni}
+          viewport={{ once: true, amount: 0 }}
         >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between flex-1 md:gap-6 gap-4">
             <div className="max-w-full md:max-w-[38.938rem]">
