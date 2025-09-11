@@ -1,0 +1,16 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.guruarabia.app",
+      "sha256_cert_fingerprints": [
+        "6E:99:A6:CF:05:8D:FC:B9:F2:8A:37:82:13:AF:46:89:ED:CC:4F:7B:0A:5D:49:8D:D6:DE:D6:32:06:9B:5D:0E",
+        "F1:05:4B:A9:EF:26:0C:52:7B:59:40:0C:28:08:FE:08:A6:F7:59:00:C5:CB:69:80:B0:02:33:60:09:33:BD:B8",
+        "67:53:69:44:26:14:17:B3:D1:DD:C9:A6:D4:C3:D4:2D:0C:20:DE:95:9D:E2:D5:55:1C:CD:1D:5F:F1:C4:B0:F2"
+      ]
+    }
+  }
+]
