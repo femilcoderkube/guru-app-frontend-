@@ -98,7 +98,10 @@ const ContactUs = () => {
           animate="visible"
           variants={leftToRight}
         >
-          <button className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base">
+          <button
+            className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base"
+            onClick={() => navigate("/")}
+          >
             {t("back")}
           </button>
           <span className="text-[#32191E] font-bold text-base">
