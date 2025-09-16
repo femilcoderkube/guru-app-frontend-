@@ -19,16 +19,15 @@ import {
   cardVariantsAni,
 } from "../Componets/animation.jsx";
 import { motion } from "motion/react";
-import { Upload } from 'lucide-react';
 const Join = () => {
-      // Responsive nav state for mobile menu
+  // Responsive nav state for mobile menu
   const [navOpen, setNavOpen] = React.useState(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [country, setCountry] = useState("");
   return (
     <>
-    {/* dark-header start */}    
+      {/* dark-header start */}
       <Header />
       {/* dark-header End */}
 
@@ -44,7 +43,7 @@ const Join = () => {
             {t("back")}
           </button>
           <span className="text-[#32191E] font-bold text-base">
-          Join as a restaurant
+            Join as a restaurant
           </span>
         </motion.div>
       </div>
@@ -52,149 +51,151 @@ const Join = () => {
 
       <div className="faq-sec-wp relative contact-wp flex justify-center items-center py-6 md:py-[2.563rem] bg-[#F8FAFB] px-2">
         <div className="w-full max-w-[76.5rem] mx-auto bg-white rounded-2xl shadow-[0_4px_74px_0_#0000001A] px-2 sm:px-4 md:px-8 py-10 md:pt-15 lg:pb-[7.19rem] md:pb-[4rem]">
-          <motion.div className="text-center mb-6 md:mb-12"
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.3, ease: "easeOut" }}
-           viewport={{ once: true, amount: 0.3 }}
+          <motion.div
+            className="text-center mb-6 md:mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
           >
             <h2 className="text-2xl md:text-[2.5rem] font-bold text-[#32191E]">
-            Join as a restaurant
+              Join as a restaurant
             </h2>
             <p className="text-base md:text-lg text-[#32191E]">
-            welcome to <span className="text-[#FF700A] font-bold">Guru</span> platform
+              welcome to <span className="text-[#FF700A] font-bold">Guru</span>{" "}
+              platform
             </p>
           </motion.div>
           <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-          <form className="space-y-6 md:space-y-8 max-w-full md:max-w-[46.438rem] mx-auto">
-          <label className="w-full h-[10rem] md:h-[15.313rem] border border-[#DFE1E7] px-3 py-2 md:py-[0.57rem] bg-[#F6F8FA] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl flex flex-col items-center justify-center cursor-pointer relative">
-            <input
-              type="file"
-              accept="image/*"
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-              name="restaurantLogo"
-            />
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <form className="space-y-6 md:space-y-8 max-w-full md:max-w-[46.438rem] mx-auto">
+              <label className="w-full h-[10rem] md:h-[15.313rem] border border-[#DFE1E7] px-3 py-2 md:py-[0.57rem] bg-[#F6F8FA] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl flex flex-col items-center justify-center cursor-pointer relative">
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  name="restaurantLogo"
+                />
                 <img className="mb-4" src={upload} alt="" />
-            <p className="text-[#666D80] text-base">Upload your restaurant logo</p>
-          </label>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 md:gap-y-8">
-              <div>
-                <label
-                  className="block text-[#0D0D12] text-base mb-1"
-                  htmlFor="first-name"
-                >
-                  Restaurant Name — English
-                </label>
-                <input
-                  id="first-name"
-                  type="text"
-                  className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                  placeholder="Type Restaurant name"
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-[#0D0D12] text-base mb-1"
-                  htmlFor="last-name"
-                >
-                  Restaurant Name — Arabic:
-                </label>
-                <input
-                  id="last-name"
-                  type="text"
-                  className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                  placeholder="Type Restaurant name"
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-[#0D0D12] text-base mb-1"
-                  htmlFor="Contact Number"
-                >
-                  Contact Number
-                </label>
-                <input
-                  id="contact-number"
-                  type="tel"
-                  className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                  placeholder="Type contact number"
-                />
-              </div>
-              <div className="relative">
-                <label
-                  className="block text-[#0D0D12] text-base mb-1"
-                  htmlFor="Cuisines"
-                >
-                  Cuisines
-                </label>
-                <div className="relative">
-                  <select
-                    id="Cuisines"
-                    className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl appearance-none pr-10 text-sm md:text-base"
+                <p className="text-[#666D80] text-base">
+                  Upload your restaurant logo
+                </p>
+              </label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 md:gap-y-8">
+                <div>
+                  <label
+                    className="block text-[#0D0D12] text-base mb-1"
+                    htmlFor="first-name"
                   >
-                    <option>Select</option>
-                    <option value="Indian">Indian</option>
-                    <option value="Mexican">Mexican</option>
-                    <option value="French">French</option>
-                  </select>
-                  {/* Custom arrow */}
-                  <span className="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 text-[#32191E]">
-                    <img src={select_icon} alt="" className="w-4 h-4" />
-                  </span>
+                    Restaurant Name — English
+                  </label>
+                  <input
+                    id="first-name"
+                    type="text"
+                    className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                    placeholder="Type Restaurant name"
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block text-[#0D0D12] text-base mb-1"
+                    htmlFor="last-name"
+                  >
+                    Restaurant Name — Arabic:
+                  </label>
+                  <input
+                    id="last-name"
+                    type="text"
+                    className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                    placeholder="Type Restaurant name"
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block text-[#0D0D12] text-base mb-1"
+                    htmlFor="Contact Number"
+                  >
+                    Contact Number
+                  </label>
+                  <input
+                    id="contact-number"
+                    type="tel"
+                    className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                    placeholder="Type contact number"
+                  />
+                </div>
+                <div className="relative">
+                  <label
+                    className="block text-[#0D0D12] text-base mb-1"
+                    htmlFor="Cuisines"
+                  >
+                    Cuisines
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="Cuisines"
+                      className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl appearance-none pr-10 text-sm md:text-base"
+                    >
+                      <option>Select</option>
+                      <option value="Indian">Indian</option>
+                      <option value="Mexican">Mexican</option>
+                      <option value="French">French</option>
+                    </select>
+                    {/* Custom arrow */}
+                    <span className="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 text-[#32191E]">
+                      <img src={select_icon} alt="" className="w-4 h-4" />
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div>
-              <label
-                className="block text-[#0D0D12] text-base mb-1"
-                htmlFor="email"
-              >
-                E-mail
-              </label>
-              <input
-                id="email"
-                type="email"
-                className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                placeholder="Add the E-mail here"
-              />
-            </div>
+              <div>
+                <label
+                  className="block text-[#0D0D12] text-base mb-1"
+                  htmlFor="email"
+                >
+                  E-mail
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                  placeholder="Add the E-mail here"
+                />
+              </div>
 
-            <div>
-              <label className="block text-[#0D0D12] text-base mb-1">
-                Website link (URL)
-              </label>
-              <input
-                type="url"
-                name="website"
-                placeholder="Add the URL here"
-                className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-              />
-            </div>
+              <div>
+                <label className="block text-[#0D0D12] text-base mb-1">
+                  Website link (URL)
+                </label>
+                <input
+                  type="url"
+                  name="website"
+                  placeholder="Add the URL here"
+                  className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                />
+              </div>
 
-            <div>
-              <label className="block text-[#0D0D12] text-base mb-1">
-                Location - Google map link (URL)
-              </label>
-              <input
-                type="url"
-                name="location"
-                placeholder="Add Google map URL here"
-                className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-              />
-            </div>
-            <div>
-              <button
-                className="text-base bg-[#FF700A] hover:bg-[#e88a1e] text-white font-bold w-full h-[3rem] rounded-2xl transition duration-200 cursor-pointer flex items-center justify-center"
-              >
-                Send
-              </button>
-            </div>
-          </form>
+              <div>
+                <label className="block text-[#0D0D12] text-base mb-1">
+                  Location - Google map link (URL)
+                </label>
+                <input
+                  type="url"
+                  name="location"
+                  placeholder="Add Google map URL here"
+                  className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                />
+              </div>
+              <div>
+                <button className="text-base bg-[#FF700A] hover:bg-[#e88a1e] text-white font-bold w-full h-[3rem] rounded-2xl transition duration-200 cursor-pointer flex items-center justify-center">
+                  Send
+                </button>
+              </div>
+            </form>
           </motion.div>
         </div>
       </div>

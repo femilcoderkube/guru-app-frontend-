@@ -19,7 +19,6 @@ import {
   cardVariantsAni,
 } from "../Componets/animation.jsx";
 import { motion } from "motion/react";
-import { Upload } from "lucide-react";
 const ThankYou = () => {
   // Responsive nav state for mobile menu
   const [navOpen, setNavOpen] = React.useState(false);
@@ -53,14 +52,19 @@ const ThankYou = () => {
       <div className="faq-sec-wp relative contact-wp flex justify-center items-center py-6 md:py-[2.563rem] bg-[#F8FAFB] px-2">
         <div className="w-full max-w-[76.5rem] mx-auto bg-white rounded-2xl shadow-[0_4px_74px_0_#0000001A] px-2 sm:px-4 md:px-8 py-10 md:pb-[4rem]">
           <div className="flex flex-col items-center justify-center min-h-[24rem] md:min-h-[32rem]">
-            <motion.div className="flex flex-col items-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
+            <motion.div
+              className="flex flex-col items-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <div className="mb-6 md:mb-10">
-                <img className="h-auto w-[4rem] md:w-[6.5rem]" src={successfull} alt="" />
+                <img
+                  className="h-auto w-[4rem] md:w-[6.5rem]"
+                  src={successfull}
+                  alt=""
+                />
               </div>
               <div className="text-center mb-5">
                 <p className="text-base md:text-lg text-[#32191E] mb-1">
@@ -74,7 +78,8 @@ const ThankYou = () => {
                 </p>
               </div>
               <p className="text-[#909090] text-base md:text-lg text-center max-w-[33.25rem]">
-              We will send you an email within 24 hours confirming your request, along with your control panel credentials
+                We will send you an email within 24 hours confirming your
+                request, along with your control panel credentials
               </p>
             </motion.div>
           </div>
