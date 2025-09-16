@@ -112,7 +112,7 @@ const ContactUs = () => {
       {/* inner-banner End */}
 
       <div className="faq-sec-wp relative contact-wp flex justify-center items-center py-6 md:py-[2.563rem] bg-[#F8FAFB] px-2">
-        <div className="w-full max-w-[76.5rem] mx-auto bg-white rounded-2xl shadow-[0_4px_74px_0_#0000001A] px-2 sm:px-4 md:px-8 py-6 md:py-10">
+        <div className="w-full max-w-[76.5rem] mx-auto bg-white rounded-2xl shadow-[0_4px_74px_0_#0000001A] px-2 sm:px-4 md:px-8 py-6 md:pt-10 md:pb-15">
           <motion.div
             className="text-center mb-6 md:mb-9"
             initial={{ opacity: 0, y: 30 }}

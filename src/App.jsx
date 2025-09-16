@@ -5,6 +5,8 @@ import Rating from "./pages/Rating";
 import TermsOfUse from "./pages/TermsOfUse";
 import ContactUs from "./pages/ContactUs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Join from "./pages/join";
+import ThankYou from "./pages/thankyou";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./locales/i18n";
 import { Toaster } from "react-hot-toast";
@@ -35,6 +37,8 @@ function App() {
           <Route path="/terms-of-use" element={<TermsOfUse />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/thankyou" element={<ThankYou />} />
         </Routes>
       </BrowserRouter>
     </I18nextProvider>
