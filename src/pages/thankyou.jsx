@@ -39,11 +39,14 @@ const ThankYou = () => {
           animate="visible"
           variants={leftToRight}
         >
-          <button className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base">
+          <button
+            className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base"
+            onClick={() => navigate("/")}
+          >
             {t("back")}
           </button>
           <span className="text-[#32191E] font-bold text-base">
-            Join as a restaurant
+            {t("join_as_a_restaurant")}
           </span>
         </motion.div>
       </div>
@@ -68,18 +71,17 @@ const ThankYou = () => {
               </div>
               <div className="text-center mb-5">
                 <p className="text-base md:text-lg text-[#32191E] mb-1">
-                  You have been
+                  {t("You_have_been")}
                 </p>
                 <h2 className="text-[#FF700A] text-2xl md:text-[2.5rem] font-bold mb-1">
-                  Successfully registered
+                  {t("successfully_registered")}
                 </h2>
                 <p className="text-base md:text-lg text-[#32191E]">
-                  Thank you for joining our platform
+                  {t("Thank_you")}
                 </p>
               </div>
               <p className="text-[#909090] text-base md:text-lg text-center max-w-[33.25rem]">
-                We will send you an email within 24 hours confirming your
-                request, along with your control panel credentials
+                {t("thank_you_label")}
               </p>
             </motion.div>
           </div>

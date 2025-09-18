@@ -30,9 +30,15 @@ const Header = () => {
         {/* Desktop Nav */}
         <div className="desktop-header">
           <nav className="flex items-center gap-4 h-[3.375rem]">
-          <button className="hidden px-6 sm:px-[1rem] lg:px-[1.153rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
-                Register your Restaurant
-              </button>
+            <button className="hidden px-6 sm:px-[1rem] lg:px-[1.153rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+              Register your Restaurant
+            </button>
+            <button
+              className="text-base bg-[#FF700A] hover:bg-[#e88a1e] text-white font-bold w-full md:w-[12.813rem] h-[3rem] rounded-2xl transition duration-200 cursor-pointer flex items-center justify-center"
+              onClick={() => navigate("/join")}
+            >
+              {t("join_as_a_restaurant")}
+            </button>
             <ul className="dark-header header-nav flex items-center gap-2 sm:gap-[1.875rem] bg-[#FFEEE11A] rounded-2xl px-2 sm:px-4 md:px-[1.938rem] border border-[#FFEEE1] border-opacity-[0.34] h-full">
               {navItems.map((item) => (
                 <li
@@ -73,66 +79,71 @@ const Header = () => {
 
       {/* Mobile Nav Drawer */}
       <div className="mob-header">
-      {navOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-40">
-          <div className="absolute top-0 right-0 w-4/5 max-w-xs bg-white h-full shadow-lg flex flex-col">
-            <button
-              className="self-end m-4 p-2"
-              aria-label="Close menu"
-              onClick={() => setNavOpen(false)}
-            >
-              <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-                <line
-                  x1="6"
-                  y1="6"
-                  x2="18"
-                  y2="18"
-                  stroke="#32191E"
-                  strokeWidth="2"
-                />
-                <line
-                  x1="18"
-                  y1="6"
-                  x2="6"
-                  y2="18"
-                  stroke="#32191E"
-                  strokeWidth="2"
-                />
-              </svg>
-            </button>
+        {navOpen && (
+          <div className="fixed inset-0 z-50 bg-black bg-opacity-40">
+            <div className="absolute top-0 right-0 w-4/5 max-w-xs bg-white h-full shadow-lg flex flex-col">
+              <button
+                className="self-end m-4 p-2"
+                aria-label="Close menu"
+                onClick={() => setNavOpen(false)}
+              >
+                <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+                  <line
+                    x1="6"
+                    y1="6"
+                    x2="18"
+                    y2="18"
+                    stroke="#32191E"
+                    strokeWidth="2"
+                  />
+                  <line
+                    x1="18"
+                    y1="6"
+                    x2="6"
+                    y2="18"
+                    stroke="#32191E"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </button>
+              <button
+                className="text-base bg-[#FF700A] hover:bg-[#e88a1e] text-white font-bold w-full md:w-[12.813rem] h-[3rem] rounded-2xl transition duration-200 cursor-pointer flex items-center justify-center"
+                onClick={() => navigate("/join")}
+              >
+                {t("join_as_a_restaurant")}
+              </button>
+              <ul className="flex flex-col gap-2 px-6 mt-8">
+                {navItems.map((item) => (
+                  <li
+                    key={item.label}
+                    className={`py-2 border-b border-gray-200 text-[#0D0D12] cursor-pointer ${
+                      location.pathname === item.to
+                        ? "font-bold text-[#FF700A]"
+                        : "font-semibold"
+                    }`}
+                    onClick={() => {
+                      navigate(item.to);
+                      setNavOpen(false);
+                    }}
+                  >
+                    {item.label}
+                  </li>
+                ))}
+              </ul>
 
-            <ul className="flex flex-col gap-2 px-6 mt-8">
-              {navItems.map((item) => (
-                <li
-                  key={item.label}
-                  className={`py-2 border-b border-gray-200 text-[#0D0D12] cursor-pointer ${
-                    location.pathname === item.to
-                      ? "font-bold text-[#FF700A]"
-                      : "font-semibold"
-                  }`}
-                  onClick={() => {
-                    navigate(item.to);
-                    setNavOpen(false);
-                  }}
-                >
-                  {item.label}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-6 px-6">
-              <div className="py-2 bg-[#F6F8FA] rounded-2xl px-4 border border-[#DFE1E7] border-opacity-[0.34] w-fit">
-                <LanguageSwitcher />
+              <div className="mt-6 px-6">
+                <div className="py-2 bg-[#F6F8FA] rounded-2xl px-4 border border-[#DFE1E7] border-opacity-[0.34] w-fit">
+                  <LanguageSwitcher />
+                </div>
               </div>
-            </div>
-            <div className="mt-6 px-6">
+              <div className="mt-6 px-6">
                 <button className="hidden px-6 sm:px-[1rem] lg:px-[1.153rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold md:text-base text-sm hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
                   Register your Restaurant
                 </button>
               </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
     </header>
   );

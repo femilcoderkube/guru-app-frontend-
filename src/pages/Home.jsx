@@ -116,6 +116,12 @@ const Home = () => {
                   />
                 </svg>
               </button>
+              <button
+                className="text-base bg-[#FF700A] hover:bg-[#e88a1e] text-white font-bold w-full md:w-[12.813rem] h-[3rem] rounded-2xl transition duration-200 cursor-pointer flex items-center justify-center"
+                onClick={() => navigate("/join")}
+              >
+                {t("join_as_a_restaurant")}
+              </button>
               {(() => {
                 const navItems = [
                   { label: t("about"), to: "/" },
@@ -190,7 +196,12 @@ const Home = () => {
               <button className="hidden px-6 sm:px-[1rem] lg:px-[1.153rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
                 Register your Restaurant
               </button>
-
+              <button
+                className="text-base bg-[#FF700A] hover:bg-[#e88a1e] text-white font-bold w-full md:w-[12.813rem] h-[3rem] rounded-2xl transition duration-200 cursor-pointer flex items-center justify-center"
+                onClick={() => navigate("/join")}
+              >
+                {t("join_as_a_restaurant")}
+              </button>
               {(() => {
                 const navItems = [
                   { label: `${t("about")}`, to: "/" },

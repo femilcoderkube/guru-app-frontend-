@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import logo from "../assets/Images/guru_logo.png";
 import dark_logo from "../assets/Images/dark_logo.png";
 import terms_list from "../assets/Images/terms-list.png";
@@ -19,12 +19,148 @@ import {
   cardVariantsAni,
 } from "../Componets/animation.jsx";
 import { motion } from "motion/react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import toast from "react-hot-toast";
+import { getCall, postCall } from "../utils/api";
+import Select from "react-select";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Button,
+  Typography,
+  Box,
+  DialogActions,
+  Modal,
+} from "@mui/material";
 const Join = () => {
   // Responsive nav state for mobile menu
   const [navOpen, setNavOpen] = React.useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [country, setCountry] = useState("");
+  const [preview, setPreview] = useState(null);
+  const [mealsCategory, setMealsCategory] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [pendingValues, setPendingValues] = useState(null);
+  const arabicRegex =
+    /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\u0660-\u0669 0-9\s\-،؛؟.!ـ]+$/;
+
+  const validationSchema = Yup.object().shape({
+    profile_photo: Yup.mixed().required(t("restaurant_logo_required")),
+    restaurant_name: Yup.string().required(
+      t("restaurant_name_english_is_required")
+    ),
+    restaurant_name_ar: Yup.string()
+      .required(t("restaurant_name_arbic_is_required"))
+      .test(
+        "not-only-spaces",
+        t("restaurant_name_arbic_is_required"),
+        (value) => !!value && value.trim().length > 0
+      )
+      .matches(arabicRegex, t("restaurant_name_arbic_required_allowed")),
+    phone_number: Yup.string()
+      .required(t("contact_number_is_required"))
+      .matches(/^[0-9]+$/, t("only_numbers_allowed"))
+      .min(10, t("contact_number_must_be_10_digits"))
+      .max(10, t("contact_number_must_be_10_digits")),
+    cuisines: Yup.array()
+      .required(t("cuisines_is_required"))
+      .min(1, t("cuisines_is_required")),
+    email: Yup.string()
+      .email(t("invalid_email"))
+      .required(t("email_is_required")),
+    website_link: Yup.string()
+      .url(t("invalid_url"))
+      .required(t("Website_link_is_required")),
+    location_url: Yup.string()
+      .url(t("invalid_url"))
+      .required(t("location_is_required")),
+    terms: Yup.boolean().oneOf([true], t("must_accept_terms")),
+  });
+
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      width: "100%",
+      minHeight: "40px",
+      fontSize: "0.98rem",
+      backgroundColor: "#F6F8FA",
+      borderRadius: "12px",
+      borderColor: state.isFocused ? "#FC9924" : "#DFE1E7",
+      boxShadow: state.isFocused ? "0 0 0 2px #FC9924" : "none",
+      // paddingLeft: "0.75rem",
+      // paddingRight: "2.5rem",
+      // paddingTop: "0.57rem",
+      // paddingBottom: "0.57rem",
+      color: "#0D0D12",
+      transition: "all 0.2s ease-in-out",
+      appearance: "none",
+      "&:hover": { borderColor: "#DFE1E7" },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      fontSize: "0.98rem",
+      backgroundColor: "#F6F8FA",
+      borderRadius: "12px",
+      marginTop: "4px",
+      zIndex: 9999,
+    }),
+  };
+
+  useEffect(() => {
+    const fetchMealCategories = async () => {
+      try {
+        const response = await getCall(`/meal-category/getAllMealCategories`);
+        const data = response?.data?.map((res) => ({
+          value: res?._id,
+          // label: res?.name,
+          label: i18n.language === "ar" ? res?.name_ar || res?.name : res?.name,
+        }));
+        setMealsCategory(Array.isArray(response?.data) ? data : []);
+      } catch (error) {
+        console.error("Error fetching meal categories:", error);
+        setMealsCategory([]);
+      }
+    };
+    fetchMealCategories();
+  }, [t, i18n.language]);
+
+  const handleSubmit = async () => {
+    if (!pendingValues) return;
+    setIsLoading(true);
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("restaurant_name", pendingValues.restaurant_name);
+      formDataToSend.append(
+        "restaurant_name_ar",
+        pendingValues.restaurant_name_ar
+      );
+      formDataToSend.append("phone_number", pendingValues.phone_number);
+      formDataToSend.append("cuisines", JSON.stringify(pendingValues.cuisines));
+      formDataToSend.append("email", pendingValues.email);
+      formDataToSend.append("website_link", pendingValues.website_link);
+      formDataToSend.append("location_url", pendingValues.location_url);
+      if (pendingValues.profile_photo)
+        formDataToSend.append("profile_photo", pendingValues.profile_photo);
+
+      await postCall(
+        "/restaurant-user/createRestaurantUser",
+        formDataToSend,
+        true
+      );
+      setDialogOpen(false);
+      navigate("/thankyou");
+    } catch (error) {
+      setDialogOpen(false);
+      console.error("something went wrong", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       {/* dark-header start */}
@@ -39,11 +175,14 @@ const Join = () => {
           animate="visible"
           variants={leftToRight}
         >
-          <button className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base">
+          <button
+            className="flex items-center text-[#0D0D12] bg-[#FFFFFF] border border-[#DFE1E7] outline-none cursor-pointer rounded-[0.875rem] px-4 py-2 text-sm md:text-base"
+            onClick={() => navigate("/")}
+          >
             {t("back")}
           </button>
           <span className="text-[#32191E] font-bold text-base">
-            Join as a restaurant
+            {t("join_as_a_restaurant")}
           </span>
         </motion.div>
       </div>
@@ -59,146 +198,324 @@ const Join = () => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <h2 className="text-2xl md:text-[2.5rem] font-bold text-[#32191E]">
-              Join as a restaurant
+              {t("join_as_a_restaurant")}
             </h2>
             <p className="text-base md:text-lg text-[#32191E]">
-              welcome to <span className="text-[#FF700A] font-bold">Guru</span>{" "}
-              platform
+              {t("welcome_to")}{" "}
+              <span className="text-[#FF700A] font-bold"> {t("guru1")}</span>{" "}
+              {t("platform")}
             </p>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
+
+          <Formik
+            initialValues={{
+              profile_photo: null,
+              restaurant_name: "",
+              restaurant_name_ar: "",
+              phone_number: "",
+              cuisines: [],
+              email: "",
+              website_link: "",
+              location_url: "",
+              terms: false,
+            }}
+            validationSchema={validationSchema}
+            // onSubmit={handleSubmit}
+            onSubmit={(values) => {
+              setPendingValues(values);
+              setDialogOpen(true);
+            }}
           >
-            <form className="space-y-6 md:space-y-8 max-w-full md:max-w-[46.438rem] mx-auto">
-              <label className="w-full h-[10rem] md:h-[15.313rem] border border-[#DFE1E7] px-3 py-2 md:py-[0.57rem] bg-[#F6F8FA] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl flex flex-col items-center justify-center cursor-pointer relative">
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                  name="restaurantLogo"
-                />
-                <img className="mb-4" src={upload} alt="" />
-                <p className="text-[#666D80] text-base">
-                  Upload your restaurant logo
-                </p>
-              </label>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 md:gap-y-8">
-                <div>
-                  <label
-                    className="block text-[#0D0D12] text-base mb-1"
-                    htmlFor="first-name"
-                  >
-                    Restaurant Name — English
+            {({ values, handleChange, setFieldValue, setFieldTouched }) => (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <Form className="space-y-6 md:space-y-8 max-w-full md:max-w-[46.438rem] mx-auto">
+                  <label className="w-full h-[10rem] md:h-[15.313rem] border border-[#DFE1E7] px-3 py-2 md:py-[0.57rem] bg-[#F6F8FA] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl flex flex-col items-center justify-center cursor-pointer relative">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                      name="profile_photo"
+                      onChange={(e) => {
+                        const file = e.currentTarget.files[0];
+                        setFieldValue("profile_photo", file);
+                        if (file) {
+                          const objectUrl = URL.createObjectURL(file);
+                          setPreview(objectUrl);
+                        } else {
+                          setPreview(null);
+                        }
+                      }}
+                    />
+                    {!preview ? (
+                      <>
+                        <img className="mb-4" src={upload} alt="" />
+                        <p className="text-[#666D80] text-base">
+                          {t("Upload_your_restaurant_logo")}
+                        </p>
+                      </>
+                    ) : (
+                      <img
+                        src={preview}
+                        alt="Logo Preview"
+                        className="w-40 h-40 object-contain rounded-md"
+                      />
+                    )}
                   </label>
-                  <input
-                    id="first-name"
-                    type="text"
-                    className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                    placeholder="Type Restaurant name"
+                  <ErrorMessage
+                    name="profile_photo"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
                   />
-                </div>
-                <div>
-                  <label
-                    className="block text-[#0D0D12] text-base mb-1"
-                    htmlFor="last-name"
-                  >
-                    Restaurant Name — Arabic:
-                  </label>
-                  <input
-                    id="last-name"
-                    type="text"
-                    className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                    placeholder="Type Restaurant name"
-                  />
-                </div>
-                <div>
-                  <label
-                    className="block text-[#0D0D12] text-base mb-1"
-                    htmlFor="Contact Number"
-                  >
-                    Contact Number
-                  </label>
-                  <input
-                    id="contact-number"
-                    type="tel"
-                    className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                    placeholder="Type contact number"
-                  />
-                </div>
-                <div className="relative">
-                  <label
-                    className="block text-[#0D0D12] text-base mb-1"
-                    htmlFor="Cuisines"
-                  >
-                    Cuisines
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="Cuisines"
-                      className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl appearance-none pr-10 text-sm md:text-base"
-                    >
-                      <option>Select</option>
-                      <option value="Indian">Indian</option>
-                      <option value="Mexican">Mexican</option>
-                      <option value="French">French</option>
-                    </select>
-                    {/* Custom arrow */}
-                    <span className="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 text-[#32191E]">
-                      <img src={select_icon} alt="" className="w-4 h-4" />
-                    </span>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 md:gap-y-8">
+                    <div>
+                      <label
+                        className="block text-[#0D0D12] text-base mb-1"
+                        htmlFor="first-name"
+                      >
+                        {t("Restaurant_Name_English")}
+                      </label>
+                      <Field
+                        name="restaurant_name"
+                        type="text"
+                        className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                        placeholder={t("Type_restaurant_name")}
+                      />
+                      <ErrorMessage
+                        name="restaurant_name"
+                        component="div"
+                        className="text-red-500 text-sm mt-1"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        className="block text-[#0D0D12] text-base mb-1"
+                        htmlFor="restaurant_name_ar"
+                      >
+                        {t("Restaurant_Name_Arabic")}
+                      </label>
+                      <Field
+                        name="restaurant_name_ar"
+                        type="text"
+                        className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                        placeholder={t("Type_restaurant_name")}
+                      />
+                      <ErrorMessage
+                        name="restaurant_name_ar"
+                        component="div"
+                        className="text-red-500 text-sm mt-1"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        className="block text-[#0D0D12] text-base mb-1"
+                        htmlFor="Contact Number"
+                      >
+                        {t("contact_number")}
+                      </label>
+                      <Field
+                        name="phone_number"
+                        type="tel"
+                        className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                        placeholder={t("Type_contact_number")}
+                      />
+                      <ErrorMessage
+                        name="phone_number"
+                        component="div"
+                        className="text-red-500 text-sm mt-1"
+                      />
+                    </div>
+                    <div className="relative">
+                      <label
+                        className="block text-[#0D0D12] text-base mb-1"
+                        htmlFor="cuisines"
+                      >
+                        {t("cuisines")}
+                      </label>
+                      <div className="relative">
+                        <Select
+                          isMulti
+                          // className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl appearance-none pr-10 text-sm md:text-base"
+                          options={mealsCategory}
+                          onChange={(options) => {
+                            const valuesArr = options
+                              ? options.map((o) => o.value)
+                              : [];
+                            setFieldValue("cuisines", valuesArr);
+                            setFieldTouched("cuisines", true, false);
+                          }}
+                          onBlur={() => setFieldTouched("cuisines", true, true)}
+                          value={mealsCategory.filter((o) =>
+                            values.cuisines.includes(o.value)
+                          )}
+                          placeholder={t("select")}
+                          styles={customStyles}
+                        />
+                        <ErrorMessage
+                          name="cuisines"
+                          component="div"
+                          className="text-red-500 text-sm mt-1"
+                        />
+                        {/* Custom arrow */}
+                        {/* <span className="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 text-[#32191E]">
+                          <img src={select_icon} alt="" className="w-4 h-4" />
+                        </span> */}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div>
-                <label
-                  className="block text-[#0D0D12] text-base mb-1"
-                  htmlFor="email"
-                >
-                  E-mail
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                  placeholder="Add the E-mail here"
-                />
-              </div>
+                  <div>
+                    <label
+                      className="block text-[#0D0D12] text-base mb-1"
+                      htmlFor="email"
+                    >
+                      {t("E-mail")}
+                    </label>
+                    <Field
+                      name="email"
+                      type="email"
+                      className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                      placeholder={t("Add_the_E-mail_here")}
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
 
-              <div>
-                <label className="block text-[#0D0D12] text-base mb-1">
-                  Website link (URL)
-                </label>
-                <input
-                  type="url"
-                  name="website"
-                  placeholder="Add the URL here"
-                  className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                />
-              </div>
+                  <div>
+                    <label className="block text-[#0D0D12] text-base mb-1">
+                      {t("Website_link")}
+                    </label>
+                    <Field
+                      type="url"
+                      name="website_link"
+                      placeholder={t("Add_the_URL_here")}
+                      className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                    />
+                    <ErrorMessage
+                      name="website_link"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
 
-              <div>
-                <label className="block text-[#0D0D12] text-base mb-1">
-                  Location - Google map link (URL)
-                </label>
-                <input
-                  type="url"
-                  name="location"
-                  placeholder="Add Google map URL here"
-                  className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                />
-              </div>
-              <div>
-                <button className="text-base bg-[#FF700A] hover:bg-[#e88a1e] text-white font-bold w-full h-[3rem] rounded-2xl transition duration-200 cursor-pointer flex items-center justify-center">
-                  Send
-                </button>
-              </div>
-            </form>
-          </motion.div>
+                  <div>
+                    <label className="block text-[#0D0D12] text-base mb-1">
+                      {t("location")}
+                    </label>
+                    <Field
+                      type="url"
+                      name="location_url"
+                      placeholder={t("Add_Google_map_URL_here")}
+                      className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                    />
+                    <ErrorMessage
+                      name="location_url"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
+                  <div className="flex items-center space-x-3 space-y-3">
+                    <Field
+                      type="checkbox"
+                      id="terms"
+                      name="terms"
+                      className="w-6 h-6"
+                    />
+                    <label
+                      htmlFor="terms"
+                      className="text-[#0D0D12] text-base mb-1"
+                    >
+                      {t("join_label")}
+                    </label>
+                  </div>
+
+                  <div>
+                    <button
+                      type="submit"
+                      disabled={isLoading}
+                      className="text-base bg-[#FF700A] hover:bg-[#e88a1e] text-white font-bold w-full h-[3rem] rounded-2xl transition duration-200 cursor-pointer flex items-center justify-center"
+                    >
+                      {isLoading ? t("submitting") : t("submit")}
+                    </button>
+                  </div>
+                </Form>
+              </motion.div>
+            )}
+          </Formik>
         </div>
       </div>
+      <Dialog
+        open={dialogOpen}
+        onClose={() => {
+          setDialogOpen(false);
+          navigate("/join");
+        }}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: 5,
+            p: 3,
+            width: "100%",
+            height: "auto",
+            maxWidth: "59.25rem",
+          },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            textAlign: "center",
+            fontWeight: "bold",
+            color: "#FF700A",
+            pb: 5,
+            fontSize: "1.5rem",
+            "@media (max-width:767px)": {
+              fontSize: "1rem",
+              padding: "1rem",
+            },
+          }}
+        >
+          {t("dialog_label")}
+        </DialogTitle>
+
+        <DialogContent>
+          <Box display="flex" flexDirection="column" gap={2.5}>
+            <Typography variant="body2">{t("dialog_label1")}</Typography>
+            <Typography variant="body2">{t("dialog_label2")}</Typography>
+            <Typography variant="body2">{t("dialog_label3")}</Typography>
+            <Typography variant="body2">{t("dialog_label4")}</Typography>
+            <Typography variant="body2" sx={{ pb: 3 }}>
+              {t("dialog_label5")}
+            </Typography>
+          </Box>
+        </DialogContent>
+
+        <DialogActions sx={{ px: 3, pb: 1, pt: 3 }}>
+          <Button
+            fullWidth
+            onClick={handleSubmit}
+            sx={{
+              fontSize: "1rem",
+              backgroundColor: "#FF700A",
+              color: "white",
+              fontWeight: "bold",
+              height: "3rem",
+              borderRadius: "1rem",
+              transition: "all 0.2s ease-in-out",
+              "&:hover": { backgroundColor: "#e88a1e" },
+            }}
+          >
+            {t("i_agree")}
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/* footer start */}
       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
