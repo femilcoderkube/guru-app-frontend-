@@ -450,46 +450,66 @@ const Join = () => {
                   <div className="flex items-center">
                     <label className="flex items-center cursor-pointer">
                       {/* Hidden default checkbox */}
-                      <Field
-                        type="checkbox"
-                        name="terms"
-                        checked={termsAccepted}
-                        onChange={() => setDialogOpen(true)}
-                        className="hidden"
-                      />
-                      {/* Custom checkbox */}
-                      <span
-                        className={`w-7 h-6 flex items-center justify-center rounded border 
-                                    ${
-                                      termsAccepted
-                                        ? "bg-green-500 border-green-500"
-                                        : "bg-white border-[#DFE1E7]"
-                                    }
-                                    transition-all duration-200 relative -mt-3`}
-                      >
-                        {termsAccepted && (
-                          <svg
-                            className="w-4 h-4 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
+                      <Field name="terms">
+                        {({ field, form }) => (
+                          <input
+                            type="checkbox"
+                            {...field}
+                            checked={field.value}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setDialogOpen(true);
+                              } else {
+                                form.setFieldValue("terms", false);
+                              }
+                            }}
+                            className="hidden"
+                          />
                         )}
-                      </span>
+                      </Field>
+
+                      {/* ✅ Custom checkbox design */}
+                      <Field name="terms">
+                        {({ field }) => (
+                          <span
+                            className={`w-6 h-6 flex items-center justify-center rounded border
+          ${
+            field.value
+              ? "bg-green-500 border-green-500"
+              : "bg-white border-[#DFE1E7]"
+          }
+          transition-all duration-200 relative -mt-3`}
+                          >
+                            {field.value && (
+                              <svg
+                                className="w-4 h-4 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M5 13l4 4L19 7"
+                                />
+                              </svg>
+                            )}
+                          </span>
+                        )}
+                      </Field>
+
                       {/* Text next to checkbox */}
                       <span className="ml-3 text-[#0D0D12] text-base">
                         {t("join_label")}
                       </span>
                     </label>
                   </div>
-
+                  <ErrorMessage
+                    name="terms"
+                    component="div"
+                    className="text-red-500 text-sm "
+                  />
                   <div>
                     <button
                       type="submit"

@@ -215,6 +215,7 @@
   "location_is_required":"Location - Google map link is required",
   "submitting":"Submitting",
   "i_agree":"I agree",
+  "must_accept_terms":"Must accept terms",
   "dialog_label":"Consent for Data Collection and Use",
   "dialog_label1":"By registering on our platform, you acknowledge and agree to the following:",
   "dialog_label2":"Data Collection: We collect the information you provide (such as restaurant name, contact details, location, menu, or services) to create and manage your account.",
