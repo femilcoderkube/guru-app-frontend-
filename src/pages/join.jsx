@@ -44,6 +44,7 @@ const Join = () => {
   const [mealsCategory, setMealsCategory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [pendingValues, setPendingValues] = useState(null);
   const arabicRegex =
     /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\u0660-\u0669 0-9\s\-،؛؟.!ـ]+$/;
@@ -220,10 +221,35 @@ const Join = () => {
               terms: false,
             }}
             validationSchema={validationSchema}
-            // onSubmit={handleSubmit}
-            onSubmit={(values) => {
-              setPendingValues(values);
-              setDialogOpen(true);
+            onSubmit={async (values, { setSubmitting }) => {
+              setIsLoading(true);
+              try {
+                const formData = new FormData();
+                formData.append("restaurant_name", values.restaurant_name);
+                formData.append(
+                  "restaurant_name_ar",
+                  values.restaurant_name_ar
+                );
+                formData.append("phone_number", values.phone_number);
+                formData.append("cuisines", JSON.stringify(values.cuisines));
+                formData.append("email", values.email);
+                formData.append("website_link", values.website_link);
+                formData.append("location_url", values.location_url);
+                if (values.profile_photo)
+                  formData.append("profile_photo", values.profile_photo);
+
+                await postCall(
+                  "/restaurant-user/createRestaurantUser",
+                  formData,
+                  true
+                );
+                navigate("/thankyou");
+              } catch (err) {
+                console.log("error", err);
+              } finally {
+                setIsLoading(false);
+                setSubmitting(false);
+              }
             }}
           >
             {({ values, handleChange, setFieldValue, setFieldTouched }) => (
@@ -421,18 +447,46 @@ const Join = () => {
                       className="text-red-500 text-sm mt-1"
                     />
                   </div>
-                  <div className="flex items-center space-x-3 space-y-3">
-                    <Field
-                      type="checkbox"
-                      id="terms"
-                      name="terms"
-                      className="w-6 h-6"
-                    />
-                    <label
-                      htmlFor="terms"
-                      className="text-[#0D0D12] text-base mb-1"
-                    >
-                      {t("join_label")}
+                  <div className="flex items-center">
+                    <label className="flex items-center cursor-pointer">
+                      {/* Hidden default checkbox */}
+                      <Field
+                        type="checkbox"
+                        name="terms"
+                        checked={termsAccepted}
+                        onChange={() => setDialogOpen(true)}
+                        className="hidden"
+                      />
+                      {/* Custom checkbox */}
+                      <span
+                        className={`w-7 h-6 flex items-center justify-center rounded border 
+                                    ${
+                                      termsAccepted
+                                        ? "bg-green-500 border-green-500"
+                                        : "bg-white border-[#DFE1E7]"
+                                    }
+                                    transition-all duration-200 relative -mt-3`}
+                      >
+                        {termsAccepted && (
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        )}
+                      </span>
+                      {/* Text next to checkbox */}
+                      <span className="ml-3 text-[#0D0D12] text-base">
+                        {t("join_label")}
+                      </span>
                     </label>
                   </div>
 
@@ -446,76 +500,85 @@ const Join = () => {
                     </button>
                   </div>
                 </Form>
+                <Dialog
+                  open={dialogOpen}
+                  onClose={() => setDialogOpen(false)}
+                  maxWidth="sm"
+                  fullWidth
+                  PaperProps={{
+                    sx: {
+                      borderRadius: 5,
+                      p: 3,
+                      width: "100%",
+                      height: "auto",
+                      maxWidth: "59.25rem",
+                    },
+                  }}
+                >
+                  <DialogTitle
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      color: "#FF700A",
+                      pb: 5,
+                      fontSize: "1.5rem",
+                      "@media (max-width:767px)": {
+                        fontSize: "1rem",
+                        padding: "1rem",
+                      },
+                    }}
+                  >
+                    {t("dialog_label")}
+                  </DialogTitle>
+
+                  <DialogContent>
+                    <Box display="flex" flexDirection="column" gap={2.5}>
+                      <Typography variant="body2">
+                        {t("dialog_label1")}
+                      </Typography>
+                      <Typography variant="body2">
+                        {t("dialog_label2")}
+                      </Typography>
+                      <Typography variant="body2">
+                        {t("dialog_label3")}
+                      </Typography>
+                      <Typography variant="body2">
+                        {t("dialog_label4")}
+                      </Typography>
+                      <Typography variant="body2" sx={{ pb: 3 }}>
+                        {t("dialog_label5")}
+                      </Typography>
+                    </Box>
+                  </DialogContent>
+
+                  <DialogActions sx={{ px: 3, pb: 1, pt: 3 }}>
+                    <Button
+                      fullWidth
+                      onClick={() => {
+                        setDialogOpen(false);
+                        setTermsAccepted(true);
+                        setFieldValue("terms", true);
+                      }}
+                      sx={{
+                        fontSize: "1rem",
+                        backgroundColor: "#FF700A",
+                        color: "white",
+                        fontWeight: "bold",
+                        height: "3rem",
+                        borderRadius: "1rem",
+                        transition: "all 0.2s ease-in-out",
+                        "&:hover": { backgroundColor: "#e88a1e" },
+                      }}
+                    >
+                      {t("i_agree")}
+                    </Button>
+                  </DialogActions>
+                </Dialog>
               </motion.div>
             )}
           </Formik>
         </div>
       </div>
-      <Dialog
-        open={dialogOpen}
-        onClose={() => {
-          setDialogOpen(false);
-          navigate("/join");
-        }}
-        maxWidth="sm"
-        fullWidth
-        PaperProps={{
-          sx: {
-            borderRadius: 5,
-            p: 3,
-            width: "100%",
-            height: "auto",
-            maxWidth: "59.25rem",
-          },
-        }}
-      >
-        <DialogTitle
-          sx={{
-            textAlign: "center",
-            fontWeight: "bold",
-            color: "#FF700A",
-            pb: 5,
-            fontSize: "1.5rem",
-            "@media (max-width:767px)": {
-              fontSize: "1rem",
-              padding: "1rem",
-            },
-          }}
-        >
-          {t("dialog_label")}
-        </DialogTitle>
-
-        <DialogContent>
-          <Box display="flex" flexDirection="column" gap={2.5}>
-            <Typography variant="body2">{t("dialog_label1")}</Typography>
-            <Typography variant="body2">{t("dialog_label2")}</Typography>
-            <Typography variant="body2">{t("dialog_label3")}</Typography>
-            <Typography variant="body2">{t("dialog_label4")}</Typography>
-            <Typography variant="body2" sx={{ pb: 3 }}>
-              {t("dialog_label5")}
-            </Typography>
-          </Box>
-        </DialogContent>
-
-        <DialogActions sx={{ px: 3, pb: 1, pt: 3 }}>
-          <Button
-            fullWidth
-            onClick={handleSubmit}
-            sx={{
-              fontSize: "1rem",
-              backgroundColor: "#FF700A",
-              color: "white",
-              fontWeight: "bold",
-              height: "3rem",
-              borderRadius: "1rem",
-              transition: "all 0.2s ease-in-out",
-              "&:hover": { backgroundColor: "#e88a1e" },
-            }}
-          >
-            {t("i_agree")}
-          </Button>
-        </DialogActions>
-      </Dialog>
 
       {/* footer start */}
       <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
