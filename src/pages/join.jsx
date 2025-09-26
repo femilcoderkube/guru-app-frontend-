@@ -34,6 +34,9 @@ import {
   DialogActions,
   Modal,
 } from "@mui/material";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { useFormikContext } from "formik";
 const Join = () => {
   // Responsive nav state for mobile menu
   const [navOpen, setNavOpen] = React.useState(false);
@@ -46,6 +49,7 @@ const Join = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [pendingValues, setPendingValues] = useState(null);
+  // const { setFieldValue, values } = useFormikContext();
   const arabicRegex =
     /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\u0660-\u0669 0-9\s\-،؛؟.!ـ]+$/;
 
@@ -64,9 +68,9 @@ const Join = () => {
       .matches(arabicRegex, t("restaurant_name_arbic_required_allowed")),
     phone_number: Yup.string()
       .required(t("contact_number_is_required"))
-      .matches(/^[0-9]+$/, t("only_numbers_allowed"))
-      .min(10, t("contact_number_must_be_10_digits"))
-      .max(10, t("contact_number_must_be_10_digits")),
+      .matches(/^\+[0-9]+$/, t("only_numbers_allowed"))
+      .min(6, t("contact_number_min"))
+      .max(15, t("contact_number_max")),
     cuisines: Yup.array()
       .required(t("cuisines_is_required"))
       .min(1, t("cuisines_is_required")),
@@ -114,7 +118,9 @@ const Join = () => {
   useEffect(() => {
     const fetchMealCategories = async () => {
       try {
-        const response = await getCall(`/meal-category/getAllMealCategories`);
+        const response = await getCall(
+          `/meal-category/getAllMealCategoriesForRestaurant`
+        );
         const data = response?.data?.map((res) => ({
           value: res?._id,
           // label: res?.name,
@@ -344,11 +350,35 @@ const Join = () => {
                       >
                         {t("contact_number")}
                       </label>
-                      <Field
+                      {/* <Field
                         name="phone_number"
                         type="tel"
                         className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
                         placeholder={t("Type_contact_number")}
+                      /> */}
+                      <PhoneInput
+                        country={"sa"} // default
+                        value={values.phone_number}
+                        onChange={(value, country) => {
+                          // value includes country code (e.g. "919876543210")
+                          const formatted = value.startsWith("+")
+                            ? value
+                            : `+${value}`;
+                          setFieldValue("phone_number", formatted);
+                          setFieldValue("country_code", `+${country.dialCode}`);
+                        }}
+                        enableSearch={true}
+                        disableCountryCode={false} // ✅ Keep the country code visible
+                        disableDropdown={false}
+                        inputClass="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                        placeholder={t("Type_contact_number")}
+                        inputStyle={{
+                          width: "100%",
+                          height: "50px",
+                          fontSize: "0.85rem",
+                          borderRadius: "8px",
+                          border: "1px solid #919eab33",
+                        }}
                       />
                       <ErrorMessage
                         name="phone_number"
@@ -469,16 +499,47 @@ const Join = () => {
                       </Field>
 
                       {/* ✅ Custom checkbox design */}
-                      <Field name="terms">
+                      {/* <Field name="terms">
                         {({ field }) => (
                           <span
-                            className={`w-6 h-6 flex items-center justify-center rounded border
+                            className={`w-5 h-5 flex items-center justify-center rounded border
           ${
             field.value
               ? "bg-green-500 border-green-500"
               : "bg-white border-[#DFE1E7]"
           }
           transition-all duration-200 relative -mt-3`}
+                          >
+                            {field.value && (
+                              <svg
+                                className="w-4 h-4 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M5 13l4 4L19 7"
+                                />
+                              </svg>
+                            )}
+                          </span>
+                        )}
+                      </Field> */}
+
+                      <Field name="terms">
+                        {({ field }) => (
+                          <span
+                            className={`w-6 h-6 flex items-center justify-center border
+        ${
+          field.value
+            ? "bg-green-500 border-green-500"
+            : "bg-white border-[#DFE1E7]"
+        }
+        transition-all duration-200 relative -mt-3 
+      `}
                           >
                             {field.value && (
                               <svg
@@ -624,18 +685,34 @@ const Join = () => {
               </p>
             </div>
             <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 ltr:mr-[5rem] rtl:ml-[5rem]">
-              <a
-                href="#"
+              {/* <a
+                href="https://play.google.com/store/apps/details?id=com.guruarabia.app"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
                 <img src={app_store} alt="" className="h-10 w-auto" />
-              </a>
-              <a
-                href="#"
+              </a> */}
+              <Link
+                to="https://play.google.com/store/apps/details?id=com.guruarabia.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
+                <img src={app_store} alt="" className="h-10 w-auto" />
+              </Link>
+              {/* <a
+                href="https://play.google.com/store/apps/details?id=com.guruarabia.app"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
                 <img src={play_store} alt="" className="h-10 w-auto" />
-              </a>
+              </a> */}
+              <Link
+                to="https://play.google.com/store/apps/details?id=com.guruarabia.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
+                <img src={play_store} alt="" className="h-10 w-auto" />
+              </Link>
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between mt-6 pt-6 border-t border-[#D1D1D1] gap-4">
@@ -658,13 +735,19 @@ const Join = () => {
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={TW} alt="" className="h-6 w-6" />
+                <Link to="/twitter">
+                  <img src={TW} alt="" className="h-6 w-6" />
+                </Link>
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={LN} alt="" className="h-6 w-6" />
+                <Link to="/twitter">
+                  <img src={LN} alt="" className="h-6 w-6" />
+                </Link>
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={FB} alt="" className="h-6 w-6" />
+                <Link to="/twitter">
+                  <img src={FB} alt="" className="h-6 w-6" />
+                </Link>
               </li>
             </ul>
           </div>

@@ -23,6 +23,7 @@ i18n
             order: ['localStorage', 'navigator', 'htmlTag'],
             caches: ['localStorage'],
         },
+        nonExplicitWhitelist: true,   // ✅ Strip region (en-US → en)
     });
 
 // Set direction on language change

@@ -65,14 +65,13 @@ const TermsOfUse = () => {
           <div className="w-full flex flex-col md:flex-row gap-6 md:gap-4">
             {/* Sidebar */}
             <div className="w-full md:w-auto md:min-w-[16.688rem]">
-              <motion.div className="bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000001A] py-4 px-3 sm:py-6 sm:px-5"
-               initial="hidden"
-               animate="visible"
-               variants={leftToRight}
+              <motion.div
+                className="bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000001A] py-4 px-3 sm:py-6 sm:px-5"
+                initial="hidden"
+                animate="visible"
+                variants={leftToRight}
               >
-                <div
-                  className="flex items-center gap-2 mb-3 sm:gap-2.5 sm:mb-4"              
-                >
+                <div className="flex items-center gap-2 mb-3 sm:gap-2.5 sm:mb-4">
                   <span className="flex items-center justify-center rounded-[0.5rem] h-[2rem] w-[2rem] sm:h-[2.125rem] sm:w-[2.125rem] bg-[#FFD688]">
                     <img
                       src={terms_list}
@@ -84,9 +83,7 @@ const TermsOfUse = () => {
                     {t("table_of_contents")}
                   </h6>
                 </div>
-                <ol
-                  className="flex flex-col gap-2 sm:gap-3 list-decimal text-sm font-medium list-inside"
-                >
+                <ol className="flex flex-col gap-2 sm:gap-3 list-decimal text-sm font-medium list-inside">
                   <li className="font-bold text-[#32191E] cursor-pointer">
                     {t("our_services")}
                   </li>
@@ -131,10 +128,11 @@ const TermsOfUse = () => {
             </div>
             {/* Main Content */}
             <div className="flex-1 w-full">
-              <motion.div className="relative bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000000A] pt-6 lg:pb-13 sm:pb-9 pb-6 px-3 sm:px-5"
-               initial="hidden"
-               animate="visible"
-               variants={rightToLeft}
+              <motion.div
+                className="relative bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000000A] pt-6 lg:pb-13 sm:pb-9 pb-6 px-3 sm:px-5"
+                initial="hidden"
+                animate="visible"
+                variants={rightToLeft}
               >
                 <h2 className="text-sm sm:text-base font-bold text-[#4A282F] mb-3 sm:mb-4">
                   {t("agreement_to_legal_terms")}
@@ -142,21 +140,16 @@ const TermsOfUse = () => {
                 <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed mb-2 sm:mb-3">
                   <p>{t("label")}</p>
                   <p>
-                    We operate the website &nbsp;
+                    {t("We_operate_the_website")} &nbsp;
                     <a
                       href="https://www.peeq.com.au"
                       className="text-[#4A282F] underline hover:text-[#e88a1e] transition-colors duration-200"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      https://www.peeq.com.au
+                      {t(" https://www.peeq.com.au")}
                     </a>{" "}
-                    (the 'Site'),the mobile application PEEQ® (the 'App'), as
-                    well as any other related products and services that refer
-                    or link to these legal terms (the 'Legal Terms')
-                    (collectively, the 'Services'). You can contact us by email
-                    at support@peeq.com.au, or by mail to Level 8, 171 Clarence
-                    Street, Sydney , New South Wales 2000, Australia.
+                    {t("the_site")}
                   </p>
                   <p>{t("label2")}</p>
                   <p>{t("label3")}</p>
@@ -171,7 +164,19 @@ const TermsOfUse = () => {
                   {t("your_use_of_services")}
                 </h2>
                 <div className="text-[#4A282F] text-sm sm:text-base leading-relaxed">
-                  <p>{t("label7")}</p>
+                  {/* <p>{t("label7")}</p> */}
+                  <p>
+                    {t("Subject")} &nbsp;
+                    <a
+                      href="https://staging.peeq.com.au/terms-of-service#9"
+                      className="text-[#4A282F] underline hover:text-[#e88a1e] transition-colors duration-200"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t("PROHIBITED_ACTIVITIES")}
+                    </a>{" "}
+                    {t("section")}
+                  </p>
                   <ul>
                     <li>{t("label8")}</li>
                     <li>{t("label9")}</li>
@@ -182,7 +187,19 @@ const TermsOfUse = () => {
                   <p>{t("label13")}</p>
                   <p>{t("label14")}</p>
                   <p>{t("label15")}</p>
-                  <p>{t("label16")}</p>
+                  {/* <p>{t("label16")}</p> */}
+                  <p>
+                    {t("Please_review")} &nbsp;
+                    <a
+                      href="https://staging.peeq.com.au/terms-of-service#9"
+                      className="text-[#4A282F] underline hover:text-[#e88a1e] transition-colors duration-200"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t("PROHIBITED_ACTIVITIES")}
+                    </a>{" "}
+                    {t("section_carefully")}
+                  </p>
                   <p>{t("label17")}</p>
                 </div>
               </motion.div>
@@ -215,18 +232,34 @@ const TermsOfUse = () => {
               </p>
             </div>
             <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 ltr:mr-[5rem] rtl:ml-[5rem]">
-              <a
-                href="#"
+              {/* <a
+                href="https://play.google.com/store/apps/details?id=com.guruarabia.app"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
                 <img src={app_store} alt="" className="h-10 w-auto" />
-              </a>
-              <a
-                href="#"
+              </a> */}
+              <Link
+                to="https://play.google.com/store/apps/details?id=com.guruarabia.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
+                <img src={app_store} alt="" className="h-10 w-auto" />
+              </Link>
+              {/* <a
+                href="https://play.google.com/store/apps/details?id=com.guruarabia.app"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
                 <img src={play_store} alt="" className="h-10 w-auto" />
-              </a>
+              </a> */}
+              <Link
+                to="https://play.google.com/store/apps/details?id=com.guruarabia.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
+                <img src={play_store} alt="" className="h-10 w-auto" />
+              </Link>
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between mt-6 pt-6 border-t border-[#D1D1D1] gap-4">
@@ -249,13 +282,19 @@ const TermsOfUse = () => {
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={TW} alt="" className="h-6 w-6" />
+                <Link to="/twitter">
+                  <img src={TW} alt="" className="h-6 w-6" />
+                </Link>
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={LN} alt="" className="h-6 w-6" />
+                <Link to="/twitter">
+                  <img src={LN} alt="" className="h-6 w-6" />
+                </Link>
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={FB} alt="" className="h-6 w-6" />
+                <Link to="/twitter">
+                  <img src={FB} alt="" className="h-6 w-6" />
+                </Link>
               </li>
             </ul>
           </div>

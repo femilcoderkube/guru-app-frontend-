@@ -48,11 +48,13 @@ const Home = () => {
   const mainSwiperRef = useRef(null);
   const { i18n } = useTranslation();
   const [langKey, setLangKey] = useState(i18n.language);
-
+  const footerRef = useRef(null); // ✅ Create a ref
   useEffect(() => {
     setLangKey(i18n.language);
   }, [i18n.language]);
-
+  const handleDownloadClick = () => {
+    footerRef.current?.scrollIntoView({ behavior: "smooth" }); // ✅ Scroll to footer
+  };
   useEffect(() => {
     if (
       mainSwiperRef.current &&
@@ -274,7 +276,10 @@ const Home = () => {
                 {t("guru")}
               </h5>
               <div className="flex items-center flex-wrap md:gap-5 gap-2 mt-4 lg:mt-8">
-                <button className="px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto">
+                <button
+                  onClick={handleDownloadClick}
+                  className="px-6 sm:px-[2rem] lg:px-[2.188rem] py-3 sm:py-4 bg-[#FF700A] text-[#FFEEE1] rounded-xl sm:rounded-[1.25rem] font-bold text-base hover:bg-[#fc9924] transition-colors duration-200 cursor-pointer w-auto"
+                >
                   {t("download")}
                 </button>
               </div>
@@ -755,7 +760,10 @@ const Home = () => {
       </div>
       {/* Why Guru Section End */}
       {/* footer start */}
-      <footer className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2">
+      <footer
+        ref={footerRef}
+        className="footer-sec pt-8 md:pt-13 pb-8 md:pb-10.5 relative px-2"
+      >
         <img
           className="footer-shape absolute ltr:-right-4 rtl:-left-4 ltr:md:-right-[2rem] rtl:md:-left-[2rem] -top-10 md:-top-[5rem] z-3 w-32 md:w-auto rtl:[transform:rotateY(180deg)]"
           src={footer_shape}
@@ -778,18 +786,34 @@ const Home = () => {
               </p>
             </div>
             <div className="store flex items-center gap-3 md:gap-4 mt-4 md:mt-0 ltr:mr-[5rem] rtl:ml-[5rem]">
-              <a
-                href="#"
+              {/* <a
+                href="https://play.google.com/store/apps/details?id=com.guruarabia.app"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
                 <img src={app_store} alt="" className="h-10 w-auto" />
-              </a>
-              <a
-                href="#"
+              </a> */}
+              <Link
+                to="https://play.google.com/store/apps/details?id=com.guruarabia.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
+                <img src={app_store} alt="" className="h-10 w-auto" />
+              </Link>
+              {/* <a
+                href="https://play.google.com/store/apps/details?id=com.guruarabia.app"
                 className="inline-block transition-transform duration-200 hover:scale-103"
               >
                 <img src={play_store} alt="" className="h-10 w-auto" />
-              </a>
+              </a> */}
+              <Link
+                to="https://play.google.com/store/apps/details?id=com.guruarabia.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block transition-transform duration-200 hover:scale-103"
+              >
+                <img src={play_store} alt="" className="h-10 w-auto" />
+              </Link>
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between mt-6 pt-6 border-t border-[#D1D1D1] gap-4">
@@ -812,13 +836,19 @@ const Home = () => {
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={TW} alt="" className="h-6 w-6" />
+                <Link to="/twitter">
+                  <img src={TW} alt="" className="h-6 w-6" />
+                </Link>
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={LN} alt="" className="h-6 w-6" />
+                <Link to="/twitter">
+                  <img src={LN} alt="" className="h-6 w-6" />
+                </Link>
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <img src={FB} alt="" className="h-6 w-6" />
+                <Link to="/twitter">
+                  <img src={FB} alt="" className="h-6 w-6" />
+                </Link>
               </li>
             </ul>
           </div>

@@ -5,7 +5,7 @@
   "tired_of_fake_reviews":"Tired of fake reviews?",
   "so_are_we":" So are we",
   "guru":"Guru is where real people talk about real food.",
-  "download":"  Download your app",
+  "download":"  Download app",
   "this_isn't_another":"THIS ISN'T ANOTHER",
   "food_app":"FOOD APP",
   "stars":"You don't need stars.",
@@ -207,7 +207,8 @@
   "restaurant_name_arbic_required_allowed":"Only Arabic characters are allowed",
   "contact_number_is_required":"Contact Number is required",
   "only_numbers_allowed":"Only Numbers are allowed",
-  "contact_number_must_be_10_digits":"Contact Number must be 10 digits",
+  "contact_number_min":"Contact number must be at least 6 digits",
+   "contact_number_max":"Contact Number must be 15 digits",
   "cuisines_is_required":"Cuisines is required",
   "email_is_required":"Email is required",
   "Website_link_is_required":"Website link is required",
@@ -221,6 +222,14 @@
   "dialog_label2":"Data Collection: We collect the information you provide (such as restaurant name, contact details, location, menu, or services) to create and manage your account.",
   "dialog_label3":"Data Use: Your data will be used to provide our services, improve your experience, communicate updates or offers, and ensure compliance with applicable regulations.",
   "dialog_label4":" Data Sharing: Your information will not be shared with third parties except when necessary to operate the service (e.g., payment gateways, delivery partners) or when required by law.",
-  "dialog_label5":"Your Rights: You have the right to request updates, corrections, or deletion of your data at any time by contacting our support team."
-  
+  "dialog_label5":"Your Rights: You have the right to request updates, corrections, or deletion of your data at any time by contacting our support team.",
+  "We_operate_the_website":" We operate the website",
+  "https://www.peeq.com.au":"https://www.peeq.com.au",
+  "the_site":" (the 'Site'),the mobile application PEEQ® (the 'App'), as well as any other related products and services that refer or link to these legal terms (the 'Legal Terms') (collectively, the 'Services'). You can contact us by email at support@peeq.com.au, or by mail to Level 8, 171 Clarence Street, Sydney , New South Wales 2000, Australia.",
+  "Subject":"Subject to your compliance with these Legal Terms, including the",
+  "PROHIBITED_ACTIVITIES":" 'PROHIBITED ACTIVITIES'",
+  "section_below:":"section below, we grant you a non-exclusive, non-transferable, revocable licence to:",
+  "Please_review":"Please review this section and the",
+  "section_carefully":"section carefully prior to using our Services to understand the (a) rights you give us and (b) obligations you have when you post or upload any content through the Services.",
+  "section":"section below, we grant you a  non-exclusive, non-transferable, revocable licence to:"
 }
