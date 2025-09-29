@@ -69,7 +69,7 @@ const PrivacyPolicy = () => {
           </motion.div>
           <div className="w-full flex flex-col md:flex-row gap-6 md:gap-4">
             {/* Sidebar */}
-            <div className="w-full md:w-auto md:min-w-[16.688rem]">
+            {/* <div className="w-full md:w-auto md:min-w-[16.688rem]">
               <motion.div
                 className="bg-white rounded-[1.25rem] shadow-[0px_4px_74px_0px_#0000001A] py-4 px-3 sm:py-6 sm:px-5"
                 initial="hidden"
@@ -130,7 +130,7 @@ const PrivacyPolicy = () => {
                   </li>
                 </ol>
               </motion.div>
-            </div>
+            </div> */}
             {/* Main Content */}
             <div className="flex-1 w-full">
               <motion.div
