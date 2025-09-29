@@ -499,51 +499,21 @@ const Join = () => {
                       </Field>
 
                       {/* ✅ Custom checkbox design */}
-                      {/* <Field name="terms">
-                        {({ field }) => (
-                          <span
-                            className={`w-5 h-5 flex items-center justify-center rounded border
-          ${
-            field.value
-              ? "bg-green-500 border-green-500"
-              : "bg-white border-[#DFE1E7]"
-          }
-          transition-all duration-200 relative -mt-3`}
-                          >
-                            {field.value && (
-                              <svg
-                                className="w-4 h-4 text-white"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M5 13l4 4L19 7"
-                                />
-                              </svg>
-                            )}
-                          </span>
-                        )}
-                      </Field> */}
-
                       <Field name="terms">
                         {({ field }) => (
                           <span
-                            className={`w-6 h-6 flex items-center justify-center border
-        ${
-          field.value
-            ? "bg-green-500 border-green-500"
-            : "bg-white border-[#DFE1E7]"
-        }
-        transition-all duration-200 relative -mt-3 
-      `}
+                            className={`w-6 h-5 flex items-center justify-center border 
+            ${
+              field.value
+                ? "bg-green-500 border-green-500"
+                : "bg-[#F6F8FA] border-[#DFE1E7]"
+            }
+            transition-all duration-200 rounded  relative -mt-3 
+          `}
                           >
                             {field.value && (
                               <svg
-                                className="w-4 h-4 text-white"
+                                className="w-3 h-3 text-white"
                                 fill="none"
                                 stroke="currentColor"
                                 strokeWidth="2"
@@ -561,11 +531,12 @@ const Join = () => {
                       </Field>
 
                       {/* Text next to checkbox */}
-                      <span className="ml-3 text-[#0D0D12] text-base">
+                      <span className="ml-2 text-[#0D0D12] text-base leading-5">
                         {t("join_label")}
                       </span>
                     </label>
                   </div>
+
                   <ErrorMessage
                     name="terms"
                     component="div"
@@ -692,7 +663,7 @@ const Join = () => {
                 <img src={app_store} alt="" className="h-10 w-auto" />
               </a> */}
               <Link
-                to="https://play.google.com/store/apps/details?id=com.guruarabia.app"
+                to="https://apps.apple.com/us/app/guru-arabia/id6751482805"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block transition-transform duration-200 hover:scale-103"

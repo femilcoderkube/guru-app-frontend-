@@ -239,7 +239,7 @@ const TermsOfUse = () => {
                 <img src={app_store} alt="" className="h-10 w-auto" />
               </a> */}
               <Link
-                to="https://play.google.com/store/apps/details?id=com.guruarabia.app"
+                to="https://apps.apple.com/us/app/guru-arabia/id6751482805"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block transition-transform duration-200 hover:scale-103"
