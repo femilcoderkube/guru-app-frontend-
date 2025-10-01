@@ -41,6 +41,7 @@ const Join = () => {
   // Responsive nav state for mobile menu
   const [navOpen, setNavOpen] = React.useState(false);
   const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
   const navigate = useNavigate();
   const [country, setCountry] = useState("");
   const [preview, setPreview] = useState(null);
@@ -343,7 +344,10 @@ const Join = () => {
                         className="text-red-500 text-sm mt-1"
                       />
                     </div>
-                    <div>
+                    <div
+                      className=""
+                      dir={currentLang === "ar" ? "rtl" : "ltr"}
+                    >
                       <label
                         className="block text-[#0D0D12] text-base mb-1"
                         htmlFor="Contact Number"
@@ -356,30 +360,54 @@ const Join = () => {
                         className="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
                         placeholder={t("Type_contact_number")}
                       /> */}
-                      <PhoneInput
-                        country={"sa"} // default
-                        value={values.phone_number}
-                        onChange={(value, country) => {
-                          // value includes country code (e.g. "919876543210")
-                          const formatted = value.startsWith("+")
-                            ? value
-                            : `+${value}`;
-                          setFieldValue("phone_number", formatted);
-                          setFieldValue("country_code", `+${country.dialCode}`);
+                      <div
+                        style={{
+                          position: "relative",
+                          direction: "ltr", // Force ltr for PhoneInput wrapper so flag stays inside
                         }}
-                        enableSearch={true}
-                        disableCountryCode={false} // ✅ Keep the country code visible
-                        disableDropdown={false}
-                        inputClass="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
-                        placeholder={t("Type_contact_number")}
-                        inputStyle={{
-                          width: "100%",
-                          height: "50px",
-                          fontSize: "0.85rem",
-                          borderRadius: "8px",
-                          border: "1px solid #919eab33",
-                        }}
-                      />
+                      >
+                        <PhoneInput
+                          country={"sa"} // default
+                          value={values.phone_number}
+                          onChange={(value, country) => {
+                            // value includes country code (e.g. "919876543210")
+                            const formatted = value.startsWith("+")
+                              ? value
+                              : `+${value}`;
+                            setFieldValue("phone_number", formatted);
+                            setFieldValue(
+                              "country_code",
+                              `+${country.dialCode}`
+                            );
+                          }}
+                          inputClass="w-full border border-[#DFE1E7] bg-[#F6F8FA] px-3 py-2 md:py-[0.57rem] text-[#0D0D12] focus:outline-none focus:ring-2 focus:ring-[#FC9924] transition rounded-xl text-sm md:text-base"
+                          placeholder={t("Type_contact_number")}
+                          enableAreaCodes={false}
+                          disableCountryCode={false}
+                          countryCodeEditable={true}
+                          autoFormat={false}
+                          inputStyle={{
+                            width: "100%",
+                            height: "43px",
+                            fontSize: "0.85rem",
+                            borderRadius: "10px",
+                            backgroundColor: "#F6F8FA",
+                            border: "1px solid #919eab33",
+                            textAlign: currentLang === "ar" ? "right" : "left", // Align numbers properly
+                            paddingRight:
+                              currentLang === "ar" ? "50px" : "12px", // Keep flag inside on RTL
+                            paddingLeft: currentLang === "en" ? "50px" : "12px", // Keep flag inside on LTR
+                          }}
+                          buttonStyle={{
+                            background: "transparent",
+                            // border: "none",
+                            position: "absolute",
+                            top: 0,
+                            bottom: 0,
+                            [currentLang === "ar" ? "right" : "left"]: 0, // Flag sticks inside correctly
+                          }}
+                        />
+                      </div>
                       <ErrorMessage
                         name="phone_number"
                         component="div"
