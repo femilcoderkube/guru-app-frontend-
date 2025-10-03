@@ -6,6 +6,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination"; // ✅ import pagination css
 import logo from "../assets/Images/guru_logo.png";
 import dark_logo from "../assets/Images/dark_logo.png";
+import insta from "../assets/Images/insta.png";
+import ticktok from "../assets/Images/ticktok.png";
 import TW from "../assets/Images/twitter.png";
 import LN from "../assets/Images/Ln.png";
 import FB from "../assets/Images/fb.png";
@@ -245,15 +247,37 @@ const Rating = () => {
           variants={cardVariantsAni}
           viewport={{ once: true, amount: 0 }}
         >
-          <ul className="flex items-center justify-center gap-4 md:gap-6">
+          <ul className="flex items-center justify-center gap-4 sm:gap-6">
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-              <img src={TW} alt="Twitter" className="h-6 w-6 sm:h-7 sm:w-7" />
+              <Link
+                to="https://x.com/guru_arabia"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={TW} alt="Twitter" className="h-6 w-6 sm:h-7 sm:w-7" />
+              </Link>
             </li>
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-              <img src={LN} alt="LinkedIn" className="h-6 w-6 sm:h-7 sm:w-7" />
+              <Link
+                to="https://www.instagram.com/guruarabia"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={insta}
+                  alt="Instagram"
+                  className="h-6 w-6 sm:h-7 sm:w-7"
+                />
+              </Link>
             </li>
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-              <img src={FB} alt="Facebook" className="h-6 w-6 sm:h-7 sm:w-7" />
+              <Link
+                to="https://www.tiktok.com/@guruarabia"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={ticktok} alt="" className="h-6 w-6 sm:h-7 sm:w-7" />
+              </Link>
             </li>
           </ul>
         </motion.div>

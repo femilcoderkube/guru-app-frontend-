@@ -3,6 +3,8 @@ import logo from "../assets/Images/guru_logo.png";
 import dark_logo from "../assets/Images/dark_logo.png";
 import terms_list from "../assets/Images/terms-list.png";
 import TW from "../assets/Images/twitter.png";
+import instragram from "../assets/Images/Instagram.png";
+import TickTok1 from "../assets/Images/TickTok1.png";
 import LN from "../assets/Images/Ln.png";
 import FB from "../assets/Images/fb.png";
 import app_store from "../assets/Images/app-store.png";
@@ -382,18 +384,30 @@ const ContactUs = () => {
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <Link to="/twitter">
+                <Link
+                  to="https://x.com/guru_arabia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={TW} alt="" className="h-6 w-6" />
                 </Link>
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <Link to="/twitter">
-                  <img src={LN} alt="" className="h-6 w-6" />
+                <Link
+                  to="https://www.instagram.com/guruarabia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={instragram} alt="" className="h-6 w-6" />
                 </Link>
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <Link to="/twitter">
-                  <img src={FB} alt="" className="h-6 w-6" />
+                <Link
+                  to="https://www.tiktok.com/@guruarabia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={TickTok1} alt="" className="h-6 w-6" />
                 </Link>
               </li>
             </ul>

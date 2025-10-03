@@ -6,6 +6,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination"; // ✅ import pagination css
 import logo from "../assets/Images/guru_logo.png";
 import dark_logo from "../assets/Images/dark_logo.png";
+import insta from "../assets/Images/insta.png";
+import ticktok from "../assets/Images/ticktok.png";
+import instragram from "../assets/Images/Instagram.png";
+import TickTok1 from "../assets/Images/TickTok1.png";
 import TW from "../assets/Images/twitter.png";
 import LN from "../assets/Images/Ln.png";
 import FB from "../assets/Images/fb.png";
@@ -296,13 +300,35 @@ const Home = () => {
         >
           <ul className="flex items-center justify-center gap-4 sm:gap-6">
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-              <img src={TW} alt="Twitter" className="h-6 w-6 sm:h-7 sm:w-7" />
+              <Link
+                to="https://x.com/guru_arabia"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={TW} alt="Twitter" className="h-6 w-6 sm:h-7 sm:w-7" />
+              </Link>
             </li>
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-              <img src={LN} alt="LinkedIn" className="h-6 w-6 sm:h-7 sm:w-7" />
+              <Link
+                to="https://www.instagram.com/guruarabia"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={insta}
+                  alt="Instagram"
+                  className="h-6 w-6 sm:h-7 sm:w-7"
+                />
+              </Link>
             </li>
             <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-              <img src={FB} alt="Facebook" className="h-6 w-6 sm:h-7 sm:w-7" />
+              <Link
+                to="https://www.tiktok.com/@guruarabia"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={ticktok} alt="" className="h-6 w-6 sm:h-7 sm:w-7" />
+              </Link>
             </li>
           </ul>
         </motion.div>
@@ -836,18 +862,30 @@ const Home = () => {
             </div>
             <ul className="footer-icon flex items-center justify-center gap-4 md:gap-6 mt-2 md:mt-0">
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <Link to="/twitter">
+                <Link
+                  to="https://x.com/guru_arabia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={TW} alt="" className="h-6 w-6" />
                 </Link>
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <Link to="/twitter">
-                  <img src={LN} alt="" className="h-6 w-6" />
+                <Link
+                  to="https://www.instagram.com/guruarabia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={instragram} alt="" className="h-6 w-6" />
                 </Link>
               </li>
               <li className="cursor-pointer transition-transform duration-200 hover:scale-105">
-                <Link to="/twitter">
-                  <img src={FB} alt="" className="h-6 w-6" />
+                <Link
+                  to="https://www.tiktok.com/@guruarabia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={TickTok1} alt="" className="h-6 w-6" />
                 </Link>
               </li>
             </ul>
